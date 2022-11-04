@@ -1,0 +1,132 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:conv="clr-namespace:ColorPickerExtraLib.Converters"
+    xmlns:linearsliders="clr-namespace:ColorPickerExtraLib.Controls.LinearSliders"
+    xmlns:local="clr-namespace:ColorPickerExtraLib.Controls"
+    xmlns:usercontrols="clr-namespace:ColorPickerExtraLib.Controls.UserControls">
+
+    <conv:MinConverter x:Key="MinConverter" />
+
+    <ControlTemplate x:Key="SquarePickerRoundTemplate" TargetType="{x:Type local:SquarePicker}">
+        <Grid>
+            <Grid.Width>
+                <MultiBinding Converter="{StaticResource MinConverter}">
+                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
+                </MultiBinding>
+            </Grid.Width>
+            <Grid.Height>
+                <MultiBinding Converter="{StaticResource MinConverter}">
+                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
+                </MultiBinding>
+            </Grid.Height>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.22*" />
+                <RowDefinition Height="0.56*" />
+                <RowDefinition Height="0.22*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.22*" />
+                <ColumnDefinition Width="0.56*" />
+                <ColumnDefinition Width="0.22*" />
+            </Grid.ColumnDefinitions>
+
+            <usercontrols:HueSlider
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                SmallChange="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}"
+                Value="{Binding Color.HSV_H, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+            <Border Grid.Row="1" Grid.Column="1">
+                <usercontrols:SquareSlider
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    AdvancedPickerType="{Binding AdvancedPickerType, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}"
+                    Hue="{Binding Color.HSV_H, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}"
+                    RangeX="100"
+                    RangeY="100">
+                    <usercontrols:SquareSlider.Style>
+                        <Style TargetType="usercontrols:SquareSlider">
+                            <Setter Property="HeadX" Value="{Binding Color.HSV_S, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                            <Setter Property="HeadY" Value="{Binding Color.HSV_V, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding AdvancedPickerType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" Value="HSL">
+                                    <Setter Property="HeadX" Value="{Binding Color.HSL_S, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                                    <Setter Property="HeadY" Value="{Binding Color.HSL_L, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </usercontrols:SquareSlider.Style>
+                </usercontrols:SquareSlider>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="SquarePickerSquareTemplate" TargetType="{x:Type local:SquarePicker}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <linearsliders:VerticalHueSlider
+                Grid.Row="0"
+                Grid.Column="1"
+                MinWidth="24"
+                Margin="9,0,6,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}"
+                IsMoveToPointEnabled="True"
+                Maximum="255"
+                Minimum="0"
+                SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}"
+                Value="{Binding Color.HSV_H, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+            <Border Grid.Row="0" Grid.Column="0">
+                <usercontrols:SquareSlider
+                    AdvancedPickerType="{Binding AdvancedPickerType, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}"
+                    Hue="{Binding Color.HSV_H, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}"
+                    RangeX="100"
+                    RangeY="100">
+                    <usercontrols:SquareSlider.Style>
+                        <Style TargetType="usercontrols:SquareSlider">
+                            <Setter Property="HeadX" Value="{Binding Color.HSV_S, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                            <Setter Property="HeadY" Value="{Binding Color.HSV_V, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding AdvancedPickerType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" Value="HSL">
+                                    <Setter Property="HeadX" Value="{Binding Color.HSL_S, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                                    <Setter Property="HeadY" Value="{Binding Color.HSL_L, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </usercontrols:SquareSlider.Style>
+                </usercontrols:SquareSlider>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type local:SquarePicker}">
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="BorderBrush" Value="{Binding AdvancedInnerBorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SquarePicker}}}" />
+                <Setter Property="BorderThickness" Value="{Binding AdvancedInnerBorderWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SquarePicker}}}" />
+            </Style>
+            <Style TargetType="{x:Type Ellipse}">
+                <Setter Property="Stroke" Value="{Binding AdvancedInnerBorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SquarePicker}}}" />
+                <Setter Property="StrokeThickness" Value="{Binding AdvancedInnerBorderWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SquarePicker}}}" />
+            </Style>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="UseRectangularStyle" Value="False">
+                <Setter Property="Template" Value="{StaticResource SquarePickerRoundTemplate}" />
+            </Trigger>
+            <Trigger Property="UseRectangularStyle" Value="True">
+                <Setter Property="Template" Value="{StaticResource SquarePickerSquareTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+</ResourceDictionary>

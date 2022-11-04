@@ -1,0 +1,199 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ColorPickerExtraLib.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Themes/CommonBrushes.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/StandardPickerControls/ColorGrid.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/AdvancedPickerControls/LinearSliders/ColorSlider.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/AdvancedPickerControls/ColorSliders.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/AdvancedPickerControls/SquarePicker.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/AdvancedPickerControls/ColorDisplay.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/StandardColorPicker.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/AdvancedColorPicker.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/ColorPicker.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/PortableColorPicker.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--  Focus Visual  -->
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle
+                        Margin="2"
+                        SnapsToDevicePixels="true"
+                        Stroke="{StaticResource ColorPicker.ControlPrimaryBrightDefaultBorderBrush}"
+                        StrokeDashArray="1 2"
+                        StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="PopupToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Padding="{TemplateBinding Padding}">
+                        <Grid Background="Transparent" SnapsToDevicePixels="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                RecognizesAccessKey="True"
+                                SnapsToDevicePixels="True" />
+                            <Border
+                                x:Name="rectangle"
+                                Grid.Column="1"
+                                Width="19"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Stretch"
+                                Background="{DynamicResource ColorPicker.ControlBrightDefaultBackground}"
+                                BorderBrush="{StaticResource ColorPicker.ControlBrightDefaultBorderBrush}"
+                                BorderThickness="1">
+                                <Path
+                                    x:Name="arrow"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Data="M 1,1.5 L 4.5,5 L 8,1.5"
+                                    SnapsToDevicePixels="false"
+                                    Stroke="{DynamicResource ColorPicker.ControlDefaultForeground}"
+                                    StrokeThickness="2" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="arrow" Property="Data" Value="M 1,4.5  L 4.5,1  L 8,4.5" />
+                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableConstantBorderHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PortableColorPicker}}" />
+
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableConstantBorderHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PortableColorPicker}}" />
+                            <Setter TargetName="rectangle" Property="Background" Value="{StaticResource ColorPicker.ControlPrimaryMouseOverBorderBrush}" />
+                            <Setter TargetName="arrow" Property="Stroke" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableConstantBorderHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PortableColorPicker}}" />
+                            <Setter TargetName="rectangle" Property="BorderThickness" Value="1.5" />
+                            <Setter TargetName="rectangle" Property="Background" Value="{StaticResource ColorPicker.ControlPrimarySelectedBackground}" />
+                            <Setter TargetName="arrow" Property="Stroke" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{StaticResource ColorPicker.ControlDisabledBorderBrush}" />
+                            <Setter TargetName="rectangle" Property="Background" Value="{StaticResource ColorPicker.ControlDisabledBackground}" />
+                            <Setter TargetName="arrow" Property="Stroke" Value="{StaticResource ColorPicker.ControlDisabledGlythColour}" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding PortableShowDropdownButton, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PortableColorPicker}}" Value="False">
+                            <Setter TargetName="rectangle" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:PortableColorPicker}">
+        <Setter Property="Template" Value="{StaticResource PortableColorPickerTemplate}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ColorPicker.ContainerBorder}" />
+        <Setter Property="Background" Value="{DynamicResource ColorPicker.ContainerBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource ColorPicker.ControlDefaultForeground}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Width" Value="72" />
+        <Setter Property="PortableButtonBaseStyle" Value="{StaticResource PopupToggleButtonStyle}" />
+        <!--<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />-->
+        <Setter Property="EmptyBorderMode" Value="PortableSettings" />
+        <Setter Property="EmptyShapeMode" Value="EmptySettings" />
+        <Setter Property="EmptyShapeStretch" Value="Fill" />
+        <Setter Property="EmptyShapeGeometry" Value="BottomLeftToTopRight"/>
+        <Setter Property="EmptyShapeMargin" Value="4" />
+        <Setter Property="PortableConstantBorderHighlightBrush" Value="{StaticResource ColorPicker.ControlPrimarySelectedBorderBrush}" />
+        <Setter Property="EmptyShapeColorBrush" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
+        <Setter Property="PortableConstantBackgroundBrush" Value="{StaticResource ColorPicker.ControlBrightDefaultBackground}" />
+        <Setter Property="PortableConstantBorderBrush" Value="{StaticResource ColorPicker.ControlBrightDefaultBorderBrush}" />
+        <Setter Property="PortableConstantFontBrush" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
+    </Style>
+
+
+
+    <Style TargetType="{x:Type local:ColorPicker}">
+        <Style.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/TextBlock.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/IsEmptyToggleButton.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/SwapModeButton.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Style.Resources>
+        <Setter Property="Template" Value="{StaticResource ColorPickerTemplate}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="{StaticResource ColorPicker.ContainerBorder}" />
+        <Setter Property="Background" Value="{StaticResource ColorPicker.ContainerBackground}" />
+        <Setter Property="Foreground" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
+    </Style>
+
+    <Style TargetType="{x:Type local:StandardColorPicker}">
+        <Style.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/TextBlock.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/IsEmptyToggleButton.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Style.Resources>
+        <Setter Property="Template" Value="{StaticResource StandardColorPickerTemplate}" />
+        <Setter Property="Width" Value="280" />
+        <Setter Property="Height" Value="340" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="{StaticResource ColorPicker.ContainerBorder}" />
+        <Setter Property="Background" Value="{StaticResource ColorPicker.ContainerBackground}" />
+        <Setter Property="Foreground" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
+    </Style>
+
+    <Style TargetType="{x:Type local:AdvancedColorPicker}">
+        <Style.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/TextBlock.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/IsEmptyToggleButton.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/AdvancedComboBox.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/AdvancedRadioButton.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/AdvancedTabControl.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/AdvancedTextBox.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Style.Resources>
+        <Setter Property="Width" Value="280" />
+        <Setter Property="Height" Value="340" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ColorPicker.ContainerBorder}" />
+        <Setter Property="Background" Value="{DynamicResource ColorPicker.ContainerBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource ColorPicker.ControlDefaultForeground}" />
+        <Style.Triggers>
+            <Trigger Property="UseRectangularStyle" Value="False">
+                <Setter Property="Template" Value="{StaticResource AdvancedRoundTemplate}" />
+            </Trigger>
+            <Trigger Property="UseRectangularStyle" Value="True">
+                <Setter Property="Template" Value="{StaticResource AdvancedSquareTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+</ResourceDictionary>

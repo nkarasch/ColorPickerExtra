@@ -1,0 +1,20 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:colorgrids="clr-namespace:ColorPickerExtraLib.Controls.ColorGrids">
+
+    <ControlTemplate x:Key="ColorGridTemplate" TargetType="{x:Type colorgrids:AColorGrid}">
+        <Grid
+            Name="PART_ColorGrid"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" />
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type colorgrids:AvailableColorsGrid}">
+        <Setter Property="Template" Value="{StaticResource ColorGridTemplate}" />
+    </Style>
+    <Style TargetType="{x:Type colorgrids:RecentColorsGrid}">
+        <Setter Property="Template" Value="{StaticResource ColorGridTemplate}" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorPickerExtraLib", "ColorPickerExtraLib\ColorPickerExtraLib.csproj", "{0649DEA1-03A0-4184-9087-E64547948915}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorPickerExtraDemo", "ColorPickerExtraDemo\ColorPickerExtraDemo.csproj", "{3F27FCCB-C5B2-485F-81C2-1BFF8F0D7680}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0649DEA1-03A0-4184-9087-E64547948915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0649DEA1-03A0-4184-9087-E64547948915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0649DEA1-03A0-4184-9087-E64547948915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0649DEA1-03A0-4184-9087-E64547948915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F27FCCB-C5B2-485F-81C2-1BFF8F0D7680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F27FCCB-C5B2-485F-81C2-1BFF8F0D7680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F27FCCB-C5B2-485F-81C2-1BFF8F0D7680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F27FCCB-C5B2-485F-81C2-1BFF8F0D7680}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {092A942C-C16D-4C8C-B5B8-28683E1F05AB}
+	EndGlobalSection
+EndGlobal

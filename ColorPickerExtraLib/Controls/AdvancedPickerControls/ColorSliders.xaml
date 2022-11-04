@@ -1,0 +1,474 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:ColorPickerExtraLib.Behaviors"
+    xmlns:conv="clr-namespace:ColorPickerExtraLib.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ColorPickerExtraLib.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="clr-namespace:ColorPickerExtraLib.Controls.LinearSliders"
+    mc:Ignorable="d">
+    <conv:RangeConstrainedDoubleToDoubleConverter
+        x:Key="HueChannelConverter"
+        Max="359"
+        Min="0" />
+    <conv:RangeConstrainedDoubleToDoubleConverter
+        x:Key="HundredChannelConverter"
+        Max="100"
+        Min="0" />
+    <conv:RangeConstrainedDoubleToDoubleConverter
+        x:Key="TwoFiftyFiveChannelConverter"
+        Max="255"
+        Min="0" />
+
+    <ControlTemplate x:Key="ColorSlidersTemplate" TargetType="{x:Type local:ColorSliders}">
+        <TabControl
+            Canvas.Top="290"
+            MaxHeight="130"
+            Margin="0,10,0,0"
+            VerticalAlignment="Stretch">
+            <TabItem Header="HSV">
+                <Grid Margin="0,5,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="18" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="45" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition>
+                            <RowDefinition.Style>
+                                <Style TargetType="RowDefinition">
+                                    <Setter Property="Height" Value="*" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding UsingAlphaChannel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" Value="False">
+                                            <Setter Property="Height" Value="0" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </RowDefinition.Style>
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="H" />
+                    <ui:HsvColorSlider
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="360"
+                        Minimum="0"
+                        SliderType="H"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="1"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.HSV_H, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="5"
+                        Text="{Binding Path=Color.HSV_H, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource HueChannelConverter}, StringFormat=N1}"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="S" />
+                    <ui:HsvColorSlider
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="100"
+                        Minimum="0"
+                        SliderType="S"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="2"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.HSV_S, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="6"
+                        Text="{Binding Path=Color.HSV_S, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource HundredChannelConverter}, StringFormat=N1}"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="V" />
+                    <ui:HsvColorSlider
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="100"
+                        Minimum="0"
+                        SliderType="V"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="3"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.HSV_V, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="7"
+                        Text="{Binding Path=Color.HSV_V, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource HundredChannelConverter}, StringFormat=N1}"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="A" />
+
+                    <ui:RgbColorSlider
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsEnabled="{Binding UsingAlphaChannel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="255"
+                        Minimum="0"
+                        SliderType="A"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="4"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.A, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+                    <TextBox
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        IsEnabled="{Binding UsingAlphaChannel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="8"
+                        Text="{Binding Path=Color.A, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource TwoFiftyFiveChannelConverter}, StringFormat=N0}"
+                        TextAlignment="Center" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="HSL">
+                <Grid Margin="0,5,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="18" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="45" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition>
+                            <RowDefinition.Style>
+                                <Style TargetType="RowDefinition">
+                                    <Setter Property="Height" Value="*" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding UsingAlphaChannel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" Value="False">
+                                            <Setter Property="Height" Value="0" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </RowDefinition.Style>
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="H" />
+                    <ui:HslColorSlider
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="360"
+                        Minimum="0"
+                        SliderType="H"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="1"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.HSL_H, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="5"
+                        Text="{Binding Path=Color.HSL_H, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource HueChannelConverter}, StringFormat=N1}"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="S" />
+                    <ui:HslColorSlider
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="100"
+                        Minimum="0"
+                        SliderType="S"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="2"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.HSL_S, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="6"
+                        Text="{Binding Path=Color.HSL_S, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource HundredChannelConverter}, StringFormat=N1}"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="L" />
+                    <ui:HslColorSlider
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="100"
+                        Minimum="0"
+                        SliderType="L"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="3"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.HSL_L, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="7"
+                        Text="{Binding Path=Color.HSL_L, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource HundredChannelConverter}, StringFormat=N1}"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="A" />
+
+                    <ui:RgbColorSlider
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsEnabled="{Binding UsingAlphaChannel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="255"
+                        Minimum="0"
+                        SliderType="A"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="4"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.A, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+
+                    <TextBox
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        IsEnabled="{Binding UsingAlphaChannel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="8"
+                        Text="{Binding Path=Color.A, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource TwoFiftyFiveChannelConverter}, StringFormat=N0}"
+                        TextAlignment="Center" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="RGB">
+                <Grid Margin="0,5,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="18" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="45" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition>
+                            <RowDefinition.Style>
+                                <Style TargetType="RowDefinition">
+                                    <Setter Property="Height" Value="*" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding UsingAlphaChannel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" Value="False">
+                                            <Setter Property="Height" Value="0" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </RowDefinition.Style>
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="R" />
+                    <ui:RgbColorSlider
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="255"
+                        Minimum="0"
+                        SliderType="R"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="1"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.RGB_R, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="5"
+                        Text="{Binding Path=Color.RGB_R, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource TwoFiftyFiveChannelConverter}, StringFormat=N0}"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="G" />
+                    <ui:RgbColorSlider
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="255"
+                        Minimum="0"
+                        SliderType="G"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="2"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.RGB_G, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="6"
+                        Text="{Binding Path=Color.RGB_G, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource TwoFiftyFiveChannelConverter}, StringFormat=N0}"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="B" />
+                    <ui:RgbColorSlider
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="255"
+                        Minimum="0"
+                        SliderType="B"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="3"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.RGB_B, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="7"
+                        Text="{Binding Path=Color.RGB_B, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource TwoFiftyFiveChannelConverter}, StringFormat=N0}"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Text="A" />
+
+                    <ui:RgbColorSlider
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Height="12"
+                        CurrentColorState="{Binding ColorState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsEnabled="{Binding UsingAlphaChannel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        IsMoveToPointEnabled="True"
+                        Maximum="255"
+                        Minimum="0"
+                        SliderType="A"
+                        SmallChangeBindable="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        TabIndex="4"
+                        UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Value="{Binding Path=Color.A, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}" />
+
+                    <TextBox
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="18"
+                        behaviors:TextBoxFocusBehavior.IsSliderTextBox="true"
+                        IsEnabled="{Binding UsingAlphaChannel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}}"
+                        Style="{DynamicResource AdvancedTextBox}"
+                        TabIndex="8"
+                        Text="{Binding Path=Color.A, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ColorSliders}, Converter={StaticResource TwoFiftyFiveChannelConverter}, StringFormat=N0}"
+                        TextAlignment="Center" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type local:ColorSliders}">
+        <Setter Property="Template" Value="{StaticResource ColorSlidersTemplate}" />
+        <Style.Triggers />
+    </Style>
+</ResourceDictionary>

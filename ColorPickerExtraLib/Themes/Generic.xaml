@@ -1,0 +1,19 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:ColorPickerExtraLib.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Themes/CommonBrushes.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/StandardPickerControls/ColorGrid.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/AdvancedPickerControls/LinearSliders/ColorSlider.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/AdvancedPickerControls/ColorSliders.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/AdvancedPickerControls/SquarePicker.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/AdvancedPickerControls/ColorDisplay.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/StandardColorPicker.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/AdvancedColorPicker.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/ColorPicker.xaml" />
+        <ResourceDictionary Source="/ColorPickerExtraLib;component/Controls/PortableColorPicker.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

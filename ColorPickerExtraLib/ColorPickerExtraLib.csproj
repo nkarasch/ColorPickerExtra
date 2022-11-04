@@ -1,0 +1,80 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>net4;netcoreapp3.1</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Company>Open Source</Company>
+    <PackageProjectUrl>https://github.com/nkarasch/ColorPickerExtra</PackageProjectUrl>
+    <PackageTags />
+    <Authors>Nick Karasch</Authors>
+    <Version>0.9</Version>
+    <Description>Yet another ColorPicker control for WPF supporting back to .NET 4.0 and Core 3.1. It is inspired by and using some code from https://github.com/Dirkster99/ColorPickerLib and https://github.com/PixiEditor/ColorPicker.</Description>
+  </PropertyGroup>
+  
+
+  <ItemGroup>
+    <None Remove="Images\circular_hue_gradient.png" />
+    <None Remove="Images\transparentbg_mini.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\AdvancedPickerControls\LinearSliders\VerticalHueSlider.cs">
+      <ExcludeFromSourceAnalysis>False</ExcludeFromSourceAnalysis>
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Update="Controls\PortableColorPicker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\circular_hue_gradient.png" />
+    <Resource Include="Images\transparentbg_mini.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\PortableColorPicker.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\AdvancedPickerControls\SquarePicker.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Dark\AdvancedTabControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Dark\AdvancedComboBox.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Dark\AdvancedTextBox.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Dark\AdvancedRadioButton.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Dark\IsEmptyToggleButton.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

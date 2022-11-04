@@ -1,0 +1,126 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:colorclicker="clr-namespace:ColorPickerExtraLib.Controls.ColorGrids"
+    xmlns:conv="clr-namespace:ColorPickerExtraLib.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ColorPickerExtraLib.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="uc"
+    mc:Ignorable="d">
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+
+    <ControlTemplate
+        x:Key="StandardColorPickerTemplate"
+        x:Name="StandardColorPicker"
+        TargetType="{x:Type local:StandardColorPicker}">
+        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid VerticalAlignment="Stretch" Background="{TemplateBinding Background}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    Margin="2,2,2,0"
+                    Padding="2"
+                    Style="{DynamicResource StandardGridHeaderTextBlockStyle}"
+                    Text="{TemplateBinding StandardAvailableColorsHeader}"
+                    Visibility="{TemplateBinding StandardShowAvailableColors,
+                                                 Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <colorclicker:AvailableColorsGrid
+                    x:Name="PART_AvailableColorsGrid"
+                    Grid.Row="1"
+                    VerticalContentAlignment="Center"
+                    ColumnCount="{TemplateBinding StandardColumnCount}"
+                    ItemBorderBrush="{TemplateBinding StandardItemBorderBrush}"
+                    ItemBorderInnerHighlightBrush="{TemplateBinding StandardItemInnerHighlightBrush}"
+                    ItemBorderOuterHighlightBrush="{TemplateBinding StandardItemOuterHighlightBrush}"
+                    ItemBorderThickness="{TemplateBinding StandardItemBorderThickness}"
+                    ItemCornerRadius="{TemplateBinding StandardItemCornerRadius}"
+                    ItemMargin="{TemplateBinding StandardItemMargin}"
+                    ItemSquareSize="{TemplateBinding StandardItemSquareSize}"
+                    RowCount="{TemplateBinding StandardAvailableColorRows}"
+                    SelectedColor="{TemplateBinding UpdatedRecentColorsItem}"
+                    UsingAlphaChannel="{TemplateBinding UsingAlphaChannel}"
+                    Visibility="{TemplateBinding StandardShowAvailableColors,
+                                                 Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <TextBlock
+                    Grid.Row="2"
+                    Margin="2,2,2,0"
+                    Padding="2"
+                    Style="{DynamicResource StandardGridHeaderTextBlockStyle}"
+                    Text="{TemplateBinding StandardRecentColorsHeader}"
+                    Visibility="{TemplateBinding StandardShowRecentColors,
+                                                 Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <colorclicker:RecentColorsGrid
+                    x:Name="PART_RecentColorsGrid"
+                    Grid.Row="3"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    ColumnCount="{TemplateBinding StandardColumnCount}"
+                    ItemBorderBrush="{TemplateBinding StandardItemBorderBrush}"
+                    ItemBorderInnerHighlightBrush="{TemplateBinding StandardItemInnerHighlightBrush}"
+                    ItemBorderOuterHighlightBrush="{TemplateBinding StandardItemOuterHighlightBrush}"
+                    ItemBorderThickness="{TemplateBinding StandardItemBorderThickness}"
+                    ItemCornerRadius="{TemplateBinding StandardItemCornerRadius}"
+                    ItemMargin="{TemplateBinding StandardItemMargin}"
+                    ItemSquareSize="{TemplateBinding StandardItemSquareSize}"
+                    RowCount="{TemplateBinding StandardRecentColorRows}"
+                    SelectedColor="{TemplateBinding UpdatedRecentColorsItem}"
+                    UsingAlphaChannel="{TemplateBinding UsingAlphaChannel}"
+                    Visibility="{TemplateBinding StandardShowRecentColors,
+                                                 Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <ToggleButton
+                    x:Name="PART_EmptyToggleButton"
+                    Grid.Row="4"
+                    Margin="0,2,0,0"
+                    HorizontalAlignment="Stretch"
+                    Content="{TemplateBinding EmptyButtonText}"
+                    IsChecked="{Binding IsEmpty, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:StandardColorPicker}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{DynamicResource EmptyToggleButtonStyle}"
+                    Visibility="Collapsed" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="UseRectangularStyle" Value="False">
+                <Setter TargetName="PART_AvailableColorsGrid" Property="ItemCornerRadius" Value="{Binding StandardItemCornerRadius, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="PART_RecentColorsGrid" Property="ItemCornerRadius" Value="{Binding StandardItemCornerRadius, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+            <Trigger Property="UseRectangularStyle" Value="True">
+                <Setter TargetName="PART_AvailableColorsGrid" Property="ItemCornerRadius" Value="0" />
+                <Setter TargetName="PART_RecentColorsGrid" Property="ItemCornerRadius" Value="0" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="EnableEmptyMode" Value="True" />
+                    <Condition Property="IsIndependent" Value="True" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter TargetName="PART_EmptyToggleButton" Property="Visibility" Value="Visible" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type local:StandardColorPicker}">
+        <Setter Property="Template" Value="{StaticResource StandardColorPickerTemplate}" />
+        <Setter Property="Width" Value="280" />
+        <Setter Property="MinHeight" Value="340" />
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="#FFE8E8E8" />
+        <Setter Property="Background" Value="WhiteSmoke" />
+        <Setter Property="Foreground" Value="#FF040404" />
+    </Style>
+</ResourceDictionary>
