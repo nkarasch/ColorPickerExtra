@@ -4,3 +4,7 @@
 
 /.vs
 /ColorPickerExtraDemo/obj
+/ColorPickerExtraDemo/bin/Debug/netcoreapp3.1
+/ColorPickerExtraLib/bin/Debug
+/ColorPickerExtraLib/obj/Debug
+/ColorPickerExtraLib/obj
