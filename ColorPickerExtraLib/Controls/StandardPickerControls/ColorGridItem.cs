@@ -12,6 +12,7 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
 
         internal ColorGridItem(Color color, AColorGrid parentColorGrid, Thickness margin, Thickness borderThickness, CornerRadius innerCornerRadius, CornerRadius outerCornerRadius) : base()
         {
+            
             this.color = color;
             Width = parentColorGrid.ItemSquareSize;
             Height = parentColorGrid.ItemSquareSize;

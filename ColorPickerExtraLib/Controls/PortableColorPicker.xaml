@@ -7,17 +7,8 @@
     xmlns:local="clr-namespace:ColorPickerExtraLib.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <conv:BoolToInvertedBoolConverter x:Key="BoolToInvertedBoolConverter" />
-    <conv:ColorToBrushConverter x:Key="ColorToBrushConverter" />
-    <conv:BrushToColorConverter x:Key="BrushToColorConverter" />
-    <conv:InverseDarkOrLightColorConverter x:Key="InverseDarkOrLightColorConverter" />
-    <conv:ColorToHexMultiConverter x:Key="ColorToHexMultiConverter" />
-    <conv:IsNullValueConverter x:Key="IsNullValueConverter" />
+    <conv:InverseBoolConverter x:Key="InverseBoolConverter" />
     <conv:EmptyShapeGeometryConverter x:Key="EmptyShapeGeometryConverter" />
-    <conv:EnumToInverseBooleanConverter x:Key="EnumToInverseBooleanConverter" />
-    <conv:EmptyPropertyOverrideConverter x:Key="EmptyPropertyOverrideConverter" />
-    <conv:ColorToBrushWhiteBackgroundConverter x:Key="ColorToBrushWhiteBackgroundConverter" />
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <Style x:Key="PortableButtonStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Template">
@@ -68,12 +59,12 @@
                             <Setter TargetName="arrow" Property="Data" Value="M 1,4.5  L 4.5,1  L 8,4.5" />
                             <Setter TargetName="arrow" Property="Stroke" Value="Black" />
                             <Setter TargetName="rectangle" Property="Background" Value="#FFC4E5F6" />
-                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableConstantBorderHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:PortableColorPicker}}" />
+                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableBorderConstantHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:PortableColorPicker}}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="arrow" Property="Stroke" Value="Black" />
                             <Setter TargetName="rectangle" Property="Background" Value="#FFBEE6FD" />
-                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableConstantBorderHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:PortableColorPicker}}" />
+                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableBorderConstantHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:PortableColorPicker}}" />
                         </Trigger>
                         <DataTrigger Binding="{Binding PortableShowDropdownButton, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:PortableColorPicker}}" Value="False">
                             <Setter TargetName="rectangle" Property="Visibility" Value="Collapsed" />
@@ -96,7 +87,7 @@
                 BorderBrush="Transparent"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 IsChecked="{Binding IsPopupOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                IsHitTestVisible="{Binding IsPopupOpen, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToInvertedBoolConverter}}"
+                IsHitTestVisible="{Binding IsPopupOpen, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InverseBoolConverter}}"
                 IsTabStop="True"
                 Style="{Binding PortableButtonBaseStyle, RelativeSource={RelativeSource TemplatedParent}}">
                 <Grid Margin="{Binding PortableInsideMargin, RelativeSource={RelativeSource TemplatedParent}}">
@@ -158,15 +149,17 @@
                     IsIndependent="False"
                     IsPopupOpen="{Binding IsPopupOpen, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:PortableColorPicker}, Mode=TwoWay}"
                     SelectedColor="{Binding SelectedColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:PortableColorPicker}, Mode=TwoWay}"
+                    StandardAvailableColorArray="{TemplateBinding StandardAvailableColorArray}"
                     StandardAvailableColorRows="{TemplateBinding StandardAvailableColorRows}"
                     StandardAvailableColorsHeader="{TemplateBinding StandardAvailableColorsHeader}"
-                    StandardColumnCount="{TemplateBinding StandardColumnCount}"
+                    StandardColumnCount="{TemplateBinding StandardColumnCount}" 
                     StandardItemBorderBrush="{TemplateBinding StandardItemBorderBrush}"
                     StandardItemBorderThickness="{TemplateBinding StandardItemBorderThickness}"
                     StandardItemCornerRadius="{TemplateBinding StandardItemCornerRadius}"
                     StandardItemInnerHighlightBrush="{TemplateBinding StandardItemInnerHighlightBrush}"
                     StandardItemMargin="{TemplateBinding StandardItemMargin}"
                     StandardItemOuterHighlightBrush="{TemplateBinding StandardItemOuterHighlightBrush}"
+                    StandardItemSquareSize="{TemplateBinding StandardItemSquareSize}"
                     StandardRecentColorRows="{TemplateBinding StandardRecentColorRows}"
                     StandardRecentColorsHeader="{TemplateBinding StandardRecentColorsHeader}"
                     StandardShowAvailableColors="{TemplateBinding StandardShowAvailableColors}"
@@ -186,14 +179,14 @@
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Height" Value="24" />
         <Setter Property="Width" Value="72" />
-        <Setter Property="EmptyBorderMode" Value="EmptySettings"/>
-        <Setter Property="EmptyShapeMode" Value="EmptySettings"/>
-        <Setter Property="EmptyFontMargin" Value="20,0,0,0"/>
-        <Setter Property="EmptyFontColorBrush" Value="#FF040404"/>
-        <Setter Property="EmptyShapeHorizontalAlignment" Value="Left"/>
-        <Setter Property="EmptyShapeStretch" Value="Uniform"/>
-        <Setter Property="EmptyShapeMargin" Value="4"/>
-        <Setter Property="EmptyBorderMode" Value="EmptySettings"/>
+        <Setter Property="EmptyBorderMode" Value="EmptySettings" />
+        <Setter Property="EmptyShapeMode" Value="EmptySettings" />
+        <Setter Property="EmptyFontMargin" Value="20,0,0,0" />
+        <Setter Property="EmptyFontBrush" Value="#FF040404" />
+        <Setter Property="EmptyShapeHorizontalAlignment" Value="Left" />
+        <Setter Property="EmptyShapeStretch" Value="Uniform" />
+        <Setter Property="EmptyShapeMargin" Value="4" />
+        <Setter Property="EmptyBorderMode" Value="EmptySettings" />
         <Setter Property="PortableButtonBaseStyle" Value="{StaticResource PortableButtonStyle}" />
     </Style>
 

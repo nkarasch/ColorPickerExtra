@@ -1,17 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style TargetType="{x:Type TextBlock}">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="TextWrapping" Value="NoWrap" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-        <Setter Property="TextAlignment" Value="Left" />
-        <Setter Property="Foreground" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
-        <Style.Triggers>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="0.5" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
     <Style TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
         <Setter Property="Background" Value="Transparent" />
@@ -41,4 +29,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

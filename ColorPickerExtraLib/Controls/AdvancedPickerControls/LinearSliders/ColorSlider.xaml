@@ -254,8 +254,8 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    
-    
+
+
 
     <ControlTemplate x:Key="VerticalHueSliderTemplate" TargetType="{x:Type ui:AColorSlider}">
         <Border
@@ -316,8 +316,10 @@
                 Margin="-3,-7,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Stretch"
-                Fill="{DynamicResource ControlBrightDefaultBackground}"  Stroke="{DynamicResource ControlBrightDefaultBorderBrush}" StrokeThickness="1" 
-                Stretch="Uniform">
+                Fill="{DynamicResource ControlBrightDefaultBackground}"
+                Stretch="Uniform"
+                Stroke="{DynamicResource ControlBrightDefaultBorderBrush}"
+                StrokeThickness="1">
                 <Path.Data>
                     <CombinedGeometry GeometryCombineMode="Xor">
                         <CombinedGeometry.Geometry1>
@@ -358,16 +360,16 @@
         </Canvas>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Fill" TargetName="grip" Value="{DynamicResource ControlPrimaryDarkerBackground}" />
-                <Setter Property="Stroke" TargetName="grip" Value="{DynamicResource ControlPrimaryDarkerBorderBrush}" />
+                <Setter TargetName="grip" Property="Fill" Value="{DynamicResource ControlPrimaryDarkerBackground}" />
+                <Setter TargetName="grip" Property="Stroke" Value="{DynamicResource ControlPrimaryDarkerBorderBrush}" />
             </Trigger>
             <Trigger Property="IsDragging" Value="true">
-                <Setter Property="Fill" TargetName="grip" Value="{DynamicResource ControlPrimarySelectedMouseOverBackground}" />
-                <Setter Property="Stroke" TargetName="grip" Value="{DynamicResource ControlPrimarySelectedMouseOverBorderBrush}" />
+                <Setter TargetName="grip" Property="Fill" Value="{DynamicResource ControlPrimarySelectedMouseOverBackground}" />
+                <Setter TargetName="grip" Property="Stroke" Value="{DynamicResource ControlPrimarySelectedMouseOverBorderBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Fill" TargetName="grip" Value="{DynamicResource ControlDisabledBackground}" />
-                <Setter Property="Stroke" TargetName="grip" Value="{DynamicResource ControlDisabledBorderBrush}" />
+                <Setter TargetName="grip" Property="Fill" Value="{DynamicResource ControlDisabledBackground}" />
+                <Setter TargetName="grip" Property="Stroke" Value="{DynamicResource ControlDisabledBorderBrush}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

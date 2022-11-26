@@ -45,9 +45,9 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Focusable="False"
-                            Text="{TemplateBinding Content}"
                             Foreground="{StaticResource ColorPicker.ControlDefaultForeground}"
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            Text="{TemplateBinding Content}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasContent" Value="true">

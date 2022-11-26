@@ -45,7 +45,7 @@
                 <x:Type TypeName="models:AdvancedPickerType" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        
+
         <ObjectDataProvider
             x:Key="EmptyElementModes"
             MethodName="GetValues"
@@ -86,13 +86,12 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
+        <!--#region StandardColorPicker Column 0-->
         <Grid
             Grid.Row="0"
             Grid.Column="0"
@@ -108,6 +107,7 @@
                 EnableEmptyMode="{Binding EnableEmptyMode, ElementName=_PortableColorPicker}"
                 IsEmpty="{Binding IsEmpty, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 SelectedColor="{Binding SelectedColor, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                StandardAvailableColorArray="{Binding StandardAvailableColorArray, ElementName=_PortableColorPicker}"
                 StandardAvailableColorRows="{Binding StandardAvailableColorRows, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardAvailableColorsHeader="{Binding StandardAvailableColorsHeader, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardColumnCount="{Binding StandardColumnCount, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -145,6 +145,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -160,7 +161,6 @@
                         Grid.Column="1"
                         IsChecked="{Binding StandardShowAvailableColors, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="0"
@@ -170,7 +170,6 @@
                         Grid.Column="1"
                         IsEnabled="{Binding StandardShowAvailableColors, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         Text="{Binding StandardAvailableColorsHeader, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-
 
                     <TextBlock
                         Grid.Row="2"
@@ -203,12 +202,10 @@
                         IsEnabled="{Binding StandardShowRecentColors, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         Text="{Binding StandardRecentColorsHeader, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
-
                     <TextBlock
                         Grid.Row="5"
                         Grid.Column="0"
                         Text="StandardRecentColorRows:" />
-
                     <numupdown:UIntegerUpDown
                         Grid.Row="5"
                         Grid.Column="1"
@@ -216,16 +213,14 @@
                         MinValue="1"
                         Value="{Binding StandardRecentColorRows, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
-
                     <TextBlock
                         Grid.Row="6"
                         Grid.Column="0"
                         Text="StandardColumnCount:" />
-
                     <numupdown:UIntegerUpDown
                         Grid.Row="6"
                         Grid.Column="1"
-                        MaxValue="20"
+                        MaxValue="24"
                         MinValue="2"
                         Value="{Binding Path=StandardColumnCount, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
@@ -233,13 +228,12 @@
                         Grid.Row="7"
                         Grid.Column="0"
                         Text="StandardItemSquareSize:" />
-
                     <numupdown:DecimalUpDown
                         Grid.Row="7"
                         Grid.Column="1"
                         Margin="0,5"
                         HorizontalAlignment="Right"
-                        MaxValue="40"
+                        MaxValue="80"
                         MinValue="1"
                         Value="{Binding StandardItemSquareSize, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
@@ -269,13 +263,25 @@
                         MinValue="0"
                         Value="{Binding StandardItemMargin, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
-
                     <TextBlock
                         Grid.Row="10"
                         Grid.Column="0"
+                        Text="StandardItemBorderThickness:" />
+                    <numupdown:DecimalUpDown
+                        Grid.Row="10"
+                        Grid.Column="1"
+                        Margin="0,5"
+                        HorizontalAlignment="Right"
+                        MaxValue="10"
+                        MinValue="0"
+                        Value="{Binding StandardItemBorderThickness, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                    <TextBlock
+                        Grid.Row="11"
+                        Grid.Column="0"
                         Text="StandardItemBorderBrush:" />
                     <controls:PortableColorPicker
-                        Grid.Row="10"
+                        Grid.Row="11"
                         Grid.Column="1"
                         Width="100"
                         Margin="0,3"
@@ -289,11 +295,11 @@
                         SelectedColor="{Binding StandardItemBorderBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}" />
 
                     <TextBlock
-                        Grid.Row="11"
+                        Grid.Row="12"
                         Grid.Column="0"
                         Text="StandardItemInnerHighlightBrush:" />
                     <controls:PortableColorPicker
-                        Grid.Row="11"
+                        Grid.Row="12"
                         Grid.Column="1"
                         Width="100"
                         Margin="0,3"
@@ -308,11 +314,11 @@
                         PortableInsideMargin="5"
                         SelectedColor="{Binding StandardItemInnerHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}" />
                     <TextBlock
-                        Grid.Row="12"
+                        Grid.Row="13"
                         Grid.Column="0"
                         Text="StandardItemOuterHighlightBrush:" />
                     <controls:PortableColorPicker
-                        Grid.Row="12"
+                        Grid.Row="13"
                         Grid.Column="1"
                         Width="100"
                         Margin="0,3"
@@ -324,10 +330,77 @@
                         PortableBorderMode="SelectedColor"
                         PortableBorderModeThickness="5"
                         SelectedColor="{Binding StandardItemOuterHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}" />
+
+                    <Grid Grid.Row="14" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="StandardAvailableColorArray:" />
+
+                        <Button
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0,3"
+                            Click="CustomColorAdd_Click"
+                            Content="Add" />
+                        <Button
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="0,3"
+                            Click="CustomColorChange_Click"
+                            Content="Change" />
+
+                        <Button
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Margin="0,3"
+                            Click="CustomColorRemove_Click"
+                            Content="Remove" />
+
+                        <ListView
+                            x:Name="customColorListView"
+                            Grid.Row="1"
+                            Grid.RowSpan="4"
+                            Grid.Column="2"
+                            Width="108"
+                            ItemsSource="{Binding CustomColorList, ElementName=LocalColorSelectionView}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Padding" Value="0" />
+                                    <Setter Property="Margin" Value="0" />
+                                    <Setter Property="BorderThickness" Value="2" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Rectangle
+                                        Width="100"
+                                        Height="20"
+                                        Fill="{Binding BindsDirectlyToSource=True, Converter={StaticResource ColorToBrushConverter}}" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </Grid>
                 </Grid>
             </GroupBox>
         </Grid>
+        <!--#endregion StandardColorPicker Column 0-->
 
+        <!--#region AdvancedColorPicker Column 1-->
         <Grid
             Grid.Row="0"
             Grid.Column="1"
@@ -446,8 +519,9 @@
                 </Grid>
             </GroupBox>
         </Grid>
+        <!--#endregion AdvancedColorPicker Column 1-->
 
-        <!--  Column 0 StandardColorPicker  -->
+        <!--#region ColorPicker Column 2-->
         <Grid Grid.Column="2" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -461,12 +535,15 @@
                 BaseAdvancedButtonText="{Binding BaseAdvancedButtonText, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 BaseAllowChangeModes="{Binding BaseAllowChangeModes, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 BaseColorMode="{Binding BaseColorMode, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                BasePickerHeight="{Binding BasePickerHeight, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                BasePickerWidth="{Binding BasePickerWidth, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 BaseStandardButtonText="{Binding BaseStandardButtonText, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 EmptyButtonText="{Binding EmptyButtonText, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 EnableEmptyMode="{Binding EnableEmptyMode, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 IsEmpty="{Binding IsEmpty, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 SecondaryColor="{Binding SecondaryColor, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 SelectedColor="{Binding SelectedColor, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                StandardAvailableColorArray="{Binding StandardAvailableColorArray, ElementName=_PortableColorPicker}"
                 StandardAvailableColorRows="{Binding StandardAvailableColorRows, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardAvailableColorsHeader="{Binding StandardAvailableColorsHeader, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardColumnCount="{Binding StandardColumnCount, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -490,6 +567,8 @@
                 </GroupBox.Header>
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -533,7 +612,6 @@
                         ItemsSource="{Binding Source={StaticResource ColorModeOptions}}"
                         SelectedItem="{Binding BaseColorMode, ElementName=_PortableColorPicker, Mode=TwoWay}" />
 
-
                     <TextBlock
                         Grid.Row="3"
                         Grid.Column="0"
@@ -543,7 +621,6 @@
                         Grid.Row="3"
                         Grid.Column="1"
                         IsChecked="{Binding BaseAllowChangeModes, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
 
                     <TextBlock
                         Grid.Row="4"
@@ -588,14 +665,48 @@
                         Grid.Column="1"
                         IsEnabled="{Binding EnableEmptyMode, ElementName=_PortableColorPicker}"
                         Text="{Binding EmptyButtonText, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="8"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Text="BasePickerWidth:" />
+                    <numupdown:DoubleUpDown
+                        Grid.Row="8"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        numupdown:DisplayLength="4"
+                        numupdown:LargeStepSize="1"
+                        numupdown:StepSize="0.25"
+                        IsReadOnly="False"
+                        MaxValue="400"
+                        MinValue="100"
+                        Value="{Binding BasePickerWidth, ElementName=_PortableColorPicker, Mode=TwoWay}" />
+
+                    <TextBlock
+                        Grid.Row="9"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Text="BasePickerHeight:" />
+                    <numupdown:DoubleUpDown
+                        Grid.Row="9"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        numupdown:DisplayLength="4"
+                        numupdown:LargeStepSize="1"
+                        numupdown:StepSize="0.25"
+                        IsReadOnly="False"
+                        MaxValue="400"
+                        MinValue="100"
+                        Value="{Binding BasePickerHeight, ElementName=_PortableColorPicker, Mode=TwoWay}" />
                 </Grid>
             </GroupBox>
         </Grid>
+        <!--#endregion ColorPicker Column 2-->
 
-        <!--  Left Main Column  -->
-
-
-        <!--  Toggle Button Colors  -->
+        <!--#region PortableColorPicker Column 3-->
         <Grid Grid.Column="3" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -608,15 +719,58 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <controls:PortableColorPicker
-                x:Name="_PortableColorPicker"
-                Grid.Row="0"
-                Margin="5,0"
-                HorizontalAlignment="Center"
-                PortableBackgroundMode="SelectedColor"
-                SelectedColor="{Binding SelectedAccentColor}" />
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <controls:PortableColorPicker
+                    x:Name="_PortableColorPicker"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="5,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    SelectedColor="{Binding SelectedAccentColor}" />
 
 
+
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    MinWidth="42">
+                    <Run Text="{Binding Width, ElementName=_PortableColorPicker, StringFormat=N0}" />
+                    <Run Text="," />
+                    <!--  space  -->
+                    <Run Text="{Binding Height, ElementName=_PortableColorPicker, StringFormat=N0}" />
+                </TextBlock>
+
+                <Slider
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    AutoToolTipPlacement="TopLeft"
+                    AutoToolTipPrecision="0"
+                    Maximum="300"
+                    Minimum="72"
+                    Value="{Binding Width, ElementName=_PortableColorPicker, Mode=TwoWay}" />
+                <Slider
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    AutoToolTipPlacement="TopLeft"
+                    AutoToolTipPrecision="0"
+                    Maximum="40"
+                    Minimum="24"
+                    Orientation="Vertical"
+                    Value="{Binding Height, ElementName=_PortableColorPicker, Mode=TwoWay}" />
+            </Grid>
+            <!--#region Portable Mode Options-->
+            <!--#region Portable Mode Base (Column 0, Row 1)-->
             <GroupBox Grid.Row="1" Grid.Column="0">
                 <GroupBox.Header>
                     <TextBlock FontWeight="ExtraBold" Text="Portable Base Options" />
@@ -654,7 +808,7 @@
                         Grid.Row="1"
                         Grid.Column="0"
                         VerticalAlignment="Center"
-                        Text="PortableConstantBackgroundBrush:" />
+                        Text="PortableBackgroundConstantBrush:" />
                     <controls:PortableColorPicker
                         Grid.Row="1"
                         Grid.Column="1"
@@ -664,7 +818,7 @@
                         BaseAllowChangeModes="False"
                         IsEnabled="{Binding PortableBackgroundMode, ElementName=_PortableColorPicker, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static models:ShowOnToggleButton.ConstantColor}}"
                         PortableBackgroundMode="SelectedColor"
-                        SelectedColor="{Binding PortableConstantBackgroundBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}" />
+                        SelectedColor="{Binding PortableBackgroundConstantBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}" />
 
 
                     <TextBlock
@@ -713,7 +867,9 @@
                         IsChecked="{Binding IsEnabled, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
+            <!--#endregion Portable Mode Base (Column 0, Row 1)-->
 
+            <!--#region Portable Mode Border (Column 0, Row 2)-->
             <GroupBox Grid.Row="2" Grid.Column="0">
                 <GroupBox.Header>
                     <TextBlock FontWeight="ExtraBold" Text="Border Options" />
@@ -768,7 +924,7 @@
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="0"
-                        Text="PortableConstantBorderBrush:" />
+                        Text="PortableBorderConstantBrush:" />
                     <controls:PortableColorPicker
                         Grid.Row="2"
                         Grid.Column="1"
@@ -780,13 +936,13 @@
                         IsEnabled="{Binding PortableBorderMode, ElementName=_PortableColorPicker, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static models:ShowOnToggleButton.ConstantColor}}"
                         PortableBackgroundMode="Off"
                         PortableBorderMode="SelectedColor"
-                        SelectedColor="{Binding PortableConstantBorderBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
+                        SelectedColor="{Binding PortableBorderConstantBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
 
                     <TextBlock
                         Grid.Row="3"
                         Grid.Column="0"
-                        Text="PortableConstantBorderHighlightBrush:" />
+                        Text="PortableBorderConstantHighlightBrush:" />
                     <controls:PortableColorPicker
                         Grid.Row="3"
                         Grid.Column="1"
@@ -798,15 +954,17 @@
                         IsEnabled="{Binding PortableBorderMode, ElementName=_PortableColorPicker, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static models:ShowOnToggleButton.ConstantColor}}"
                         PortableBackgroundMode="Off"
                         PortableBorderMode="SelectedColor"
-                        SelectedColor="{Binding PortableConstantBorderHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
+                        SelectedColor="{Binding PortableBorderConstantHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
 
                 </Grid>
             </GroupBox>
+            <!--#endregion Portable Mode Border (Column 0, Row 2)-->
 
+            <!--#region Portable Mode Shape (Column 0, Row 3)-->
             <GroupBox Grid.Row="3">
                 <GroupBox.Header>
-                    <Label Content="Portable Shape Options" FontWeight="ExtraBold" />
+                    <TextBlock FontWeight="ExtraBold" Text="Portable Shape Options" />
                 </GroupBox.Header>
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
@@ -951,7 +1109,7 @@
                     <TextBlock
                         Grid.Row="6"
                         Grid.Column="0"
-                        Text="PortableConstantShapeColorBrush:" />
+                        Text="PortableShapeConstantColorBrush:" />
                     <controls:PortableColorPicker
                         Grid.Row="6"
                         Grid.Column="1"
@@ -959,7 +1117,7 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         BaseAllowChangeModes="False"
-                        SelectedColor="{Binding PortableConstantShapeColorBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
+                        SelectedColor="{Binding PortableShapeConstantColorBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
 
                     <TextBlock
@@ -987,7 +1145,9 @@
                     </TextBox>
                 </Grid>
             </GroupBox>
+            <!--#endregion Portable Mode Shape (Column 0, Row 3)-->
 
+            <!--#region Portable Mode Font (Column 0, Row 4)-->
             <GroupBox Grid.Row="4">
                 <GroupBox.Header>
                     <TextBlock FontWeight="ExtraBold" Text="Portable Text Options" />
@@ -1026,7 +1186,7 @@
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="0"
-                        Text="PortableConstantFontBrush:" />
+                        Text="PortableFontConstantBrush:" />
                     <controls:PortableColorPicker
                         Grid.Row="1"
                         Grid.Column="1"
@@ -1039,7 +1199,7 @@
                         PortableBackgroundMode="Off"
                         PortableFontMode="SelectedColor"
                         PortableFontText="Font"
-                        SelectedColor="{Binding PortableConstantFontBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
+                        SelectedColor="{Binding PortableFontConstantBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
 
                     <TextBlock
@@ -1211,14 +1371,29 @@
                     </TextBox>
                 </Grid>
             </GroupBox>
+            <!--#endregion Portable Mode Font (Column 0, Row 4)-->
+            <!--#endregion Portable Mode Options-->
+
+            <CheckBox
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="10,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="EnableEmptyMode"
+                FontWeight="Bold"
+                IsChecked="{Binding EnableEmptyMode, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
 
             <!--#region Empty Mode Options-->
+            <!--#region Empty Mode Base (Column 1, Row 1)-->
             <GroupBox
                 Name="EmptyModeGroupBox"
                 Grid.Row="1"
-                Grid.Column="1">
+                Grid.Column="1"
+                IsEnabled="{Binding EnableEmptyMode, ElementName=_PortableColorPicker}">
                 <GroupBox.Header>
-                    <Label Content="Empty Mode Options" FontWeight="ExtraBold" />
+                    <TextBlock FontWeight="ExtraBold" Text="Empty Mode Options" />
                 </GroupBox.Header>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -1233,15 +1408,6 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-
-                    <TextBlock
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Text="EnableEmptyMode:" />
-                    <CheckBox
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        IsChecked="{Binding EnableEmptyMode, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock
                         Grid.Row="1"
@@ -1269,10 +1435,15 @@
                         StandardShowRecentColors="True" />
                 </Grid>
             </GroupBox>
+            <!--#endregion Empty Mode Base (Column 1, Row 1)-->
 
-            <GroupBox Grid.Row="2" Grid.Column="1">
+            <!--#region Empty Mode Border (Column 1, Row 2)-->
+            <GroupBox
+                Grid.Row="2"
+                Grid.Column="1"
+                IsEnabled="{Binding EnableEmptyMode, ElementName=_PortableColorPicker}">
                 <GroupBox.Header>
-                    <Label Content="Empty Border Options" FontWeight="ExtraBold" />
+                    <TextBlock FontWeight="ExtraBold" Text="Empty Border Options" />
                 </GroupBox.Header>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -1331,6 +1502,8 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         BaseAllowChangeModes="False"
+                        PortableBackgroundMode="Off"
+                        PortableBorderMode="SelectedColor"
                         SelectedColor="{Binding EmptyBorderBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
 
@@ -1345,14 +1518,21 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         BaseAllowChangeModes="False"
+                        PortableBackgroundMode="Off"
+                        PortableBorderMode="SelectedColor"
                         SelectedColor="{Binding EmptyBorderHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
                 </Grid>
             </GroupBox>
+            <!--#endregion Empty Mode Border (Column 1, Row 2)-->
 
-            <GroupBox Grid.Row="3" Grid.Column="1">
+            <!--#region Empty Mode Shape (Column 1, Row 3)-->
+            <GroupBox
+                Grid.Row="3"
+                Grid.Column="1"
+                IsEnabled="{Binding EnableEmptyMode, ElementName=_PortableColorPicker}">
                 <GroupBox.Header>
-                    <Label Content="Empty Shape Options" FontWeight="ExtraBold" />
+                    <TextBlock FontWeight="ExtraBold" Text="Empty Shape Options" />
                 </GroupBox.Header>
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
@@ -1539,10 +1719,15 @@
                     </TextBox>
                 </Grid>
             </GroupBox>
+            <!--#endregion Empty Mode Shape (Column 1, Row 3)-->
 
-            <GroupBox Grid.Row="4" Grid.Column="1">
+            <!--#region Empty Mode Font (Column 1, Row 4)-->
+            <GroupBox
+                Grid.Row="4"
+                Grid.Column="1"
+                IsEnabled="{Binding EnableEmptyMode, ElementName=_PortableColorPicker}">
                 <GroupBox.Header>
-                    <Label Content="Empty Text Options" FontWeight="ExtraBold" />
+                    <TextBlock FontWeight="ExtraBold" Text="Empty Text Options" />
                 </GroupBox.Header>
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
@@ -1569,53 +1754,55 @@
                     <TextBlock
                         Grid.Row="0"
                         Grid.Column="0"
-                        Text="EmptyTextMode:" />
+                        Text="EmptyFontMode:" />
                     <ComboBox
                         Grid.Row="0"
                         Grid.Column="1"
                         ItemsSource="{Binding Source={StaticResource EmptyElementModes}}"
-                        SelectedItem="{Binding EmptyTextMode, ElementName=_PortableColorPicker, Mode=TwoWay}" />
+                        SelectedItem="{Binding EmptyFontMode, ElementName=_PortableColorPicker, Mode=TwoWay}" />
 
                     <TextBlock
                         Name="_textColorLabel"
                         Grid.Row="1"
                         Grid.Column="0"
-                        Text="EmptyFontColorBrush:" />
+                        Text="EmptyFontBrush:" />
                     <controls:PortableColorPicker
+                        Name="_emptyFontBrushPicker"
                         Grid.Row="1"
                         Grid.Column="1"
                         Margin="0,3"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         BaseAllowChangeModes="False"
-                        SelectedColor="{Binding EmptyFontColorBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
+                        EnableEmptyMode="True"
+                        IsEmpty="True"
+                        SelectedColor="{Binding EmptyFontBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
                     <Button
                         Grid.Row="1"
                         Grid.Column="2"
                         Click="Null_Click"
                         Content="Reset"
-                        Tag="TextColorReset" />
+                        Tag="EmptyFontBrushReset" />
 
 
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="0"
-                        Text="EmptyText:" />
+                        Text="EmptyFontText:" />
                     <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
-                        IsEnabled="{Binding EmptyUseHexText, ElementName=_PortableColorPicker, Converter={StaticResource InverseBoolConverter}}"
-                        Text="{Binding EmptyText, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding EmptyFontText, ElementName=_PortableColorPicker, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock
                         Grid.Row="3"
                         Grid.Column="0"
-                        Text="EmptyUseHexText:" />
+                        Visibility="Hidden" />
                     <CheckBox
                         Grid.Row="3"
                         Grid.Column="1"
-                        IsChecked="{Binding EmptyUseHexText, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Visibility="Hidden" />
 
                     <TextBlock
                         Grid.Row="4"
@@ -1631,7 +1818,7 @@
                         Grid.Column="2"
                         Click="Null_Click"
                         Content="Reset"
-                        Tag="FontFamilyReset" />
+                        Tag="EmptyFontFamilyReset" />
 
                     <TextBlock
                         Grid.Row="5"
@@ -1651,16 +1838,16 @@
                         Grid.Column="2"
                         Click="Null_Click"
                         Content="Reset"
-                        Tag="HorizontalAlignmentReset" />
+                        Tag="EmptyFontHorizontalAlignmentReset" />
 
                     <TextBlock
                         Grid.Row="6"
                         Grid.Column="0"
-                        Text="EmptyVerticalAlignment:" />
+                        Text="EmptyFontVerticalAlignment:" />
                     <ComboBox
                         Grid.Row="6"
                         Grid.Column="1"
-                        SelectedItem="{Binding EmptyVerticalAlignment, ElementName=_PortableColorPicker}">
+                        SelectedItem="{Binding EmptyFontVerticalAlignment, ElementName=_PortableColorPicker}">
                         <x:Static Member="VerticalAlignment.Top" />
                         <x:Static Member="VerticalAlignment.Center" />
                         <x:Static Member="VerticalAlignment.Bottom" />
@@ -1671,7 +1858,7 @@
                         Grid.Column="2"
                         Click="Null_Click"
                         Content="Reset"
-                        Tag="VerticalAlignmentReset" />
+                        Tag="EmptyFontVerticalAlignmentReset" />
 
                     <TextBlock
                         Grid.Row="7"
@@ -1690,7 +1877,7 @@
                         Grid.Column="2"
                         Click="Null_Click"
                         Content="Reset"
-                        Tag="FontStyleReset" />
+                        Tag="EmptyFontStyleReset" />
 
                     <TextBlock
                         Grid.Row="8"
@@ -1722,34 +1909,34 @@
                         Grid.Column="2"
                         Click="Null_Click"
                         Content="Reset"
-                        Tag="FontWeightReset" />
+                        Tag="EmptyFontWeightReset" />
 
                     <TextBlock
                         Grid.Row="9"
                         Grid.Column="0"
-                        Text="EmptyTextDecorations:" />
+                        Text="EmptyFontTextDecorations:" />
                     <ComboBox
                         Grid.Row="9"
                         Grid.Column="1"
                         DisplayMemberPath="Name"
                         ItemsSource="{Binding TextDecorationComboItems, ElementName=LocalColorSelectionView}"
-                        SelectedValue="{Binding EmptyTextDecorations, ElementName=_PortableColorPicker}"
+                        SelectedValue="{Binding EmptyFontTextDecorations, ElementName=_PortableColorPicker}"
                         SelectedValuePath="TextDecorations" />
                     <Button
                         Grid.Row="9"
                         Grid.Column="2"
                         Click="Null_Click"
                         Content="Reset"
-                        Tag="TextDecorationsReset" />
+                        Tag="EmptyTextDecorationsReset" />
 
                     <TextBlock
                         Grid.Row="10"
                         Grid.Column="0"
-                        Text="EmptyViewboxStretch:" />
+                        Text="EmptyFontViewboxStretch:" />
                     <ComboBox
                         Grid.Row="10"
                         Grid.Column="1"
-                        SelectedValue="{Binding EmptyViewboxStretch, ElementName=_PortableColorPicker}">
+                        SelectedValue="{Binding EmptyFontViewboxStretch, ElementName=_PortableColorPicker}">
                         <x:Static Member="Stretch.None" />
                         <x:Static Member="Stretch.Fill" />
                         <x:Static Member="Stretch.Uniform" />
@@ -1760,13 +1947,14 @@
                         Grid.Column="2"
                         Click="Null_Click"
                         Content="Reset"
-                        Tag="ViewboxStretchReset" />
+                        Tag="EmptyFontViewboxStretchReset" />
 
                     <TextBlock
                         Grid.Row="11"
                         Grid.Column="0"
                         Text="EmptyFontSize:" />
                     <numupdown:DoubleUpDown
+                        x:Name="_EmptyFontSize_Changer"
                         Grid.Row="11"
                         Grid.Column="1"
                         numupdown:DisplayLength="4"
@@ -1776,13 +1964,13 @@
                         MaxValue="20"
                         MinValue="0"
                         Tag="Empty"
-                        Value="{Binding EmptyFontSize, ElementName=LocalColorSelectionView, Mode=TwoWay}" />
+                        Value="{Binding EmptyFontSize, Mode=TwoWay, ElementName=LocalColorSelectionView}" />
                     <Button
                         Grid.Row="11"
                         Grid.Column="2"
                         Click="Null_Click"
                         Content="Reset"
-                        Tag="FontSizeReset" />
+                        Tag="EmptyFontSizeReset" />
 
                     <TextBlock
                         Grid.Row="12"
@@ -1810,11 +1998,12 @@
                         Grid.Column="2"
                         Click="Null_Click"
                         Content="Reset"
-                        Tag="MarginReset" />
+                        Tag="EmptyFontMarginReset" />
                 </Grid>
             </GroupBox>
-
+            <!--#endregion Empty Mode Font (Column 1, Row 4)-->
             <!--#endregion Empty Mode Options-->
         </Grid>
+        <!--#endregion PortableColorPicker Column 3-->
     </Grid>
 </UserControl>

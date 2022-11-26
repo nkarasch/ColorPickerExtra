@@ -61,6 +61,7 @@
                     AdvancedInnerBorderWidth="{Binding AdvancedInnerBorderWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     AdvancedPickerType="{Binding AdvancedPickerType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     ColorState="{Binding ColorState, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
+                    IsIndependent="False"
                     SmallChange="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}" />
 
@@ -75,6 +76,7 @@
                     AdvancedInnerBorderWidth="{Binding AdvancedInnerBorderWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     ColorState="{Binding ColorState, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     CornerRadius="4"
+                    IsIndependent="False"
                     SecondColorState="{Binding SecondColorState, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}" />
 
@@ -97,6 +99,7 @@
                     Grid.ColumnSpan="3"
                     VerticalAlignment="Stretch"
                     ColorState="{Binding ColorState, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
+                    IsIndependent="False"
                     SmallChange="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     UsingAlphaChannel="{Binding UsingAlphaChannel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}" />
@@ -190,6 +193,7 @@
                     AdvancedInnerBorderWidth="{Binding AdvancedInnerBorderWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     AdvancedPickerType="{Binding AdvancedPickerType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     ColorState="{Binding ColorState, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
+                    IsIndependent="False"
                     SmallChange="{Binding SmallChange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     UseRectangularStyle="{Binding UseRectangularStyle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}" />
                 <local:ColorDisplay
@@ -202,6 +206,7 @@
                     AdvancedInnerBorderBrush="{TemplateBinding AdvancedInnerBorderBrush}"
                     AdvancedInnerBorderWidth="{TemplateBinding AdvancedInnerBorderWidth}"
                     ColorState="{Binding ColorState, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
+                    IsIndependent="False"
                     SecondColorState="{Binding SecondColorState, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
                     UseRectangularStyle="{TemplateBinding UseRectangularStyle}" />
                 <DockPanel
@@ -222,6 +227,7 @@
                     Grid.RowSpan="2"
                     Grid.ColumnSpan="3"
                     ColorState="{Binding ColorState, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AdvancedColorPicker}}"
+                    IsIndependent="False"
                     SmallChange="{TemplateBinding SmallChange}"
                     UseRectangularStyle="{TemplateBinding UseRectangularStyle}"
                     UsingAlphaChannel="{TemplateBinding UsingAlphaChannel}" />

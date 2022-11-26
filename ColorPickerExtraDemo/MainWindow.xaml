@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:ColorPickerExtraDemo.Views"
     Title="MainWindow"
-    Width="1780"
+    Width="1800"
     Height="1060"
     Style="{DynamicResource MainWindowStyle}"
     mc:Ignorable="d">

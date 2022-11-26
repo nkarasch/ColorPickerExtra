@@ -1,4 +1,5 @@
-﻿using ColorPickerExtraLib.Utilities;
+﻿using ColorPickerExtraLib.Models;
+using ColorPickerExtraLib.Utilities;
 using System.Windows;
 using System.Windows.Media;
 
@@ -9,6 +10,16 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
         static AvailableColorsGrid()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AvailableColorsGrid), new FrameworkPropertyMetadata(typeof(AvailableColorsGrid)));
+        }
+
+        internal static readonly DependencyProperty StandardAvailableColorArrayProperty =
+            DependencyProperty.Register(nameof(StandardAvailableColorArray), typeof(Color[]), typeof(AvailableColorsGrid),
+                new PropertyMetadata(null, RebuildGrid));
+
+        internal Color[] StandardAvailableColorArray
+        {
+            get => (Color[])GetValue(StandardAvailableColorArrayProperty);
+            set => SetValue(StandardAvailableColorArrayProperty, value);
         }
 
         public void OnColorEmptyPropertyChanged(bool isEmptyActive)
@@ -26,66 +37,72 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
             }
         }
 
-        // Creating an array of colors to fill the grid
-        protected override Color[] GenerateColorArray()
+        protected override Color[] GetColorArray()
         {
-            Color[] gridColorArray = new Color[ColumnCount * RowCount];
-            int increment = 0;
-
-            int brightValues = (ColumnCount / 2) + 1;
-            int satValues = ColumnCount - brightValues;
-            int hueSplit = RowCount - 1;
-            double satLow = 0.25;
-            double brightLow = 0.25;
-
-            double satIncremement = (1.0 - satLow) / satValues;
-            double brightIncrement = (1.0 - brightLow) / (brightValues - 1);
-
-            // for first horizontal line going from black, through greys, to white
-            if (UsingAlphaChannel)
+            if (StandardAvailableColorArray != null && StandardAvailableColorArray.Length > 0)
             {
-                for (int i = 0; i < ColumnCount - 1; ++i)
-                {
-                    byte l = (byte)(i / (float)(ColumnCount - 2) * 255);
-                    gridColorArray[increment] = Color.FromRgb(l, l, l);
-                    increment++;
-                }
-
-                gridColorArray[increment] = Colors.Transparent;
-                increment++;
+                return StandardAvailableColorArray;
             }
             else
             {
-                for (int i = 0; i < ColumnCount; ++i)
+                Color[] gridColorArray = new Color[ColumnCount * RowCount];
+                int increment = 0;
+
+                int brightValues = (ColumnCount / 2) + 1;
+                int satValues = ColumnCount - brightValues;
+                int hueSplit = RowCount - 1;
+                double satLow = 0.25;
+                double brightLow = 0.25;
+
+                double satIncremement = (1.0 - satLow) / satValues;
+                double brightIncrement = (1.0 - brightLow) / (brightValues - 1);
+
+                // for first horizontal line going from black, through greys, to white
+                if (UsingAlphaChannel)
                 {
-                    byte l = (byte)(i / (float)(ColumnCount - 1) * 255);
-                    gridColorArray[increment] = Color.FromRgb(l, l, l);
+                    for (int i = 0; i < ColumnCount - 1; ++i)
+                    {
+                        byte l = (byte)(i / (float)(ColumnCount - 2) * 255);
+                        gridColorArray[increment] = Color.FromRgb(l, l, l);
+                        increment++;
+                    }
+
+                    gridColorArray[increment] = Colors.Transparent;
                     increment++;
                 }
+                else
+                {
+                    for (int i = 0; i < ColumnCount; ++i)
+                    {
+                        byte l = (byte)(i / (float)(ColumnCount - 1) * 255);
+                        gridColorArray[increment] = Color.FromRgb(l, l, l);
+                        increment++;
+                    }
+                }
+
+                // for remaining horizontal lines
+                // vertically ranging through hue values
+                // horizontally low brightness -> 100% brightness and saturation -> low saturation  
+                for (int i = 0; i < hueSplit; ++i)
+                {
+                    float hue = 360.0f / hueSplit * i;
+
+                    for (int j = 0; j < brightValues; ++j)
+                    {
+                        double brightness = brightLow + (j * brightIncrement);
+                        gridColorArray[increment] = ColorUtilities.HsvToRgbColor(hue, 1, brightness);
+                        increment++;
+                    }
+
+                    for (int j = satValues - 1; j >= 0; --j)
+                    {
+                        double saturation = satLow + (j * satIncremement);
+                        gridColorArray[increment] = ColorUtilities.HsvToRgbColor(hue, saturation, 1.0);
+                        increment++;
+                    }
+                }
+                return gridColorArray;
             }
-
-            // for remaining horizontal lines
-            // vertically ranging through hue values
-            // horizontally low brightness -> 100% brightness and saturation -> low saturation  
-            for (int i = 0; i < hueSplit; ++i)
-            {
-                float hue = 360.0f / hueSplit * i;
-
-                for (int j = 0; j < brightValues; ++j)
-                {
-                    double brightness = brightLow + (j * brightIncrement);
-                    gridColorArray[increment] = ColorUtilities.HsvToRgbColor(hue, 1, brightness);
-                    increment++;
-                }
-
-                for (int j = satValues - 1; j >= 0; --j)
-                {
-                    double saturation = satLow + (j * satIncremement);
-                    gridColorArray[increment] = ColorUtilities.HsvToRgbColor(hue, saturation, 1.0);
-                    increment++;
-                }
-            }
-            return gridColorArray;
         }
 
         protected override void OnSelectedColorChanged(Color selectedColor)

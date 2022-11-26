@@ -1,9 +1,12 @@
 ﻿namespace ColorPickerExtraDemo.Views
 {
+    using ColorPickerExtraLib.Controls;
     using ColorPickerExtraLib.Models;
     using ColorPickerExtraLib.Utilities;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Linq;
     using System.Windows;
@@ -31,7 +34,6 @@
 
         public static List<EmptyShapeComboItem> GetGeometryList()
         {
-            Debug.WriteLine("getgeometrylist");
             List<EmptyShapeComboItem> list = new List<EmptyShapeComboItem>();
             foreach (ShapeGeometry geometryType in (ShapeGeometry[])Enum.GetValues(typeof(ShapeGeometry)))
             {
@@ -79,14 +81,24 @@
             InitializeComponent();
         }
 
+        public ObservableCollection<Color> CustomColorList { get; } = new ObservableCollection<Color>();
+
         public double EmptyFontSize
         {
             get
             {
                 if (_PortableColorPicker != null)
                 {
-                    double? fontSize = _PortableColorPicker.EmptyFontSize;
-                    return fontSize ?? 0;
+                    double? emptyFontSize = _PortableColorPicker.EmptyFontSize;
+                    if (emptyFontSize.HasValue && emptyFontSize.Value > 0)
+                    {
+                        return emptyFontSize.Value;
+                    }
+                    else
+                    {
+                        _EmptyFontSize_Changer.Value = 0;
+                        return 0;
+                    }
                 }
                 return 0;
             }
@@ -95,121 +107,64 @@
 
 
 
-        #region Reset empty values to use FontModeHelper values
+        #region Nullify "empty" values to default to "Portable" values when not set
 
-        private const string FontFamilyReset = "FontFamilyReset";
-        private const string HorizontalAlignmentReset = "HorizontalAlignmentReset";
-        private const string VerticalAlignmentReset = "VerticalAlignmentReset";
-        private const string FontStyleReset = "FontStyleReset";
-        private const string FontWeightReset = "FontWeightReset";
-        private const string TextDecorationsReset = "TextDecorationsReset";
-        private const string ViewboxStretchReset = "ViewboxStretchReset";
-        private const string FontSizeReset = "FontSizeReset";
-        private const string MarginReset = "MarginReset";
-        private const string TextColorReset = "TextColorReset";
-        private const string ShapeColorReset = "ShapeColorReset";
-        private const string EmptyBorderBrushReset = "EmptyBorderBrushReset";
-        private const string EmptyBorderThicknessReset = "EmptyBorderThicknessReset";
+        private const string EmptyFontFamilyReset = "EmptyFontFamilyReset";
+        private const string EmptyFontHorizontalAlignmentReset = "EmptyFontHorizontalAlignmentReset";
+        private const string EmptyFontVerticalAlignmentReset = "EmptyFontVerticalAlignmentReset";
+        private const string EmptyFontStyleReset = "EmptyFontStyleReset";
+        private const string EmptyFontWeightReset = "EmptyFontWeightReset";
+        private const string EmptyTextDecorationsReset = "EmptyTextDecorationsReset";
+        private const string EmptyFontViewboxStretchReset = "EmptyFontViewboxStretchReset";
+        private const string EmptyFontSizeReset = "EmptyFontSizeReset";
+        private const string EmptyFontMarginReset = "EmptyFontMarginReset";
+        private const string EmptyFontBrushReset = "EmptyFontBrushReset";
 
         private void Null_Click(object sender, RoutedEventArgs e)
         {
             Button clicked = sender as Button;
             switch (clicked.Tag)
             {
-                case FontFamilyReset:
+                case EmptyFontFamilyReset:
                     _PortableColorPicker.EmptyFontFamily = null;
                     break;
-                case HorizontalAlignmentReset:
+                case EmptyFontHorizontalAlignmentReset:
                     _PortableColorPicker.EmptyFontHorizontalAlignment = null;
                     break;
-                case VerticalAlignmentReset:
-                    _PortableColorPicker.EmptyVerticalAlignment = null;
+                case EmptyFontVerticalAlignmentReset:
+                    _PortableColorPicker.EmptyFontVerticalAlignment = null;
                     break;
-                case FontStyleReset:
+                case EmptyFontStyleReset:
                     _PortableColorPicker.EmptyFontStyle = null;
                     break;
-                case FontWeightReset:
+                case EmptyFontWeightReset:
                     _PortableColorPicker.EmptyFontWeight = null;
                     break;
-                case TextDecorationsReset:
-                    _PortableColorPicker.EmptyTextDecorations = null;
+                case EmptyTextDecorationsReset:
+                    _PortableColorPicker.EmptyFontTextDecorations = null;
                     break;
-                case ViewboxStretchReset:
-                    _PortableColorPicker.EmptyViewboxStretch = null;
+                case EmptyFontViewboxStretchReset:
+                    _PortableColorPicker.EmptyFontViewboxStretch = null;
                     break;
-                case FontSizeReset:
-                    EmptyFontSize = 0;
+                case EmptyFontSizeReset:
                     _PortableColorPicker.EmptyFontSize = null;
+                    _EmptyFontSize_Changer.Value = 0;
                     break;
-                case MarginReset:
-                    _emptyFontMargin.Text = "0";
-                    // _PortableColorPicker.EmptyFontMargin = new Thickness?();
+                case EmptyFontMarginReset:
+                    _emptyFontMargin.Text = null;
                     break;
-                case EmptyBorderBrushReset:
-                    {
-                        _PortableColorPicker.EmptyBorderBrush = Brushes.Black;
-                        break;
-                    }
-                case EmptyBorderThicknessReset:
-                    _emptyBorderThickness.Text = "0";
-                    //_PortableColorPicker.EmptyBorderThickness = new Thickness?();
+                case EmptyFontBrushReset:
+                    _emptyFontBrushPicker.IsEmpty = true;
+                    _PortableColorPicker.EmptyFontBrush = null;
                     break;
-                case TextColorReset:
-                    {
-                        if (_textColorLabel != null && _textColorLabel.Foreground is SolidColorBrush brush)
-                        {
-                            _PortableColorPicker.EmptyFontColorBrush = brush;
-                        }
-                        break;
-                    }
-                case ShapeColorReset:
-                    {
-                        if (_textColorLabel != null && _textColorLabel.Foreground is SolidColorBrush brush)
-                        {
-                            _PortableColorPicker.EmptyShapeColorBrush = brush;
-                        }
-                        break;
-                    }
+
             }
         }
 
         #endregion
 
 
-        //public Thickness StringToThickness(string input)
-        //{
-        //    if (input.Length == 0)
-        //    {
-        //        return new Thickness(0);
-        //    }
 
-        //    char[] delimiters = new[] { ',', ' ' };
-        //    string[] splitArray = input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-
-        //    List<double> outputList = new List<double>();
-
-        //    foreach (string testIsNumber in splitArray)
-        //    {
-        //        if (double.TryParse(testIsNumber, out double testOutput))
-        //        {
-        //            outputList.Add(testOutput);
-        //        }
-        //    }
-
-        //    switch (outputList.Count)
-        //    {
-        //        case 0:
-        //        default:
-        //            return new Thickness(0);
-        //        case 1:
-        //            return new Thickness(outputList[0]);
-        //        case 2:
-        //        case 3:
-        //            return new Thickness(outputList[0], outputList[1], outputList[0], outputList[1]);
-        //        case 4:
-        //            return new Thickness(outputList[0], outputList[1], outputList[2], outputList[3]);
-        //    }
-        //}
         private void Thickness_PreviewInput(object sender, TextCompositionEventArgs e)
         {
             if (e.Text.Length == 1)
@@ -277,7 +232,7 @@
             return false;
         }
 
-        private void TextBox_PreviewExecuted(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             if (e.Command == ApplicationCommands.Copy ||
                 e.Command == ApplicationCommands.Cut ||
@@ -287,12 +242,41 @@
             }
         }
 
-        private void OnSetToEmptyButton_Clicked(object sender, RoutedEventArgs e)
+        private void CustomColorAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (_PortableColorPicker != null)
+            CustomColorList.Add(_PortableColorPicker.SelectedColor);
+            UpdateArray();
+        }
+
+        private void CustomColorChange_Click(object sender, RoutedEventArgs e)
+        {
+            if (customColorListView.SelectedIndex > -1 && customColorListView.SelectedIndex < CustomColorList.Count)
             {
-                _PortableColorPicker.EnableEmptyMode = true;
-                _PortableColorPicker.IsEmpty = true;
+                CustomColorList[customColorListView.SelectedIndex] = _PortableColorPicker.SelectedColor;
+                UpdateArray();
+            }
+        }
+
+        private void CustomColorRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (customColorListView.SelectedIndex > -1 && customColorListView.SelectedIndex < CustomColorList.Count)
+            {
+                CustomColorList.RemoveAt(customColorListView.SelectedIndex);
+                UpdateArray();
+            }
+        }
+
+       
+
+        private void UpdateArray()
+        {
+            if (CustomColorList == null || CustomColorList.Count == 0)
+            {
+                _PortableColorPicker.StandardAvailableColorArray = null;
+            }
+            else
+            {
+                _PortableColorPicker.StandardAvailableColorArray = CustomColorList.ToArray();
             }
         }
     }

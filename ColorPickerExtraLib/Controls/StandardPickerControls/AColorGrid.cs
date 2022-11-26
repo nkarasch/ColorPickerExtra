@@ -24,7 +24,9 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
                     BuildColorGrid();
                 }
             };
+            SnapsToDevicePixels = true;
         }
+
         public static readonly RoutedEvent ColorChangedEvent =
             EventManager.RegisterRoutedEvent(nameof(ColorChanged),
                 RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(AColorGrid));
@@ -180,12 +182,11 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
             }
         }
 
-        private static void RebuildGrid(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        protected static void RebuildGrid(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (e.OldValue != e.NewValue && d is AColorGrid colorGrid && colorGrid.IsLoaded)
             {
                 colorGrid.BuildColorGrid();
-                colorGrid.CreateGridItems(colorGrid.GenerateColorArray());
                 return;
             }
         }
@@ -249,22 +250,25 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
 
         #region Methods
 
-        protected abstract Color[] GenerateColorArray();
+        protected abstract Color[] GetColorArray();
 
         private void BuildColorGrid()
         {
             ColorGridDictionary.Clear();
-            ColorGrid.Children.Clear();
-            ColorGrid.ColumnDefinitions.Clear();
-            ColorGrid.RowDefinitions.Clear();
-            CreateGridItems(GenerateColorArray());
+            if (ColorGrid == null) { return; }
+            if (ColorGrid.Children != null) { ColorGrid.Children.Clear(); }
+            if (ColorGrid.ColumnDefinitions != null) { ColorGrid.ColumnDefinitions.Clear(); }
+            if (ColorGrid.RowDefinitions != null) { ColorGrid.RowDefinitions.Clear(); }
+            CreateGridItems(GetColorArray());
         }
 
         private void CreateGridItems(Color[] colorArray)
         {
+            int actualRowCount = ((colorArray.Length - 1) / ColumnCount) + 1;
             double perSize = ItemSquareSize + (ItemMargin * 2);
+
             ColorGrid.Width = perSize * ColumnCount;
-            ColorGrid.Height = perSize * RowCount;
+            ColorGrid.Height = perSize * actualRowCount;
             for (int i = 0; i < ColumnCount; ++i)
             {
                 ColorGrid.ColumnDefinitions.Add(new ColumnDefinition

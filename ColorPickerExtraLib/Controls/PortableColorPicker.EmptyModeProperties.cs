@@ -1,22 +1,6 @@
-﻿
-/* Unmerged change from project 'ColorPickerExtraLib (netcoreapp3.1)'
-Before:
-using System;
-After:
-using ColorPickerExtraLib.Models;
-using System;
-*/
-using ColorPickerExtraLib.Models;
+﻿using ColorPickerExtraLib.Models;
 using System.Windows;
 using System.Windows.Media;
-/* Unmerged change from project 'ColorPickerExtraLib (netcoreapp3.1)'
-Before:
-using System.Windows.Shapes;
-using ColorPickerExtraLib.Models;
-After:
-using System.Windows.Shapes;
-*/
-
 
 namespace ColorPickerExtraLib.Controls
 {
@@ -179,16 +163,17 @@ namespace ColorPickerExtraLib.Controls
 
         #region Empty Font
 
-        public static readonly DependencyProperty EmptyTextModeProperty =
-            DependencyProperty.Register(nameof(EmptyTextMode), typeof(EmptyElementMode), typeof(PortableColorPicker),
+        public static readonly DependencyProperty EmptyFontModeProperty =
+            DependencyProperty.Register(nameof(EmptyFontMode), typeof(EmptyElementMode), typeof(PortableColorPicker),
                 new PropertyMetadata(EmptyElementMode.EmptySettings, UpdateFontProperties));
 
-        public static readonly DependencyProperty EmptyFontColorBrushProperty =
-            DependencyProperty.Register(nameof(EmptyFontColorBrush), typeof(Brush), typeof(PortableColorPicker),
+        public static readonly DependencyProperty EmptyFontBrushProperty =
+            DependencyProperty.Register(nameof(EmptyFontBrush), typeof(Brush), typeof(PortableColorPicker),
             new PropertyMetadata(null, UpdateFontProperties));
 
         public static readonly DependencyProperty EmptyFontFamilyProperty =
-            DependencyProperty.Register(nameof(EmptyFontFamily), typeof(FontFamily), typeof(PortableColorPicker));
+            DependencyProperty.Register(nameof(EmptyFontFamily), typeof(FontFamily), typeof(PortableColorPicker), 
+                new PropertyMetadata(UpdateFontProperties));
 
         public static readonly DependencyProperty EmptyFontSizeProperty =
             DependencyProperty.Register(nameof(EmptyFontSize), typeof(double?), typeof(PortableColorPicker),
@@ -206,40 +191,36 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(EmptyFontHorizontalAlignment), typeof(HorizontalAlignment?), typeof(PortableColorPicker),
                 new FrameworkPropertyMetadata(HorizontalAlignment.Center, UpdateFontProperties));
 
+        public static readonly DependencyProperty EmptyFontVerticalAlignmentProperty =
+            DependencyProperty.Register(nameof(EmptyFontVerticalAlignment), typeof(VerticalAlignment?), typeof(PortableColorPicker),
+                new FrameworkPropertyMetadata(null, UpdateFontProperties));
+
         public static readonly DependencyProperty EmptyFontMarginProperty =
             DependencyProperty.Register(nameof(EmptyFontMargin), typeof(Thickness?), typeof(PortableColorPicker),
                 new FrameworkPropertyMetadata(null, UpdateFontProperties));
 
-        public static readonly DependencyProperty EmptyTextProperty =
-            DependencyProperty.Register(nameof(EmptyText), typeof(string), typeof(PortableColorPicker),
+        public static readonly DependencyProperty EmptyFontTextProperty =
+            DependencyProperty.Register(nameof(EmptyFontText), typeof(string), typeof(PortableColorPicker),
                 new FrameworkPropertyMetadata("None", UpdateFontProperties));
 
-        public static readonly DependencyProperty EmptyTextDecorationsProperty =
-            DependencyProperty.Register(nameof(EmptyTextDecorations), typeof(TextDecorationCollection), typeof(PortableColorPicker),
+        public static readonly DependencyProperty EmptyFontTextDecorationsProperty =
+            DependencyProperty.Register(nameof(EmptyFontTextDecorations), typeof(TextDecorationCollection), typeof(PortableColorPicker),
                 new FrameworkPropertyMetadata(null, UpdateFontProperties));
 
-        public static readonly DependencyProperty EmptyUseHexTextProperty =
-            DependencyProperty.Register(nameof(EmptyUseHexText), typeof(bool), typeof(PortableColorPicker),
-                new PropertyMetadata(false, UpdateFontProperties));
-
-        public static readonly DependencyProperty EmptyVerticalAlignmentProperty =
-            DependencyProperty.Register(nameof(EmptyVerticalAlignment), typeof(VerticalAlignment?), typeof(PortableColorPicker),
+        public static readonly DependencyProperty EmptyFontViewboxStretchProperty =
+            DependencyProperty.Register(nameof(EmptyFontViewboxStretch), typeof(Stretch?), typeof(PortableColorPicker),
                 new FrameworkPropertyMetadata(null, UpdateFontProperties));
 
-        public static readonly DependencyProperty EmptyViewboxStretchProperty =
-            DependencyProperty.Register(nameof(EmptyViewboxStretch), typeof(Stretch?), typeof(PortableColorPicker),
-                new FrameworkPropertyMetadata(null, UpdateFontProperties));
-
-        public EmptyElementMode EmptyTextMode
+        public EmptyElementMode EmptyFontMode
         {
-            get => (EmptyElementMode)GetValue(EmptyTextModeProperty);
-            set => SetValue(EmptyTextModeProperty, value);
+            get => (EmptyElementMode)GetValue(EmptyFontModeProperty);
+            set => SetValue(EmptyFontModeProperty, value);
         }
 
-        public Brush EmptyFontColorBrush
+        public Brush EmptyFontBrush
         {
-            get => (Brush)GetValue(EmptyFontColorBrushProperty);
-            set => SetValue(EmptyFontColorBrushProperty, value);
+            get => (Brush)GetValue(EmptyFontBrushProperty);
+            set => SetValue(EmptyFontBrushProperty, value);
         }
 
         public FontFamily EmptyFontFamily
@@ -272,40 +253,34 @@ namespace ColorPickerExtraLib.Controls
             set => SetValue(EmptyFontHorizontalAlignmentProperty, value);
         }
 
+        public VerticalAlignment? EmptyFontVerticalAlignment
+        {
+            get => (VerticalAlignment?)GetValue(EmptyFontVerticalAlignmentProperty);
+            set => SetValue(EmptyFontVerticalAlignmentProperty, value);
+        }
+
         public Thickness? EmptyFontMargin
         {
             get => (Thickness?)GetValue(EmptyFontMarginProperty);
             set => SetValue(EmptyFontMarginProperty, value);
         }
 
-        public string EmptyText
+        public string EmptyFontText
         {
-            get => (string)GetValue(EmptyTextProperty);
-            set => SetValue(EmptyTextProperty, value);
+            get => (string)GetValue(EmptyFontTextProperty);
+            set => SetValue(EmptyFontTextProperty, value);
         }
 
-        public TextDecorationCollection EmptyTextDecorations
+        public TextDecorationCollection EmptyFontTextDecorations
         {
-            get => (TextDecorationCollection)GetValue(EmptyTextDecorationsProperty);
-            set => SetValue(EmptyTextDecorationsProperty, value);
+            get => (TextDecorationCollection)GetValue(EmptyFontTextDecorationsProperty);
+            set => SetValue(EmptyFontTextDecorationsProperty, value);
         }
 
-        public bool EmptyUseHexText
+        public Stretch? EmptyFontViewboxStretch
         {
-            get => (bool)GetValue(EmptyUseHexTextProperty);
-            set => SetValue(EmptyUseHexTextProperty, value);
-        }
-
-        public VerticalAlignment? EmptyVerticalAlignment
-        {
-            get => (VerticalAlignment?)GetValue(EmptyVerticalAlignmentProperty);
-            set => SetValue(EmptyVerticalAlignmentProperty, value);
-        }
-
-        public Stretch? EmptyViewboxStretch
-        {
-            get => (Stretch?)GetValue(EmptyViewboxStretchProperty);
-            set => SetValue(EmptyViewboxStretchProperty, value);
+            get => (Stretch?)GetValue(EmptyFontViewboxStretchProperty);
+            set => SetValue(EmptyFontViewboxStretchProperty, value);
         }
 
         #endregion Empty Font

@@ -58,7 +58,7 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
             }
         }
 
-        protected override Color[] GenerateColorArray()
+        protected override Color[] GetColorArray()
         {
             Color[] colorArray = new Color[ColumnCount * RowCount];
             if (UsingAlphaChannel)

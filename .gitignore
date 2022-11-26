@@ -8,3 +8,6 @@
 /ColorPickerExtraLib/bin/Debug
 /ColorPickerExtraLib/obj/Debug
 /ColorPickerExtraLib/obj
+/ColorPickerExtraDemo/bin/Release/netcoreapp3.1
+/ColorPickerExtraLib/bin/Release
+/ColorPickerExtraTester

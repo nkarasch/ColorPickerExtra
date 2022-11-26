@@ -1,5 +1,12 @@
 ﻿namespace ColorPickerExtraLib.Models
 {
+    public enum StandardAvailableColorsType : int
+    {
+        GENERATE = 0,
+        KNOWN_SORT_ALPHABETICAL = 1,
+        KNOWN_SORT_HSV = 2
+    }
+
     public enum AdvancedPickerType : int
     {
         HSV = 0, HSL = 1

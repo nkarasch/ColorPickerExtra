@@ -1289,7 +1289,6 @@
                                 <Condition Property="Selector.IsSelectionActive" Value="False" />
                                 <Condition Property="IsSelected" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource ControlDefaultBackground}" />
                             <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource ControlDefaultBorderBrush}" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>

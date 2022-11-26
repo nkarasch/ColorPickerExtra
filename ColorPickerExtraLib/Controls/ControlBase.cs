@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using ColorPickerExtraLib.Models;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -6,7 +7,17 @@ namespace ColorPickerExtraLib.Controls
 {
     public abstract class ControlBase : Control
     {
-        #region Properties
+        public static readonly RoutedEvent ColorChangedEvent =
+            EventManager.RegisterRoutedEvent(nameof(ColorChanged),
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ControlBase));
+
+        public event RoutedEventHandler ColorChanged
+        {
+            add => AddHandler(ColorChangedEvent, value);
+            remove => RemoveHandler(ColorChangedEvent, value);
+        }
+
+        #region Public Properties
 
         public static readonly DependencyProperty SelectedColorProperty =
             DependencyProperty.Register(nameof(SelectedColor), typeof(Color), typeof(ControlBase),
@@ -78,8 +89,21 @@ namespace ColorPickerExtraLib.Controls
             set => SetValue(EmptyButtonTextProperty, value);
         }
 
-        #endregion Properties
+        #endregion Public Properties
 
+        #region Internal Properties
+
+        internal static readonly DependencyProperty IsIndependentProperty =
+            DependencyProperty.Register(nameof(IsIndependent), typeof(bool), typeof(ControlBase),
+                new PropertyMetadata(true));
+
+        internal bool IsIndependent
+        {
+            get => (bool)GetValue(IsIndependentProperty);
+            set => SetValue(IsIndependentProperty, value);
+        }
+
+        #endregion Internal Properties
 
         #region Event Handlers      
 
@@ -87,6 +111,11 @@ namespace ColorPickerExtraLib.Controls
 
         private static void OnSelectedColorPropertyChange(DependencyObject d, DependencyPropertyChangedEventArgs args)
         {
+            if(d is ControlBase control && (control.IsIndependent || control is PortableColorPicker))
+            {
+                control.RaiseEvent(new ColorRoutedEventArgs(ColorChangedEvent, (Color)args.NewValue));
+            }
+
             (d as ControlBase).OnSelectedColorChanged((Color)args.NewValue);
         }
 

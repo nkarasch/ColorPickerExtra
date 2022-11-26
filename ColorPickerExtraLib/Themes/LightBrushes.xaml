@@ -1,14 +1,12 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- Window Colours. Background, Border and TitleBar colours. -->
+    <!--  Window Colours. Background, Border and TitleBar colours.  -->
     <SolidColorBrush x:Key="ColorPicker.BackgroundColour" Color="#FFF8F8F8" />
     <SolidColorBrush x:Key="ColorPicker.WindowBorderColour" Color="#FFE0E0E0" />
     <SolidColorBrush x:Key="WindowTitleColour" Color="WhiteSmoke" />
 
-    <!-- Control colour themes. dont mess with em okay unless youre good at styles -->
-    <!-- Complete DarkTheme Colours -->
+    <!--  Control colour themes. dont mess with em okay unless youre good at styles  -->
+    <!--  Complete DarkTheme Colours  -->
     <SolidColorBrush x:Key="ColorPicker.TransparentBrush" Color="Transparent" />
     <SolidColorBrush x:Key="ColorPicker.ContainerBackground" Color="WhiteSmoke" />
     <SolidColorBrush x:Key="ColorPicker.ContainerBorder" Color="#FFE8E8E8" />
@@ -33,7 +31,7 @@
     <SolidColorBrush x:Key="ColorPicker.ControlSelectedGlythColour" Color="#FF191919" />
     <SolidColorBrush x:Key="ColorPicker.ControlDisabledGlythColour" Color="#FF666666" />
 
-    <!-- Colourful theme  Colours -->
+    <!--  Colourful theme  Colours  -->
 
     <SolidColorBrush x:Key="ColorPicker.ControlPrimaryDarkerBackground" Color="#FF64BEFF" />
     <SolidColorBrush x:Key="ColorPicker.ControlPrimaryDarkerBorderBrush" Color="#FF50B4FF" />
@@ -57,5 +55,5 @@
     <SolidColorBrush x:Key="ColorPicker.ControlPrimarySelectedGlythColour" Color="#FF6EB4FF" />
     <SolidColorBrush x:Key="ColorPicker.ControlPrimarySelectedMouseOverGlythColour" Color="#FF69AFFF" />
     <SolidColorBrush x:Key="ColorPicker.ControlPrimaryDisabledGlythColour" Color="#FF192864" />
-    
+
 </ResourceDictionary>

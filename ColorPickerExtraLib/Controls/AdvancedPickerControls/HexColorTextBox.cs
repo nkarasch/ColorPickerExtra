@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace ColorPickerExtraLib.Controls
 {
-    public partial class HexColorTextBox : UserControl
+    internal partial class HexColorTextBox : UserControl
     {
         public HexColorTextBox() : base()
         {

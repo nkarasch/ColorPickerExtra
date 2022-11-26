@@ -1,12 +1,4 @@
-﻿
-/* Unmerged change from project 'ColorPickerExtraLib (netcoreapp3.1)'
-Before:
-using System.Windows;
-After:
-using ColorPickerExtraLib.Models;
-using System.Windows;
-*/
-using ColorPickerExtraLib.Models;
+﻿using ColorPickerExtraLib.Models;
 using System.Windows;
 using System.Windows.Media;
 
@@ -79,6 +71,10 @@ namespace ColorPickerExtraLib.Controls
         #endregion Base Parent Properties
 
         #region Standard Picker Properties
+
+        public static readonly DependencyProperty StandardAvailableColorArrayProperty =
+            DependencyProperty.Register(nameof(StandardAvailableColorArray), typeof(Color[]), typeof(ColorPicker),
+                new PropertyMetadata(null));
 
         public static readonly DependencyProperty StandardItemSquareSizeProperty =
             DependencyProperty.Register(nameof(StandardItemSquareSize), typeof(double), typeof(ColorPicker),
@@ -227,6 +223,12 @@ namespace ColorPickerExtraLib.Controls
         {
             get => (int)GetValue(StandardColumnCountProperty);
             set => SetValue(StandardColumnCountProperty, value);
+        }
+
+        public Color[] StandardAvailableColorArray
+        {
+            get => (Color[])GetValue(StandardAvailableColorArrayProperty);
+            set => SetValue(StandardAvailableColorArrayProperty, value);
         }
 
         #endregion Standard Picker Properties

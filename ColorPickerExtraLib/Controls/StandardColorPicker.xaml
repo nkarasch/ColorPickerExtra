@@ -30,7 +30,6 @@
                     Grid.Row="0"
                     Margin="2,2,2,0"
                     Padding="2"
-                    Style="{DynamicResource StandardGridHeaderTextBlockStyle}"
                     Text="{TemplateBinding StandardAvailableColorsHeader}"
                     Visibility="{TemplateBinding StandardShowAvailableColors,
                                                  Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -38,6 +37,7 @@
                 <colorclicker:AvailableColorsGrid
                     x:Name="PART_AvailableColorsGrid"
                     Grid.Row="1"
+                    Margin="0,0,0,2"
                     VerticalContentAlignment="Center"
                     ColumnCount="{TemplateBinding StandardColumnCount}"
                     ItemBorderBrush="{TemplateBinding StandardItemBorderBrush}"
@@ -49,6 +49,7 @@
                     ItemSquareSize="{TemplateBinding StandardItemSquareSize}"
                     RowCount="{TemplateBinding StandardAvailableColorRows}"
                     SelectedColor="{TemplateBinding UpdatedRecentColorsItem}"
+                    StandardAvailableColorArray="{TemplateBinding StandardAvailableColorArray}"
                     UsingAlphaChannel="{TemplateBinding UsingAlphaChannel}"
                     Visibility="{TemplateBinding StandardShowAvailableColors,
                                                  Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -57,7 +58,6 @@
                     Grid.Row="2"
                     Margin="2,2,2,0"
                     Padding="2"
-                    Style="{DynamicResource StandardGridHeaderTextBlockStyle}"
                     Text="{TemplateBinding StandardRecentColorsHeader}"
                     Visibility="{TemplateBinding StandardShowRecentColors,
                                                  Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -65,6 +65,7 @@
                 <colorclicker:RecentColorsGrid
                     x:Name="PART_RecentColorsGrid"
                     Grid.Row="3"
+                    Margin="0,0,0,2"
                     VerticalAlignment="Center"
                     VerticalContentAlignment="Center"
                     ColumnCount="{TemplateBinding StandardColumnCount}"
@@ -116,8 +117,7 @@
     <Style TargetType="{x:Type local:StandardColorPicker}">
         <Setter Property="Template" Value="{StaticResource StandardColorPickerTemplate}" />
         <Setter Property="Width" Value="280" />
-        <Setter Property="MinHeight" Value="340" />
-        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Height" Value="Auto" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="BorderBrush" Value="#FFE8E8E8" />
         <Setter Property="Background" Value="WhiteSmoke" />

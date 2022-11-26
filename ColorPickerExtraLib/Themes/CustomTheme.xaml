@@ -76,16 +76,16 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
                             <Setter TargetName="arrow" Property="Data" Value="M 1,4.5  L 4.5,1  L 8,4.5" />
-                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableConstantBorderHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PortableColorPicker}}" />
+                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableBorderConstantHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PortableColorPicker}}" />
 
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableConstantBorderHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PortableColorPicker}}" />
+                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableBorderConstantHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PortableColorPicker}}" />
                             <Setter TargetName="rectangle" Property="Background" Value="{StaticResource ColorPicker.ControlPrimaryMouseOverBorderBrush}" />
                             <Setter TargetName="arrow" Property="Stroke" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableConstantBorderHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PortableColorPicker}}" />
+                            <Setter TargetName="rectangle" Property="BorderBrush" Value="{Binding PortableBorderConstantHighlightBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PortableColorPicker}}" />
                             <Setter TargetName="rectangle" Property="BorderThickness" Value="1.5" />
                             <Setter TargetName="rectangle" Property="Background" Value="{StaticResource ColorPicker.ControlPrimarySelectedBackground}" />
                             <Setter TargetName="arrow" Property="Stroke" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
@@ -106,6 +106,13 @@
 
 
     <Style TargetType="{x:Type local:PortableColorPicker}">
+        <Style.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Tooltip.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Style.Resources>
         <Setter Property="Template" Value="{StaticResource PortableColorPickerTemplate}" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="BorderBrush" Value="{DynamicResource ColorPicker.ContainerBorder}" />
@@ -115,18 +122,18 @@
         <Setter Property="Height" Value="24" />
         <Setter Property="Width" Value="72" />
         <Setter Property="PortableButtonBaseStyle" Value="{StaticResource PopupToggleButtonStyle}" />
-        <!--<Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />-->
         <Setter Property="EmptyBorderMode" Value="PortableSettings" />
         <Setter Property="EmptyShapeMode" Value="EmptySettings" />
         <Setter Property="EmptyShapeStretch" Value="Fill" />
-        <Setter Property="EmptyShapeGeometry" Value="BottomLeftToTopRight"/>
+        <Setter Property="EmptyShapeGeometry" Value="BottomLeftToTopRight" />
         <Setter Property="EmptyShapeMargin" Value="4" />
-        <Setter Property="PortableConstantBorderHighlightBrush" Value="{StaticResource ColorPicker.ControlPrimarySelectedBorderBrush}" />
+        <Setter Property="EmptyFontMode" Value="Off" />
+        <Setter Property="EmptyFontHorizontalAlignment" Value="{x:Null}" />
+        <Setter Property="PortableBorderConstantHighlightBrush" Value="{StaticResource ColorPicker.ControlPrimarySelectedBorderBrush}" />
         <Setter Property="EmptyShapeColorBrush" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
-        <Setter Property="PortableConstantBackgroundBrush" Value="{StaticResource ColorPicker.ControlBrightDefaultBackground}" />
-        <Setter Property="PortableConstantBorderBrush" Value="{StaticResource ColorPicker.ControlBrightDefaultBorderBrush}" />
-        <Setter Property="PortableConstantFontBrush" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
+        <Setter Property="PortableBackgroundConstantBrush" Value="{StaticResource ColorPicker.ControlBrightDefaultBackground}" />
+        <Setter Property="PortableBorderConstantBrush" Value="{StaticResource ColorPicker.ControlBrightDefaultBorderBrush}" />
+        <Setter Property="PortableFontConstantBrush" Value="{StaticResource ColorPicker.ControlDefaultForeground}" />
     </Style>
 
 
@@ -135,9 +142,8 @@
         <Style.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/TextBlock.xaml" />
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/IsEmptyToggleButton.xaml" />
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/SwapModeButton.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/IsEmptyToggleButton.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/SwapModeButton.xaml" />
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Style.Resources>
@@ -152,8 +158,9 @@
         <Style.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/TextBlock.xaml" />
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/IsEmptyToggleButton.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/StandardTextBlock.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Tooltip.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/IsEmptyToggleButton.xaml" />
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Style.Resources>
@@ -170,12 +177,12 @@
         <Style.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/TextBlock.xaml" />
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/IsEmptyToggleButton.xaml" />
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/AdvancedComboBox.xaml" />
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/AdvancedRadioButton.xaml" />
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/AdvancedTabControl.xaml" />
-                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/Dark/AdvancedTextBox.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/AdvancedLabel.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/IsEmptyToggleButton.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/AdvancedComboBox.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/AdvancedRadioButton.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/AdvancedTabControl.xaml" />
+                    <ResourceDictionary Source="/ColorPickerExtraLib;component/Styles/AdvancedTextBox.xaml" />
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Style.Resources>

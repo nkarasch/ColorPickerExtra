@@ -59,16 +59,6 @@ namespace ColorPickerExtraLib.Controls
             }
         }
 
-        internal static readonly DependencyProperty IsIndependentProperty =
-            DependencyProperty.Register(nameof(IsIndependent), typeof(bool), typeof(ColorPicker),
-                new PropertyMetadata(true));
-
-        internal bool IsIndependent
-        {
-            get => (bool)GetValue(IsIndependentProperty);
-            set => SetValue(IsIndependentProperty, value);
-        }
-
         #endregion Internal Properties
 
         #region Event Handlers

@@ -1,12 +1,4 @@
-﻿
-/* Unmerged change from project 'ColorPickerExtraLib (netcoreapp3.1)'
-Before:
-using System.Windows;
-After:
-using ColorPickerExtraLib.Models;
-using System.Windows;
-*/
-using ColorPickerExtraLib.Models;
+﻿using ColorPickerExtraLib.Models;
 using System.Windows;
 using System.Windows.Media;
 
@@ -59,6 +51,18 @@ namespace ColorPickerExtraLib.Controls
         {
             get => (double)GetValue(AdvancedInnerBorderWidthProperty);
             set => SetValue(AdvancedInnerBorderWidthProperty, value);
+        }
+
+        public void UpdateMousePosition(double X, double Y)
+        {
+            if (AdvancedPickerType == AdvancedPickerType.HSV)
+            {
+                Color.HSV_SV = new double[] { X, Y };
+            }
+            else
+            {
+                Color.HSL_SL = new double[] { X, Y };
+            }
         }
     }
 }

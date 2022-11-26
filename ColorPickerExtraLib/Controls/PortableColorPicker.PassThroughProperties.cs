@@ -100,6 +100,10 @@ namespace ColorPickerExtraLib.Controls
 
         #region Standard Picker Properties
 
+        public static readonly DependencyProperty StandardAvailableColorArrayProperty =
+            DependencyProperty.Register(nameof(StandardAvailableColorArray), typeof(Color[]), typeof(PortableColorPicker),
+                new PropertyMetadata(null));
+
         public static readonly DependencyProperty StandardItemSquareSizeProperty =
             DependencyProperty.Register(nameof(StandardItemSquareSize), typeof(double), typeof(PortableColorPicker),
                 new PropertyMetadata(17.0));
@@ -238,6 +242,12 @@ namespace ColorPickerExtraLib.Controls
         {
             get => (int)GetValue(StandardColumnCountProperty);
             set => SetValue(StandardColumnCountProperty, value);
+        }
+
+        public Color[] StandardAvailableColorArray
+        {
+            get => (Color[])GetValue(StandardAvailableColorArrayProperty);
+            set => SetValue(StandardAvailableColorArrayProperty, value);
         }
 
         #endregion Standard Picker Properties

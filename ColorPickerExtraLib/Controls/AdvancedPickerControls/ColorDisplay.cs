@@ -33,7 +33,6 @@ namespace ColorPickerExtraLib.Controls
 
         private void SwapButton_Click(object sender, RoutedEventArgs e)
         {
-
             SwapColors();
         }
 

@@ -135,5 +135,29 @@
                 storage.ColorState = state;
             }
         }
+
+        public double[] HSV_SV
+        {
+            get => new double[] { storage.ColorState.HSV_S * 100, storage.ColorState.HSV_V * 100 };
+            set
+            {
+                ColorState state = storage.ColorState;
+                state.HSV_S = value[0] / 100;
+                state.HSV_V = value[1] / 100;
+                storage.ColorState = state;
+            }
+        }
+
+        public double[] HSL_SL
+        {
+            get => new double[] { storage.ColorState.HSL_S * 100, storage.ColorState.HSL_L * 100 };
+            set
+            {
+                ColorState state = storage.ColorState;
+                state.HSL_S = value[0] / 100;
+                state.HSL_L = value[1] / 100;
+                storage.ColorState = state;
+            }
+        }
     }
 }

@@ -60,8 +60,8 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(PortableBackgroundMode), typeof(ShowOnToggleButton), typeof(PortableColorPicker),
                 new PropertyMetadata(ShowOnToggleButton.SelectedColor, UpdateBackgroundProperties));
 
-        public static readonly DependencyProperty PortableConstantBackgroundBrushProperty =
-            DependencyProperty.Register(nameof(PortableConstantBackgroundBrush), typeof(Brush), typeof(PortableColorPicker),
+        public static readonly DependencyProperty PortableBackgroundConstantBrushProperty =
+            DependencyProperty.Register(nameof(PortableBackgroundConstantBrush), typeof(Brush), typeof(PortableColorPicker),
                 new PropertyMetadata(DEFAULT_GRAY_BRUSH, UpdateBackgroundProperties));
 
         private static void UpdateBackgroundProperties(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -78,10 +78,10 @@ namespace ColorPickerExtraLib.Controls
             set => SetValue(PortableBackgroundModeProperty, value);
         }
 
-        public Brush PortableConstantBackgroundBrush
+        public Brush PortableBackgroundConstantBrush
         {
-            get => (Brush)GetValue(PortableConstantBackgroundBrushProperty);
-            set => SetValue(PortableConstantBackgroundBrushProperty, value);
+            get => (Brush)GetValue(PortableBackgroundConstantBrushProperty);
+            set => SetValue(PortableBackgroundConstantBrushProperty, value);
         }
 
         #endregion Background Mode
@@ -100,8 +100,8 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(PortableShapeCustomGeometry), typeof(Geometry), typeof(PortableColorPicker),
                 new PropertyMetadata(null, UpdateShapeProperties));
 
-        public static readonly DependencyProperty PortableConstantShapeColorBrushProperty =
-            DependencyProperty.Register(nameof(PortableConstantShapeColorBrush), typeof(Brush), typeof(PortableColorPicker),
+        public static readonly DependencyProperty PortableShapeConstantColorBrushProperty =
+            DependencyProperty.Register(nameof(PortableShapeConstantColorBrush), typeof(Brush), typeof(PortableColorPicker),
                 new PropertyMetadata(DEFAULT_GRAY_BRUSH, UpdateShapeProperties));
 
         public static readonly DependencyProperty PortableShapeStretchProperty =
@@ -142,10 +142,10 @@ namespace ColorPickerExtraLib.Controls
             set => SetValue(PortableShapeCustomGeometryProperty, value);
         }
 
-        public Brush PortableConstantShapeColorBrush
+        public Brush PortableShapeConstantColorBrush
         {
-            get => (Brush)GetValue(PortableConstantShapeColorBrushProperty);
-            set => SetValue(PortableConstantShapeColorBrushProperty, value);
+            get => (Brush)GetValue(PortableShapeConstantColorBrushProperty);
+            set => SetValue(PortableShapeConstantColorBrushProperty, value);
         }
 
         public Stretch PortableShapeStretch
@@ -186,8 +186,8 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(PortableFontMode), typeof(ShowOnToggleButton), typeof(PortableColorPicker),
                 new UIPropertyMetadata(ShowOnToggleButton.Off, UpdateFontProperties));
 
-        public static readonly DependencyProperty PortableConstantFontBrushProperty =
-            DependencyProperty.Register(nameof(PortableConstantFontBrush), typeof(Brush), typeof(PortableColorPicker),
+        public static readonly DependencyProperty PortableFontConstantBrushProperty =
+            DependencyProperty.Register(nameof(PortableFontConstantBrush), typeof(Brush), typeof(PortableColorPicker),
                 new PropertyMetadata(DEFAULT_GRAY_BRUSH, UpdateFontProperties));
 
         public ShowOnToggleButton PortableFontMode
@@ -196,10 +196,10 @@ namespace ColorPickerExtraLib.Controls
             set => SetValue(PortableFontModeProperty, value);
         }
 
-        public Brush PortableConstantFontBrush
+        public Brush PortableFontConstantBrush
         {
-            get => (Brush)GetValue(PortableConstantFontBrushProperty);
-            set => SetValue(PortableConstantFontBrushProperty, value);
+            get => (Brush)GetValue(PortableFontConstantBrushProperty);
+            set => SetValue(PortableFontConstantBrushProperty, value);
         }
 
         public static readonly DependencyProperty PortableFontFamilyProperty =
@@ -327,12 +327,12 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(PortableBorderMode), typeof(ShowOnToggleButton), typeof(PortableColorPicker),
                 new PropertyMetadata(ShowOnToggleButton.ConstantColor, UpdateBorderProperties));
 
-        public static readonly DependencyProperty PortableConstantBorderBrushProperty =
-            DependencyProperty.Register(nameof(PortableConstantBorderBrush), typeof(Brush), typeof(PortableColorPicker),
+        public static readonly DependencyProperty PortableBorderConstantBrushProperty =
+            DependencyProperty.Register(nameof(PortableBorderConstantBrush), typeof(Brush), typeof(PortableColorPicker),
                 new PropertyMetadata(DEFAULT_GRAY_BRUSH, UpdateBorderProperties));
 
-        public static readonly DependencyProperty PortableConstantBorderHighlightBrushProperty =
-            DependencyProperty.Register(nameof(PortableConstantBorderHighlightBrush), typeof(Brush), typeof(PortableColorPicker),
+        public static readonly DependencyProperty PortableBorderConstantHighlightBrushProperty =
+            DependencyProperty.Register(nameof(PortableBorderConstantHighlightBrush), typeof(Brush), typeof(PortableColorPicker),
                 new PropertyMetadata(DEFAULT_HIGHLIGHT_BRUSH, UpdateBorderProperties));
 
         public static readonly DependencyProperty PortableBorderModeThicknessProperty =
@@ -353,16 +353,16 @@ namespace ColorPickerExtraLib.Controls
             set => SetValue(PortableBorderModeProperty, value);
         }
 
-        public Brush PortableConstantBorderBrush
+        public Brush PortableBorderConstantBrush
         {
-            get => (Brush)GetValue(PortableConstantBorderBrushProperty);
-            set => SetValue(PortableConstantBorderBrushProperty, value);
+            get => (Brush)GetValue(PortableBorderConstantBrushProperty);
+            set => SetValue(PortableBorderConstantBrushProperty, value);
         }
 
-        public Brush PortableConstantBorderHighlightBrush
+        public Brush PortableBorderConstantHighlightBrush
         {
-            get => (Brush)GetValue(PortableConstantBorderHighlightBrushProperty);
-            set => SetValue(PortableConstantBorderHighlightBrushProperty, value);
+            get => (Brush)GetValue(PortableBorderConstantHighlightBrushProperty);
+            set => SetValue(PortableBorderConstantHighlightBrushProperty, value);
         }
 
         public Thickness PortableBorderModeThickness
@@ -377,7 +377,7 @@ namespace ColorPickerExtraLib.Controls
 
         public static readonly DependencyProperty PortableInverseDarkColorProperty = DependencyProperty.Register(
             nameof(PortableInverseDarkBrush), typeof(Brush), typeof(PortableColorPicker),
-                new PropertyMetadata(new SolidColorBrush(Color.FromRgb(28, 28, 28))));
+                new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Color.FromRgb(28, 28, 28))));
 
         public static readonly DependencyProperty PortableInverseLightColorProperty = DependencyProperty.Register(
             nameof(PortableInverseLightBrush), typeof(Brush), typeof(PortableColorPicker),

@@ -4,7 +4,7 @@
     <TargetFrameworks>net4;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>Open Source</Company>
     <PackageProjectUrl>https://github.com/nkarasch/ColorPickerExtra</PackageProjectUrl>
     <PackageTags />
@@ -55,25 +55,31 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Dark\AdvancedTabControl.xaml">
+    <Page Update="Styles\AdvancedTabControl.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Dark\AdvancedComboBox.xaml">
+    <Page Update="Styles\AdvancedComboBox.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Dark\AdvancedTextBox.xaml">
+    <Page Update="Styles\AdvancedTextBox.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Dark\AdvancedRadioButton.xaml">
+    <Page Update="Styles\AdvancedRadioButton.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Dark\IsEmptyToggleButton.xaml">
+    <Page Update="Styles\IsEmptyToggleButton.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Tooltip.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Styles\StandardTextBlock.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
 

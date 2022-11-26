@@ -1,10 +1,10 @@
-﻿using ColorPickerExtraLib.Models;
-using System;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using ColorPickerExtraLib.Models;
+    using System;
+    using System.Windows;
+    using System.Windows.Media;
+
     public abstract class AdvancedControlBase : ControlBase, IColorStateStorage, ISecondColorStorage
     {
         private readonly SecondColorDecorator secondColorDecorator;
@@ -15,6 +15,16 @@ namespace ColorPickerExtraLib.Controls
         private Color previousColor = System.Windows.Media.Color.FromArgb(255, 5, 5, 5);
         private bool ignoreSecondaryColorChange = false;
         private bool ignoreSecondaryColorPropertyChange = false;
+
+        internal static readonly RoutedEvent InternalColorChangedEvent =
+            EventManager.RegisterRoutedEvent(nameof(InternalColorChanged),
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(AdvancedControlBase));
+
+        internal event RoutedEventHandler InternalColorChanged
+        {
+            add => AddHandler(InternalColorChangedEvent, value);
+            remove => RemoveHandler(InternalColorChangedEvent, value);
+        }
 
         public AdvancedControlBase() : base()
         {
@@ -28,12 +38,12 @@ namespace ColorPickerExtraLib.Controls
                     (byte)Math.Round(Color.RGB_B));
                 if (newColor != previousColor)
                 {
-                    RaiseEvent(new ColorRoutedEventArgs(ColorChangedEvent, newColor));
                     previousColor = newColor;
+                    RaiseEvent(new ColorRoutedEventArgs(InternalColorChangedEvent, newColor));
                 }
             };
 
-            ColorChanged += (sender, newColor) =>
+            InternalColorChanged += (sender, newColor) =>
             {
                 if (!ignoreColorChange)
                 {
@@ -56,12 +66,6 @@ namespace ColorPickerExtraLib.Controls
             };
         }
 
-        public event RoutedEventHandler ColorChanged
-        {
-            add => AddHandler(ColorChangedEvent, value);
-            remove => RemoveHandler(ColorChangedEvent, value);
-        }
-
         public void SwapColors()
         {
             ColorState temp = ColorState;
@@ -78,10 +82,6 @@ namespace ColorPickerExtraLib.Controls
         internal static readonly DependencyProperty SecondColorStateProperty =
             DependencyProperty.Register(nameof(SecondColorState), typeof(ColorState), typeof(AdvancedControlBase),
                 new PropertyMetadata(new ColorState(1, 1, 1, 1, 0, 0, 1, 0, 0, 1), OnSecondColorStatePropertyChange));
-
-        public static readonly RoutedEvent ColorChangedEvent =
-            EventManager.RegisterRoutedEvent(nameof(ColorChanged),
-                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(AdvancedControlBase));
 
         public ColorState ColorState
         {

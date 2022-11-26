@@ -50,12 +50,12 @@
                     RangeY="100">
                     <usercontrols:SquareSlider.Style>
                         <Style TargetType="usercontrols:SquareSlider">
-                            <Setter Property="HeadX" Value="{Binding Color.HSV_S, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
-                            <Setter Property="HeadY" Value="{Binding Color.HSV_V, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                            <Setter Property="HeadX" Value="{Binding Color.HSV_S, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                            <Setter Property="HeadY" Value="{Binding Color.HSV_V, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding AdvancedPickerType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" Value="HSL">
-                                    <Setter Property="HeadX" Value="{Binding Color.HSL_S, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
-                                    <Setter Property="HeadY" Value="{Binding Color.HSL_L, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                                    <Setter Property="HeadX" Value="{Binding Color.HSL_S, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                                    <Setter Property="HeadY" Value="{Binding Color.HSL_L, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -88,17 +88,17 @@
             <Border Grid.Row="0" Grid.Column="0">
                 <usercontrols:SquareSlider
                     AdvancedPickerType="{Binding AdvancedPickerType, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}"
-                    Hue="{Binding Color.HSV_H, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}"
+                    Hue="{Binding Color.HSV_H, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}"
                     RangeX="100"
                     RangeY="100">
                     <usercontrols:SquareSlider.Style>
                         <Style TargetType="usercontrols:SquareSlider">
-                            <Setter Property="HeadX" Value="{Binding Color.HSV_S, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
-                            <Setter Property="HeadY" Value="{Binding Color.HSV_V, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                            <Setter Property="HeadX" Value="{Binding Color.HSV_S, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                            <Setter Property="HeadY" Value="{Binding Color.HSV_V, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding AdvancedPickerType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" Value="HSL">
-                                    <Setter Property="HeadX" Value="{Binding Color.HSL_S, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
-                                    <Setter Property="HeadY" Value="{Binding Color.HSL_L, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                                    <Setter Property="HeadX" Value="{Binding Color.HSL_S, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
+                                    <Setter Property="HeadY" Value="{Binding Color.HSL_L, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:SquarePicker}}" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

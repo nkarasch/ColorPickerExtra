@@ -7,7 +7,10 @@
     mc:Ignorable="d">
 
     <ControlTemplate x:Key="ColorPickerTemplate" TargetType="{x:Type local:ColorPicker}">
-        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+        <Border
+            Height="{TemplateBinding Height}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -33,6 +36,7 @@
                     IsEmpty="{Binding IsEmpty, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     IsIndependent="False"
                     SelectedColor="{Binding SelectedColor, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    StandardAvailableColorArray="{TemplateBinding StandardAvailableColorArray}"
                     StandardAvailableColorRows="{TemplateBinding StandardAvailableColorRows}"
                     StandardAvailableColorsHeader="{TemplateBinding StandardAvailableColorsHeader}"
                     StandardColumnCount="{TemplateBinding StandardColumnCount}"
@@ -90,6 +94,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
+                    Height="20"
                     Margin="0"
                     HorizontalAlignment="Stretch" />
             </Grid>

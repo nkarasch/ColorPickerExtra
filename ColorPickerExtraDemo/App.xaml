@@ -8,8 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="ThemeDictionary">
-                    <ResourceDictionary.MergedDictionaries>
-                    </ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary.MergedDictionaries />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

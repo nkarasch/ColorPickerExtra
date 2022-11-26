@@ -16,14 +16,14 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid
-            MouseDown="OnMouseDown"
-            MouseMove="OnMouseMove"
-            MouseUp="OnMouseUp">
+        MouseDown="OnMouseDown"
+        MouseMove="OnMouseMove"
+        MouseUp="OnMouseUp">
         <Image
-                Width="{Binding ElementName=uc, Path=Width}"
-                Height="{Binding ElementName=uc, Path=Height}"
-                Source="{Binding ElementName=uc, Path=GradientBitmap}"
-                Stretch="Fill" />
+            Width="{Binding ElementName=uc, Path=Width}"
+            Height="{Binding ElementName=uc, Path=Height}"
+            Source="{Binding ElementName=uc, Path=GradientBitmap}"
+            Stretch="Fill" />
 
         <Canvas Background="Transparent">
             <Grid x:Name="head">
@@ -42,17 +42,17 @@
                     </MultiBinding>
                 </Canvas.Bottom>
                 <Ellipse
-                        Width="12"
-                        Height="12"
-                        Fill="Transparent"
-                        Stroke="White"
-                        StrokeThickness="2" />
+                    Width="12"
+                    Height="12"
+                    Fill="Transparent"
+                    Stroke="White"
+                    StrokeThickness="2" />
                 <Ellipse
-                        Width="14"
-                        Height="14"
-                        Fill="Transparent"
-                        Stroke="Black"
-                        StrokeThickness="2" />
+                    Width="14"
+                    Height="14"
+                    Fill="Transparent"
+                    Stroke="Black"
+                    StrokeThickness="2" />
                 <Grid.RenderTransform>
                     <TranslateTransform X="-7" Y="7" />
                 </Grid.RenderTransform>

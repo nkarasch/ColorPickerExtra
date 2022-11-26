@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace ColorPickerExtraLib.Converters
 {
-    [ValueConversion(typeof(bool), typeof(bool))]
-    internal class BoolToInvertedBoolConverter : IValueConverter
+    [ValueConversion(typeof(int), typeof(Visibility))]
+    internal class IntToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool boolValue)
-            {
-                return !boolValue;
-            }
-
-            return false;
+            int integer = (int)value;
+            return integer > 0 ? Visibility.Visible : Visibility.Collapsed;
         }
+
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException("ConvertBack() of BoolToInvertedBoolConverter is not implemented");
+            return null;
         }
     }
 }

@@ -49,7 +49,7 @@ namespace ColorPickerExtraDemo.Converters
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             string currentString = value as string;
-            return new object[] { Binding.DoNothing, (currentString.Length == 0) ? new Thickness(0) : StringToThickness(currentString) };
+            return new object[] { Binding.DoNothing, (currentString == null || currentString.Length == 0) ? new Thickness(0) : StringToThickness(currentString) };
         }
 
         #endregion IValueConverter Members

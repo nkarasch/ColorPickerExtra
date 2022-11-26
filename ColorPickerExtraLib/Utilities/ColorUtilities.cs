@@ -1,11 +1,23 @@
 ﻿namespace ColorPickerExtraLib.Utilities
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
     using System.Windows;
     using System.Windows.Media;
 
     public static class ColorUtilities
     {
+        public static readonly Dictionary<string, Color> KnownColors = GetKnownColors();
+
+
+        private static Dictionary<string, Color> GetKnownColors()
+        {
+            var colorProperties = typeof(Colors).GetProperties(BindingFlags.Static | BindingFlags.Public);
+            return colorProperties.ToDictionary(p => p.Name, p => (Color)p.GetValue(null, null));
+        }
+
         public static string ColorToHex(Color color, bool usingAlpha)
         {
             return usingAlpha ? color.ToString() : color.ToString().Remove(1, 2);

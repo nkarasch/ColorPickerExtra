@@ -1,4 +1,5 @@
 ﻿using ColorPickerExtraLib.Models;
+using ColorPickerExtraLib.Utilities;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -171,8 +172,10 @@ namespace ColorPickerExtraLib.Controls.UserControls
 
         private void UpdatePos(Point pos)
         {
-            HeadX = MathHelper.Clamp(pos.X / ActualWidth, 0, 1) * RangeX;
-            HeadY = (1 - MathHelper.Clamp(pos.Y / ActualHeight, 0, 1)) * RangeY;
+          //  HeadX = MathHelper.Clamp(pos.X / ActualWidth, 0, 1) * RangeX;
+           // HeadY = (1 - MathHelper.Clamp(pos.Y / ActualHeight, 0, 1)) * RangeY;
+            SquarePicker parent = FindParent.FindAncestor<SquarePicker>(this);
+            parent.UpdateMousePosition(MathHelper.Clamp(pos.X / ActualWidth, 0, 1) * RangeX, (1 - MathHelper.Clamp(pos.Y / ActualHeight, 0, 1)) * RangeY);
         }
 
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
