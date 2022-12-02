@@ -1,19 +1,5 @@
 ﻿namespace ColorPickerExtraDemo.Views
 {
-    using ColorPickerExtraLib.Controls;
-    using ColorPickerExtraLib.Models;
-    using ColorPickerExtraLib.Utilities;
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Input;
-    using System.Windows.Media;
-
     public partial class ColorSelectionView : UserControl
     {
         public class EmptyShapeComboItem
@@ -266,7 +252,6 @@
             }
         }
 
-       
 
         private void UpdateArray()
         {

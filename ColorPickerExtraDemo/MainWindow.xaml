@@ -40,8 +40,8 @@
                 Margin="8"
                 Checked="LightRadioButton_Checked"
                 Content="Light"
-                GroupName="ThemeGroup" />
-        </StackPanel>
+                GroupName="ThemeGroup" />     
+        </StackPanel>        
         <views:ColorSelectionView x:Name="Demo" Grid.Column="1" />
     </Grid>
 </Window>

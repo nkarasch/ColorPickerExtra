@@ -113,7 +113,7 @@ namespace ColorPickerExtraLib.Controls
         {
             if(d is ControlBase control && (control.IsIndependent || control is PortableColorPicker))
             {
-                control.RaiseEvent(new ColorRoutedEventArgs(ColorChangedEvent, (Color)args.NewValue));
+                control.RaiseEvent(new ColorRoutedEventArgs(ColorChangedEvent, (Color)args.NewValue, control.IsEmpty));
             }
 
             (d as ControlBase).OnSelectedColorChanged((Color)args.NewValue);
@@ -127,11 +127,16 @@ namespace ColorPickerExtraLib.Controls
             }
         }
 
-        private static void OnIsEmptyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsEmptyChanged(DependencyObject d, DependencyPropertyChangedEventArgs args)
         {
             if (d is PortableColorPicker portableColorPicker)
             {
                 portableColorPicker.OnIsEmptyChanged();
+            }
+
+            if (d is ControlBase control && (control.IsIndependent || control is PortableColorPicker))
+            {
+                control.RaiseEvent(new ColorRoutedEventArgs(ColorChangedEvent, control.SelectedColor, (bool)args.NewValue));
             }
         }
 
