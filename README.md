@@ -126,10 +126,11 @@ Contains both StandardColorPicker and AdvancedColorPicker with the ability to sw
 <details>
   <summary>Sample ColorPicker images</summary>  
   
-| Default    | Default Dark   |
+| Default    | Default Rectangular Dark   |
 |------------|----------------|
-| <img src="https://user-images.githubusercontent.com/1914281/204080964-c2ae6dd8-ea76-4042-9bdf-038d66ee6433.png" name="Default"> | <img src="https://user-images.githubusercontent.com/1914281/204080958-a02e8c0d-a9d9-4536-8a82-9374d660550e.png" name="Default Dark"> |
-  
+| <img src="https://user-images.githubusercontent.com/1914281/204080964-c2ae6dd8-ea76-4042-9bdf-038d66ee6433.png" name="Default"> | <img src="https://user-images.githubusercontent.com/1914281/205210535-bad327b2-5f08-4982-83da-079aa6c5b29c.png" name="Default Dark"> |
+| <img src="https://user-images.githubusercontent.com/1914281/205211769-f9046df2-2b51-4a76-b2e6-2439a468f519.png" /> | <img src="https://user-images.githubusercontent.com/1914281/205211241-068bcba0-bdc5-46a2-8fdd-72b7c1111389.png" name="Default"> |
+
 </details>
 
 
@@ -156,8 +157,8 @@ set by StandardColumnCount and StandardAvailableColorRows with the first row alw
 | Default    | Default Dark    |
 |-------------|----------------|
 | <img src="https://user-images.githubusercontent.com/1914281/204080980-57388973-ec2d-4c01-9452-a2e2121e4d70.png" /> | <img src="https://user-images.githubusercontent.com/1914281/204080981-8c313564-a812-4a3a-b7e1-ca05beaa93a4.png" /> |
-| __Default Dark__    | __Dark Custom__ |
-| <img src="https://user-images.githubusercontent.com/1914281/204080982-a91c3297-ebe0-4d93-bef9-f7ba56557bc6.png" name="Default">  | <img src="https://user-images.githubusercontent.com/1914281/204080958-a02e8c0d-a9d9-4536-8a82-9374d660550e.png" /> |
+| __Default Custom__    | __Dark Custom__ |
+| <img src="https://user-images.githubusercontent.com/1914281/205209134-72edff7c-262b-477d-879e-8b11d3b8ba13.png" /> | <img src="https://user-images.githubusercontent.com/1914281/204080982-a91c3297-ebe0-4d93-bef9-f7ba56557bc6.png" name="Default"> |
   </details>
   <details>
   <summary>Dependency Properties</summary>
@@ -194,8 +195,8 @@ hue slider in the top right when UseRectangularStyle is active.
 |-------------|----------------|
 | <img src="https://user-images.githubusercontent.com/1914281/204080943-36cf90cd-15dd-45cb-802a-18634439b0f1.png" /> | <img src="https://user-images.githubusercontent.com/1914281/204080934-6e20aa48-9d32-40b6-af8a-d6c10d035084.png" name="Default"> |
 | __Default Rectangular__    | __Dark Rectangular__ |
-|<img src="https://user-images.githubusercontent.com/1914281/204080958-a02e8c0d-a9d9-4536-8a82-9374d660550e.png" />|
-|<img src="https://user-images.githubusercontent.com/1914281/204080941-441982ec-22df-4a0c-81c4-2e8a1262033e.png" />  |
+|<img src="https://user-images.githubusercontent.com/1914281/205207679-17cf995f-af1f-498c-ae61-264961633ba9.png" />| <img src="https://user-images.githubusercontent.com/1914281/204080941-441982ec-22df-4a0c-81c4-2e8a1262033e.png" />  |
+ 
 </details>
 
 <details>
