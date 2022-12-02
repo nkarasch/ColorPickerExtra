@@ -1,5 +1,7 @@
 # ColorPickerExtra
 A WPF color picker inspired by and using a combination of modified code from the [PixiEditor ColorPicker](https://github.com/PixiEditor/ColorPicker) and [Dirkster99's version of the classic](https://github.com/Dirkster99/ColorPickerLib) that can go as low as .NET 4.0 or .Net Core 3.1. It contains templates for both curved and rectangular styles. The main purpose was to provide a color picker that has an "empty" option. It also contains styles similar to both mentioned libraries with an option to swap between them.
+![header](https://user-images.githubusercontent.com/1914281/205272101-a9ae038d-fe9a-4767-a923-2d77fbb90313.png)
+![header2](https://user-images.githubusercontent.com/1914281/205276053-2a72475c-33bd-41d4-af5b-525d5d58844e.png)
 
 ### Control Heirarchy
 * **PortableColorPicker**
@@ -154,11 +156,9 @@ set by StandardColumnCount and StandardAvailableColorRows with the first row alw
 <details>
   <summary>Sample StandardColorPicker images</summary>
 
-| Default    | Default Dark    |
-|-------------|----------------|
-| <img src="https://user-images.githubusercontent.com/1914281/204080980-57388973-ec2d-4c01-9452-a2e2121e4d70.png" /> | <img src="https://user-images.githubusercontent.com/1914281/204080981-8c313564-a812-4a3a-b7e1-ca05beaa93a4.png" /> |
-| __Default Custom__    | __Dark Custom__ |
-| <img src="https://user-images.githubusercontent.com/1914281/205209134-72edff7c-262b-477d-879e-8b11d3b8ba13.png" /> | <img src="https://user-images.githubusercontent.com/1914281/204080982-a91c3297-ebe0-4d93-bef9-f7ba56557bc6.png" name="Default"> |
+| Default    | Default Dark    | Custom |
+|-------------|----------------|--------|
+| <img src="https://user-images.githubusercontent.com/1914281/204080980-57388973-ec2d-4c01-9452-a2e2121e4d70.png" /> | <img src="https://user-images.githubusercontent.com/1914281/204080981-8c313564-a812-4a3a-b7e1-ca05beaa93a4.png" /> | <img src="https://user-images.githubusercontent.com/1914281/204080982-a91c3297-ebe0-4d93-bef9-f7ba56557bc6.png" name="Default"> |
   </details>
   <details>
   <summary>Dependency Properties</summary>
@@ -191,11 +191,9 @@ hue slider in the top right when UseRectangularStyle is active.
 <details>
   <summary>Sample AdvancedColorPicker images</summary>
   
-| Default    | Default Dark    |
-|-------------|----------------|
-| <img src="https://user-images.githubusercontent.com/1914281/204080943-36cf90cd-15dd-45cb-802a-18634439b0f1.png" /> | <img src="https://user-images.githubusercontent.com/1914281/204080934-6e20aa48-9d32-40b6-af8a-d6c10d035084.png" name="Default"> |
-| __Default Rectangular__    | __Dark Rectangular__ |
-|<img src="https://user-images.githubusercontent.com/1914281/205207679-17cf995f-af1f-498c-ae61-264961633ba9.png" />| <img src="https://user-images.githubusercontent.com/1914281/204080941-441982ec-22df-4a0c-81c4-2e8a1262033e.png" />  |
+| Default    | Default Dark    | Dark Rectangular|
+|-------------|----------------|-----------------|
+| <img src="https://user-images.githubusercontent.com/1914281/204080943-36cf90cd-15dd-45cb-802a-18634439b0f1.png" /> | <img src="https://user-images.githubusercontent.com/1914281/204080934-6e20aa48-9d32-40b6-af8a-d6c10d035084.png" name="Default"> | <img src="https://user-images.githubusercontent.com/1914281/204080941-441982ec-22df-4a0c-81c4-2e8a1262033e.png" />  |
  
 </details>
 
