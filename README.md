@@ -1,5 +1,16 @@
 # ColorPickerExtra
-A WPF color picker inspired by and using a combination of modified code from the [PixiEditor ColorPicker](https://github.com/PixiEditor/ColorPicker) and [Dirkster99's version of the classic](https://github.com/Dirkster99/ColorPickerLib) that can go as low as .NET 4.0 or .Net Core 3.1. It contains templates for both curved and rectangular styles. The main purpose was to provide a color picker that has an "empty" option. It also contains styles similar to both mentioned libraries with an option to swap between them.
+A WPF color picker inspired by and using a combination of modified code from the [PixiEditor ColorPicker](https://github.com/PixiEditor/ColorPicker) and [Dirkster99's version of the classic](https://github.com/Dirkster99/ColorPickerLib) that can go as low as .NET 4.0 or .Net Core 3.1.
+
+* There are four different public controls
+  * **StandardColorPicker** - a pre-defined grid of colors for single click
+  * **AdvancedColorPicker** - the common style canvas for choosing exact colors via sliders or hex values
+  * **ColorPicker** - the two above combined for swapping in between
+  * **PortableColorPicker** - a toggle button that launches a popup containing ColorPicker with custom properties for displaying the current state via background, border, text, or shapes
+* All of the public controls also feature an optional 'empty' mode for uses cases when the user may be allowed to not have a selected color    
+* There are two templates included
+  * Default is a more curvature using the layout from PixiEditor with the circular hue slider and some curved edges
+  * 'UseRectangularStyle' set to true uses one with a vertical hue slider without curved edges  
+
 ![header](https://user-images.githubusercontent.com/1914281/205272101-a9ae038d-fe9a-4767-a923-2d77fbb90313.png)
 ![header2](https://user-images.githubusercontent.com/1914281/205276053-2a72475c-33bd-41d4-af5b-525d5d58844e.png)
 
