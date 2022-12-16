@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorPickerExtraLib", "Colo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorPickerExtraDemo", "ColorPickerExtraDemo\ColorPickerExtraDemo.csproj", "{3F27FCCB-C5B2-485F-81C2-1BFF8F0D7680}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorPickerExtraTester", "ColorPickerExtraTester\ColorPickerExtraTester.csproj", "{5545C1C4-81A5-48ED-BDAE-0BEE45DBD685}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{3F27FCCB-C5B2-485F-81C2-1BFF8F0D7680}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F27FCCB-C5B2-485F-81C2-1BFF8F0D7680}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F27FCCB-C5B2-485F-81C2-1BFF8F0D7680}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5545C1C4-81A5-48ED-BDAE-0BEE45DBD685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5545C1C4-81A5-48ED-BDAE-0BEE45DBD685}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5545C1C4-81A5-48ED-BDAE-0BEE45DBD685}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5545C1C4-81A5-48ED-BDAE-0BEE45DBD685}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
