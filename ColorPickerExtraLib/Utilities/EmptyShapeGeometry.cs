@@ -1,9 +1,9 @@
-﻿using ColorPickerExtraLib.Models;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Utilities
+﻿namespace ColorPickerExtraLib.Utilities
 {
+    using System.Windows;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+
     public class EmptyShapeGeometry
     {
         private static Point topLeft = new Point(0, 0);

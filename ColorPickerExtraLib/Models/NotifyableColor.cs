@@ -103,6 +103,7 @@
                 storage.ColorState = state;
             }
         }
+
         public double HSL_H
         {
             get => storage.ColorState.HSL_H;

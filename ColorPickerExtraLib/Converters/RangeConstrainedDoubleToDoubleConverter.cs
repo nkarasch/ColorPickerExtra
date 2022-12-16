@@ -1,19 +1,19 @@
-﻿using ColorPickerExtraLib.Models;
-using System;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-
-namespace ColorPickerExtraLib.Converters
+﻿namespace ColorPickerExtraLib.Converters
 {
+    using System;
+    using System.Globalization;
+    using System.Windows;
+    using System.Windows.Data;
+    using ColorPickerExtraLib.Models;
+
     [ValueConversion(typeof(double), typeof(string))]
     internal class RangeConstrainedDoubleToDoubleConverter : DependencyObject, IValueConverter
     {
-        public static DependencyProperty MinProperty =
+        private static DependencyProperty MinProperty =
             DependencyProperty.Register(nameof(Min), typeof(double), typeof(RangeConstrainedDoubleToDoubleConverter),
                 new PropertyMetadata(0.0));
 
-        public static DependencyProperty MaxProperty =
+        private static DependencyProperty MaxProperty =
             DependencyProperty.Register(nameof(Max), typeof(double), typeof(RangeConstrainedDoubleToDoubleConverter),
                 new PropertyMetadata(1.0));
 
@@ -37,7 +37,10 @@ namespace ColorPickerExtraLib.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!double.TryParse(((string)value).Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out double result))
+            {
                 return DependencyProperty.UnsetValue;
+            }
+
             return MathHelper.Clamp(result, Min, Max);
         }
     }

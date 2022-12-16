@@ -155,7 +155,7 @@
         private void RecalculateHSLFromHSV()
         {
             System.Tuple<double, double, double> hsltuple = ColorSpaceHelper.HsvToHsl(_HSV_H, _HSV_S, _HSV_V);
-            double h = hsltuple.Item1, s = hsltuple.Item2, l = hsltuple.Item3;
+            double s = hsltuple.Item2, l = hsltuple.Item3;
             _HSL_H = _HSV_H;
             if (s != -1)
                 _HSL_S = s;
@@ -164,8 +164,8 @@
 
         private void RecalculateHSVFromRGB()
         {
-            double h, s, v;
-            ColorSpaceHelper.RgbToHsv(_RGB_R, _RGB_G, _RGB_B, out h, out s, out v);
+            System.Tuple<double, double, double> hsvtuple = ColorSpaceHelper.RgbToHsv(_RGB_R, _RGB_G, _RGB_B);
+            double h = hsvtuple.Item1, s = hsvtuple.Item2, v = hsvtuple.Item3;
             if (h != -1)
                 _HSV_H = h;
             if (s != -1)

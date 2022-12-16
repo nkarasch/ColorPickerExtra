@@ -1,10 +1,10 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+
     internal partial class HexColorTextBox : UserControl
     {
         public HexColorTextBox() : base()

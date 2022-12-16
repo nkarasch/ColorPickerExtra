@@ -1,10 +1,10 @@
-﻿using ColorPickerExtraLib.Controls.ColorGrids;
-using ColorPickerExtraLib.Models;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System.Windows;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Controls.ColorGrids;
+    using ColorPickerExtraLib.Models;
+
     [TemplatePart(Name = "PART_AvailableColorsGrid", Type = typeof(AvailableColorsGrid))]
     [TemplatePart(Name = "PART_RecentColorsGrid", Type = typeof(RecentColorsGrid))]
     public partial class StandardColorPicker : ControlBase
@@ -42,9 +42,13 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(StandardAvailableColorArray), typeof(Color[]), typeof(StandardColorPicker),
                 new PropertyMetadata(null));
 
-        public static readonly DependencyProperty StandardItemSquareSizeProperty =
-            DependencyProperty.Register(nameof(StandardItemSquareSize), typeof(double), typeof(StandardColorPicker),
+        public static readonly DependencyProperty StandardItemWidthProperty =
+            DependencyProperty.Register(nameof(StandardItemWidth), typeof(double), typeof(StandardColorPicker),
             new PropertyMetadata(17.0));
+
+        public static readonly DependencyProperty StandardItemHeightProperty =
+            DependencyProperty.Register(nameof(StandardItemHeight), typeof(double), typeof(StandardColorPicker),
+                new PropertyMetadata(17.0));
 
         public static readonly DependencyProperty StandardItemCornerRadiusProperty =
             DependencyProperty.Register(nameof(StandardItemCornerRadius), typeof(double), typeof(StandardColorPicker),
@@ -98,10 +102,20 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(StandardColumnCount), typeof(int), typeof(StandardColorPicker),
                 new PropertyMetadata(14));
 
-        public double StandardItemSquareSize
+        public static readonly DependencyProperty ToggleButtonStateProperty =
+            DependencyProperty.Register(nameof(ToggleButtonState), typeof(ColorPickerState), typeof(StandardColorPicker),
+                new PropertyMetadata(ColorPickerState.Closed, OnToggleButtonStateChanged));
+
+        public double StandardItemWidth
         {
-            get => (double)GetValue(StandardItemSquareSizeProperty);
-            set => SetValue(StandardItemSquareSizeProperty, value);
+            get => (double)GetValue(StandardItemWidthProperty);
+            set => SetValue(StandardItemWidthProperty, value);
+        }
+
+        public double StandardItemHeight
+        {
+            get => (double)GetValue(StandardItemHeightProperty);
+            set => SetValue(StandardItemHeightProperty, value);
         }
 
         public double StandardItemCornerRadius
@@ -188,6 +202,12 @@ namespace ColorPickerExtraLib.Controls
             set => SetValue(StandardAvailableColorArrayProperty, value);
         }
 
+        public ColorPickerState ToggleButtonState
+        {
+            get => (ColorPickerState)GetValue(ToggleButtonStateProperty);
+            set => SetValue(ToggleButtonStateProperty, value);
+        }
+
         #endregion Public Properties
 
         #region Internal Properties
@@ -196,20 +216,10 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(UpdatedRecentColorsItem), typeof(Color),
                 typeof(StandardColorPicker));
 
-        internal static readonly DependencyProperty ToggleButtonStateProperty =
-            DependencyProperty.Register(nameof(ToggleButtonState), typeof(ColorPickerState), typeof(StandardColorPicker),
-                new PropertyMetadata(ColorPickerState.Closed, OnToggleButtonStateChanged));
-
         internal Color UpdatedRecentColorsItem
         {
             get => (Color)GetValue(UpdatedRecentColorsItemProperty);
             set => SetValue(UpdatedRecentColorsItemProperty, value);
-        }
-
-        internal ColorPickerState ToggleButtonState
-        {
-            get => (ColorPickerState)GetValue(ToggleButtonStateProperty);
-            set => SetValue(ToggleButtonStateProperty, value);
         }
 
         #endregion Internal Properties

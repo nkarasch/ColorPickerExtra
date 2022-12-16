@@ -1,9 +1,10 @@
-﻿using ColorPickerExtraLib.Models;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System.Windows;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+    using ColorPickerExtraLib.Utilities;
+
     public partial class PortableColorPicker
     {
         public static readonly DependencyProperty EmptyBackgroundBrushProperty =
@@ -24,11 +25,11 @@ namespace ColorPickerExtraLib.Controls
 
         public static readonly DependencyProperty EmptyBorderBrushProperty =
             DependencyProperty.Register(nameof(EmptyBorderBrush), typeof(Brush), typeof(PortableColorPicker),
-                new PropertyMetadata(DEFAULT_GRAY_BRUSH, UpdateBorderProperties));
+                new PropertyMetadata(ColorUtilities.DefaultGreyBrush, UpdateBorderProperties));
 
         public static readonly DependencyProperty EmptyBorderHighlightBrushProperty =
             DependencyProperty.Register(nameof(EmptyBorderHighlightBrush), typeof(Brush), typeof(PortableColorPicker),
-                new PropertyMetadata(DEFAULT_HIGHLIGHT_BRUSH, UpdateBorderProperties));
+                new PropertyMetadata(ColorUtilities.DefaultHighlightBrush, UpdateBorderProperties));
 
         public static readonly DependencyProperty EmptyBorderThicknessProperty =
             DependencyProperty.Register(nameof(EmptyBorderThickness), typeof(Thickness), typeof(PortableColorPicker),

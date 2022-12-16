@@ -1,9 +1,9 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+
     [TemplatePart(Name = "PART_SwapButton", Type = typeof(Button))]
     internal class ColorDisplay : AdvancedControlBase
     {
@@ -14,7 +14,9 @@ namespace ColorPickerExtraLib.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ColorDisplay), new FrameworkPropertyMetadata(typeof(ColorDisplay)));
         }
 
-        public ColorDisplay() : base() { }
+        public ColorDisplay() : base()
+        {
+        }
 
         public override void OnApplyTemplate()
         {

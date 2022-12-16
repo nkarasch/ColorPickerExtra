@@ -1,71 +1,28 @@
 ﻿namespace ColorPickerExtraDemo.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+    using ColorPickerExtraLib.Utilities;
+
     public partial class ColorSelectionView : UserControl
     {
-        public class EmptyShapeComboItem
-        {
-            public ShapeGeometry Value { get; }
-            public string Name { get; }
-            public Geometry Geometry { get; }
-
-            public EmptyShapeComboItem(ShapeGeometry shapeGeometry)
-            {
-                Value = shapeGeometry;
-                Name = shapeGeometry.ToString();
-                Geometry = EmptyShapeGeometry.GetShapeGeometry(shapeGeometry);
-            }
-        }
-
-        public List<EmptyShapeComboItem> ShapeGeometryComboItems { get; } = GetGeometryList();
-
-        public static List<EmptyShapeComboItem> GetGeometryList()
-        {
-            List<EmptyShapeComboItem> list = new List<EmptyShapeComboItem>();
-            foreach (ShapeGeometry geometryType in (ShapeGeometry[])Enum.GetValues(typeof(ShapeGeometry)))
-            {
-                list.Add(new EmptyShapeComboItem(geometryType));
-            }
-            return list;
-        }
-
-        public struct TextDecorationComboItem
-        {
-            public string Name { get; }
-            public TextDecorationCollection TextDecorations { get; }
-            public TextDecorationComboItem(string name, TextDecorationCollection textDecorations)
-            {
-                Name = name;
-                TextDecorations = textDecorations;
-            }
-        }
-
-        public List<TextDecorationComboItem> TextDecorationComboItems { get; } =
-            new List<TextDecorationComboItem> {
-                new TextDecorationComboItem("", null),
-                new TextDecorationComboItem("Baseline", TextDecorations.Baseline),
-                new TextDecorationComboItem("OverLine", TextDecorations.OverLine),
-                new TextDecorationComboItem("Strikethrough", TextDecorations.Strikethrough),
-                new TextDecorationComboItem("Underline", TextDecorations.Underline)
-            };
-
-        public List<FontFamily> FontFamiliesComboItems { get; } = FontFamilies();
-
-        private static List<FontFamily> FontFamilies()
-        {
-            List<FontFamily> sorted = new List<FontFamily>();
-            ICollection<FontFamily> fonts = Fonts.SystemFontFamilies;
-            foreach (FontFamily font in fonts)
-            {
-                sorted.Add(font);
-            }
-            sorted.Sort((x, y) => x.Source.CompareTo(y.Source));
-            return sorted;
-        }
-
         public ColorSelectionView()
         {
             InitializeComponent();
         }
+
+        public List<EmptyShapeComboItem> ShapeGeometryComboItems { get; } = GetGeometryList();
+
+        public List<TextDecorationComboItem> TextDecorationComboItems { get; } = GetTextDecorationItems();
+
+        public List<FontFamily> FontFamiliesComboItems { get; } = GetFontFamilies();
 
         public ObservableCollection<Color> CustomColorList { get; } = new ObservableCollection<Color>();
 
@@ -82,74 +39,74 @@
                     }
                     else
                     {
-                        _EmptyFontSize_Changer.Value = 0;
-                        return 0;
+                        _EmptyFontSize_Changer.Value = _PortableColorPicker.PortableFontSize;
+                        return _PortableColorPicker.PortableFontSize;
                     }
                 }
+
                 return 0;
             }
+
             set => _PortableColorPicker.EmptyFontSize = value <= 0 ? null : (double?)value;
         }
 
+        #region Nullify "empty" values to default to use "Portable" values when not set
 
-
-        #region Nullify "empty" values to default to "Portable" values when not set
-
-        private const string EmptyFontFamilyReset = "EmptyFontFamilyReset";
-        private const string EmptyFontHorizontalAlignmentReset = "EmptyFontHorizontalAlignmentReset";
-        private const string EmptyFontVerticalAlignmentReset = "EmptyFontVerticalAlignmentReset";
-        private const string EmptyFontStyleReset = "EmptyFontStyleReset";
-        private const string EmptyFontWeightReset = "EmptyFontWeightReset";
-        private const string EmptyTextDecorationsReset = "EmptyTextDecorationsReset";
-        private const string EmptyFontViewboxStretchReset = "EmptyFontViewboxStretchReset";
-        private const string EmptyFontSizeReset = "EmptyFontSizeReset";
-        private const string EmptyFontMarginReset = "EmptyFontMarginReset";
-        private const string EmptyFontBrushReset = "EmptyFontBrushReset";
-
-        private void Null_Click(object sender, RoutedEventArgs e)
+        private void EmptyFontBrushReset_Click(object sender, RoutedEventArgs e)
         {
-            Button clicked = sender as Button;
-            switch (clicked.Tag)
-            {
-                case EmptyFontFamilyReset:
-                    _PortableColorPicker.EmptyFontFamily = null;
-                    break;
-                case EmptyFontHorizontalAlignmentReset:
-                    _PortableColorPicker.EmptyFontHorizontalAlignment = null;
-                    break;
-                case EmptyFontVerticalAlignmentReset:
-                    _PortableColorPicker.EmptyFontVerticalAlignment = null;
-                    break;
-                case EmptyFontStyleReset:
-                    _PortableColorPicker.EmptyFontStyle = null;
-                    break;
-                case EmptyFontWeightReset:
-                    _PortableColorPicker.EmptyFontWeight = null;
-                    break;
-                case EmptyTextDecorationsReset:
-                    _PortableColorPicker.EmptyFontTextDecorations = null;
-                    break;
-                case EmptyFontViewboxStretchReset:
-                    _PortableColorPicker.EmptyFontViewboxStretch = null;
-                    break;
-                case EmptyFontSizeReset:
-                    _PortableColorPicker.EmptyFontSize = null;
-                    _EmptyFontSize_Changer.Value = 0;
-                    break;
-                case EmptyFontMarginReset:
-                    _emptyFontMargin.Text = null;
-                    break;
-                case EmptyFontBrushReset:
-                    _emptyFontBrushPicker.IsEmpty = true;
-                    _PortableColorPicker.EmptyFontBrush = null;
-                    break;
-
-            }
+            _emptyFontBrushPicker.IsEmpty = true;
+            _PortableColorPicker.EmptyFontBrush = null;
         }
 
-        #endregion
+        private void EmptyFontFamilyReset_Click(object sender, RoutedEventArgs e)
+        {
+            _PortableColorPicker.EmptyFontFamily = null;
+        }
 
+        private void EmptyFontHorizontalAlignmentReset_Click(object sender, RoutedEventArgs e)
+        {
+            _PortableColorPicker.EmptyFontHorizontalAlignment = null;
+        }
 
+        private void EmptyFontVerticalAlignmentReset_Click(object sender, RoutedEventArgs e)
+        {
+            _PortableColorPicker.EmptyFontVerticalAlignment = null;
+        }
+
+        private void EmptyFontStyleReset_Click(object sender, RoutedEventArgs e)
+        {
+            _PortableColorPicker.EmptyFontStyle = null;
+        }
+
+        private void EmptyFontWeightReset_Click(object sender, RoutedEventArgs e)
+        {
+            _PortableColorPicker.EmptyFontWeight = null;
+        }
+
+        private void EmptyTextDecorationsReset_Click(object sender, RoutedEventArgs e)
+        {
+            _PortableColorPicker.EmptyFontTextDecorations = null;
+        }
+
+        private void EmptyFontViewboxStretchReset_Click(object sender, RoutedEventArgs e)
+        {
+            _PortableColorPicker.EmptyFontViewboxStretch = null;
+        }
+
+        private void EmptyFontSizeReset_Click(object sender, RoutedEventArgs e)
+        {
+            _PortableColorPicker.EmptyFontSize = null;
+            _EmptyFontSize_Changer.Value = 0;
+        }
+
+        private void EmptyFontMarginReset_Click(object sender, RoutedEventArgs e)
+        {
+            _emptyFontMargin.Text = null;
+        }
+
+        #endregion Nullify empty values
+
+        #region Margin text input
 
         private void Thickness_PreviewInput(object sender, TextCompositionEventArgs e)
         {
@@ -173,8 +130,9 @@
                 int currentCaretIndex = textBox.CaretIndex;
                 if (currentText.Contains(' '))
                 {
-                    newText = currentText.Replace(" ", "");
+                    newText = currentText.Replace(" ", string.Empty);
                 }
+
                 for (int i = newText.Length - 1; i >= 0; --i)
                 {
                     char c = newText[i];
@@ -215,6 +173,7 @@
                     return false;
                 }
             }
+
             return false;
         }
 
@@ -227,6 +186,10 @@
                 e.Handled = true;
             }
         }
+
+        #endregion Margin text input
+
+        #region CustomColorArray
 
         private void CustomColorAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -252,17 +215,80 @@
             }
         }
 
-
         private void UpdateArray()
         {
-            if (CustomColorList == null || CustomColorList.Count == 0)
-            {
-                _PortableColorPicker.StandardAvailableColorArray = null;
-            }
-            else
-            {
-                _PortableColorPicker.StandardAvailableColorArray = CustomColorList.ToArray();
-            }
+            _PortableColorPicker.StandardAvailableColorArray = CustomColorList == null || CustomColorList.Count == 0 ? null : CustomColorList.ToArray();
         }
+
+        #endregion CustomColorArray
+
+        #region ComboBoxItem values
+
+        private static List<EmptyShapeComboItem> GetGeometryList()
+        {
+            List<EmptyShapeComboItem> list = new List<EmptyShapeComboItem>();
+            foreach (ShapeGeometry geometryType in (ShapeGeometry[])Enum.GetValues(typeof(ShapeGeometry)))
+            {
+                list.Add(new EmptyShapeComboItem(geometryType));
+            }
+
+            return list;
+        }
+
+        private static List<TextDecorationComboItem> GetTextDecorationItems()
+        {
+            return new List<TextDecorationComboItem>
+                {
+                    new TextDecorationComboItem(string.Empty, null),
+                    new TextDecorationComboItem("Baseline", TextDecorations.Baseline),
+                    new TextDecorationComboItem("OverLine", TextDecorations.OverLine),
+                    new TextDecorationComboItem("Strikethrough", TextDecorations.Strikethrough),
+                    new TextDecorationComboItem("Underline", TextDecorations.Underline)
+                };
+        }
+
+        private static List<FontFamily> GetFontFamilies()
+        {
+            List<FontFamily> sorted = new List<FontFamily>();
+            ICollection<FontFamily> fonts = Fonts.SystemFontFamilies;
+            foreach (FontFamily font in fonts)
+            {
+                sorted.Add(font);
+            }
+
+            sorted.Sort((x, y) => x.Source.CompareTo(y.Source));
+            return sorted;
+        }
+
+        public struct TextDecorationComboItem
+        {
+            public TextDecorationComboItem(string name, TextDecorationCollection textDecorations)
+            {
+                Name = name;
+                TextDecorations = textDecorations;
+            }
+
+            public string Name { get; }
+
+            public TextDecorationCollection TextDecorations { get; }
+        }
+
+        public struct EmptyShapeComboItem
+        {
+            public EmptyShapeComboItem(ShapeGeometry shapeGeometry)
+            {
+                Value = shapeGeometry;
+                Name = shapeGeometry.ToString();
+                Geometry = EmptyShapeGeometry.GetShapeGeometry(shapeGeometry);
+            }
+
+            public ShapeGeometry Value { get; }
+
+            public string Name { get; }
+
+            public Geometry Geometry { get; }
+        }
+
+        #endregion ComboBoxItem values
     }
 }

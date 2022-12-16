@@ -1,9 +1,9 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-
-namespace ColorPickerExtraLib.Behaviors
+﻿namespace ColorPickerExtraLib.Behaviors
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+
     public class TextBoxFocusBehavior
     {
         private const string IsSliderTextBox = "IsSliderTextBox";

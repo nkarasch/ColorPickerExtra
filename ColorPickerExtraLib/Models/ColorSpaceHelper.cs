@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace ColorPickerExtraLib.Models
+﻿namespace ColorPickerExtraLib.Models
 {
+    using System;
+
     internal static class ColorSpaceHelper
     {
         /// <summary>
@@ -11,31 +11,27 @@ namespace ColorPickerExtraLib.Models
         /// <param name="g">Green channel</param>
         /// <param name="b">Blue channel</param>
         /// <returns>Values in order: Hue (0-360 or -1), Saturation (0-1 or -1), Value (0-1)</returns>
-        public static void RgbToHsv(double r, double g, double b, out double h, out double s, out double v)
+        public static Tuple<double, double, double> RgbToHsv(double r, double g, double b)
         {
             double min, max, delta;
+            double h, s, v;
 
             min = Math.Min(r, Math.Min(g, b));
             max = Math.Max(r, Math.Max(g, b));
             v = max;
             delta = max - min;
-
             if (max != 0)
-            {
                 s = delta / max;
-            }
             else
             {
-                //pure black
+                // pure black
                 s = -1;
                 h = -1;
-                //return new Tuple<double, double, double>(h, s, v);
+                return new Tuple<double, double, double>(h, s, v);
             }
 
             if (r == max)
-            {
                 h = (g - b) / delta;       // between yellow & magenta
-            }
             else if (g == max)
                 h = 2 + (b - r) / delta;   // between cyan & yellow
             else
@@ -43,8 +39,10 @@ namespace ColorPickerExtraLib.Models
             h *= 60;
             if (h < 0)
                 h += 360;
-            if (Double.IsNaN(h)) //delta == 0, case of pure gray
+            if (double.IsNaN(h)) // delta == 0, case of pure gray
                 h = -1;
+
+            return new Tuple<double, double, double>(h, s, v);
         }
 
         /// <summary>
@@ -65,17 +63,17 @@ namespace ColorPickerExtraLib.Models
 
             if (max == 0)
             {
-                //pure black
+                // pure black
                 return new Tuple<double, double, double>(-1, -1, 0);
             }
 
             if (delta == 0)
             {
-                //gray
+                // gray
                 return new Tuple<double, double, double>(-1, 0, l);
             }
 
-            //magic
+            // magic
             s = l <= 0.5 ? delta / (max + min) : delta / (2 - max - min);
 
             if (r == max)
@@ -114,8 +112,8 @@ namespace ColorPickerExtraLib.Models
             h /= 60;
             int i = (int)h;
             double f = h - i;
-            double p = v * (1 - s);
-            double q = v * (1 - s * f);
+            double p = (v * (1 - s));
+            double q = (v * (1 - s * f));
             double t = v * (1 - s * (1 - f));
 
             switch (i)
@@ -126,7 +124,7 @@ namespace ColorPickerExtraLib.Models
                 case 3: return new Tuple<double, double, double>(p, q, v);
                 case 4: return new Tuple<double, double, double>(t, p, v);
                 default: return new Tuple<double, double, double>(v, p, q);
-            };
+            }
         }
 
         /// <summary>

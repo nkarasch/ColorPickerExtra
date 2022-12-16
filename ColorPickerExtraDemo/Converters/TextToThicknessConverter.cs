@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-
-
-namespace ColorPickerExtraDemo.Converters
+﻿namespace ColorPickerExtraDemo.Converters
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.Windows;
+    using System.Windows.Data;
+
     public class TextToThicknessConverter : IMultiValueConverter
     {
         #region IValueConverter Members
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[1] == null) // supports nullable Thickness
+            if (values[1] == null)
             {
                 return Binding.DoNothing;
             }
@@ -48,6 +48,7 @@ namespace ColorPickerExtraDemo.Converters
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
+            Debug.WriteLine("convert back " + value.GetType());
             string currentString = value as string;
             return new object[] { Binding.DoNothing, (currentString == null || currentString.Length == 0) ? new Thickness(0) : StringToThickness(currentString) };
         }
@@ -88,7 +89,6 @@ namespace ColorPickerExtraDemo.Converters
             char[] delimiters = new[] { ',', ' ' };
             string[] splitArray = input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
-
             foreach (string testIsNumber in splitArray)
             {
                 if (double.TryParse(testIsNumber, out double testOutput))
@@ -96,6 +96,7 @@ namespace ColorPickerExtraDemo.Converters
                     outputList.Add(testOutput);
                 }
             }
+
             return outputList;
         }
     }

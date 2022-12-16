@@ -1,10 +1,10 @@
-﻿using System;
-using System.Globalization;
-using System.Windows.Data;
-using System.Windows.Media;
-
-namespace ColorPickerExtraDemo.Converters
+﻿namespace ColorPickerExtraDemo.Converters
 {
+    using System;
+    using System.Globalization;
+    using System.Windows.Data;
+    using System.Windows.Media;
+
     [ValueConversion(typeof(Color), typeof(SolidColorBrush))]
     internal class ColorToBrushConverter : IValueConverter
     {

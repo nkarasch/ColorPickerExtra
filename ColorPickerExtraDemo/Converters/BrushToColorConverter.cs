@@ -1,19 +1,23 @@
-﻿using System;
-using System.Globalization;
-using System.Windows.Data;
-using System.Windows.Media;
-
-namespace ColorPickerExtraDemo.Converters
+﻿namespace ColorPickerExtraDemo.Converters
 {
+    using System;
+    using System.Globalization;
+    using System.Windows.Data;
+    using System.Windows.Media;
+
+    /// <summary>
+    /// Converts SolidColorBrush to Color
+    /// </summary>
     [ValueConversion(typeof(SolidColorBrush), typeof(Color))]
     internal class BrushToColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
+            if (value == null || value.GetType() != typeof(SolidColorBrush))
             {
                 return Binding.DoNothing;
             }
+
             SolidColorBrush c = (SolidColorBrush)value;
             Color col = Color.FromArgb(c.Color.A, c.Color.R, c.Color.G, c.Color.B);
             return col;

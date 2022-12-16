@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-
-namespace ColorPickerExtraLib.Models
+﻿namespace ColorPickerExtraLib.Models
 {
+    using System;
+    using System.ComponentModel;
+
     public class NotifyableObject : INotifyPropertyChanged
     {
         [field: NonSerialized] public event PropertyChangedEventHandler PropertyChanged = delegate { };

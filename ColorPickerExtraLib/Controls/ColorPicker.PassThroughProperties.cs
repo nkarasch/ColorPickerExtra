@@ -1,9 +1,9 @@
-﻿using ColorPickerExtraLib.Models;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System.Windows;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+
     public partial class ColorPicker
     {
         #region Base Parent Properties
@@ -76,8 +76,12 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(StandardAvailableColorArray), typeof(Color[]), typeof(ColorPicker),
                 new PropertyMetadata(null));
 
-        public static readonly DependencyProperty StandardItemSquareSizeProperty =
-            DependencyProperty.Register(nameof(StandardItemSquareSize), typeof(double), typeof(ColorPicker),
+        public static readonly DependencyProperty StandardItemWidthProperty =
+            DependencyProperty.Register(nameof(StandardItemWidth), typeof(double), typeof(ColorPicker),
+                new PropertyMetadata(17.0));
+
+        public static readonly DependencyProperty StandardItemHeightProperty =
+            DependencyProperty.Register(nameof(StandardItemHeight), typeof(double), typeof(ColorPicker),
                 new PropertyMetadata(17.0));
 
         public static readonly DependencyProperty StandardItemCornerRadiusProperty =
@@ -135,10 +139,16 @@ namespace ColorPickerExtraLib.Controls
              DependencyProperty.Register(nameof(StandardColumnCount), typeof(int), typeof(ColorPicker),
                  new PropertyMetadata(14));
 
-        public double StandardItemSquareSize
+        public double StandardItemWidth
         {
-            get => (double)GetValue(StandardItemSquareSizeProperty);
-            set => SetValue(StandardItemSquareSizeProperty, value);
+            get => (double)GetValue(StandardItemWidthProperty);
+            set => SetValue(StandardItemWidthProperty, value);
+        }
+
+        public double StandardItemHeight
+        {
+            get => (double)GetValue(StandardItemWidthProperty);
+            set => SetValue(StandardItemWidthProperty, value);
         }
 
         public double StandardItemCornerRadius

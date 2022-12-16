@@ -1,17 +1,9 @@
-﻿
-/* Unmerged change from project 'ColorPickerExtraLib (netcoreapp3.1)'
-Before:
-using System.Windows;
-After:
-using ColorPickerExtraLib.Models;
-using System.Windows;
-*/
-using ColorPickerExtraLib.Models;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System.Windows;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+
     public partial class PortableColorPicker
     {
         #region Base Parent Properties
@@ -104,8 +96,12 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(StandardAvailableColorArray), typeof(Color[]), typeof(PortableColorPicker),
                 new PropertyMetadata(null));
 
-        public static readonly DependencyProperty StandardItemSquareSizeProperty =
-            DependencyProperty.Register(nameof(StandardItemSquareSize), typeof(double), typeof(PortableColorPicker),
+        public static readonly DependencyProperty StandardItemWidthProperty =
+            DependencyProperty.Register(nameof(StandardItemWidth), typeof(double), typeof(PortableColorPicker),
+                new PropertyMetadata(17.0));
+
+        public static readonly DependencyProperty StandardItemHeightProperty =
+            DependencyProperty.Register(nameof(StandardItemHeight), typeof(double), typeof(PortableColorPicker),
                 new PropertyMetadata(17.0));
 
         public static readonly DependencyProperty StandardItemCornerRadiusProperty =
@@ -160,10 +156,16 @@ namespace ColorPickerExtraLib.Controls
              DependencyProperty.Register(nameof(StandardColumnCount), typeof(int), typeof(PortableColorPicker),
                  new PropertyMetadata(14));
 
-        public double StandardItemSquareSize
+        public double StandardItemWidth
         {
-            get => (double)GetValue(StandardItemSquareSizeProperty);
-            set => SetValue(StandardItemSquareSizeProperty, value);
+            get => (double)GetValue(StandardItemWidthProperty);
+            set => SetValue(StandardItemWidthProperty, value);
+        }
+
+        public double StandardItemHeight
+        {
+            get => (double)GetValue(StandardItemHeightProperty);
+            set => SetValue(StandardItemHeightProperty, value);
         }
 
         public double StandardItemCornerRadius
@@ -265,7 +267,6 @@ namespace ColorPickerExtraLib.Controls
         public static readonly DependencyProperty AdvancedInnerBorderWidthProperty =
             DependencyProperty.Register(nameof(AdvancedInnerBorderWidth), typeof(double), typeof(PortableColorPicker),
                 new PropertyMetadata(1.0));
-
 
         public AdvancedPickerType AdvancedPickerType
         {

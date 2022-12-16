@@ -1,17 +1,9 @@
-﻿
-/* Unmerged change from project 'ColorPickerExtraLib (netcoreapp3.1)'
-Before:
-using System.Windows;
-After:
-using ColorPickerExtraLib.Models;
-using System.Windows;
-*/
-using ColorPickerExtraLib.Models;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System.Windows;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+
     public class AdvancedColorPicker : AdvancedControlBase
     {
         static AdvancedColorPicker()

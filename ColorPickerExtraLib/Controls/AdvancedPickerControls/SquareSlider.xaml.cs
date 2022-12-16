@@ -1,15 +1,15 @@
-﻿using ColorPickerExtraLib.Models;
-using ColorPickerExtraLib.Utilities;
-using System;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-
-namespace ColorPickerExtraLib.Controls.UserControls
+﻿namespace ColorPickerExtraLib.Controls.UserControls
 {
+    using System;
+    using System.ComponentModel;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using ColorPickerExtraLib.Models;
+    using ColorPickerExtraLib.Utilities;
+
     internal partial class SquareSlider : UserControl, INotifyPropertyChanged
     {
         public SquareSlider()
@@ -72,6 +72,7 @@ namespace ColorPickerExtraLib.Controls.UserControls
         }
 
         private double rangeX;
+
         public double RangeX
         {
             get => rangeX;
@@ -83,6 +84,7 @@ namespace ColorPickerExtraLib.Controls.UserControls
         }
 
         private double rangeY;
+
         public double RangeY
         {
             get => rangeY;
@@ -94,6 +96,7 @@ namespace ColorPickerExtraLib.Controls.UserControls
         }
 
         private WriteableBitmap gradientBitmap;
+
         public WriteableBitmap GradientBitmap
         {
             get => gradientBitmap;
@@ -172,7 +175,7 @@ namespace ColorPickerExtraLib.Controls.UserControls
 
         private void UpdatePos(Point pos)
         {
-            //  HeadX = MathHelper.Clamp(pos.X / ActualWidth, 0, 1) * RangeX;
+            // HeadX = MathHelper.Clamp(pos.X / ActualWidth, 0, 1) * RangeX;
             // HeadY = (1 - MathHelper.Clamp(pos.Y / ActualHeight, 0, 1)) * RangeY;
             SquarePicker parent = FindParent.FindAncestor<SquarePicker>(this);
             parent.UpdateMousePosition(MathHelper.Clamp(pos.X / ActualWidth, 0, 1) * RangeX, (1 - MathHelper.Clamp(pos.Y / ActualHeight, 0, 1)) * RangeY);

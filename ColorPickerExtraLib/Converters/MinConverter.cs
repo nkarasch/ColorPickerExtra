@@ -1,10 +1,10 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Windows.Data;
-
-namespace ColorPickerExtraLib.Converters
+﻿namespace ColorPickerExtraLib.Converters
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using System.Windows.Data;
+
     internal class MinConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

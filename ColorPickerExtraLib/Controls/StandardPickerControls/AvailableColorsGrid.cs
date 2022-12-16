@@ -1,10 +1,9 @@
-﻿using ColorPickerExtraLib.Models;
-using ColorPickerExtraLib.Utilities;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls.ColorGrids
+﻿namespace ColorPickerExtraLib.Controls.ColorGrids
 {
+    using System.Windows;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Utilities;
+
     internal class AvailableColorsGrid : AColorGrid
     {
         static AvailableColorsGrid()
@@ -101,6 +100,7 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
                         increment++;
                     }
                 }
+
                 return gridColorArray;
             }
         }
@@ -148,6 +148,7 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
                                 colorGridItem.Color = Colors.Transparent;
                             }
                         }
+
                         colorGridItem.ToolTip = ColorUtilities.ColorToHex(colorGridItem.Color, true);
                     }
                 }
@@ -163,6 +164,7 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
                             byte l = (byte)(i / (float)(ColumnCount - 1) * 255);
                             colorGridItem.Color = Color.FromRgb(l, l, l);
                         }
+
                         colorGridItem.ToolTip = ColorUtilities.ColorToHex(colorGridItem.Color, false);
                     }
                 }

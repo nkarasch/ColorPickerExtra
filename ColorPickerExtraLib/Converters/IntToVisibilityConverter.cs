@@ -1,11 +1,10 @@
-﻿using System;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Converters
+﻿namespace ColorPickerExtraLib.Converters
 {
+    using System;
+    using System.Globalization;
+    using System.Windows;
+    using System.Windows.Data;
+
     [ValueConversion(typeof(int), typeof(Visibility))]
     internal class IntToVisibilityConverter : IValueConverter
     {
@@ -14,7 +13,6 @@ namespace ColorPickerExtraLib.Converters
             int integer = (int)value;
             return integer > 0 ? Visibility.Visible : Visibility.Collapsed;
         }
-
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

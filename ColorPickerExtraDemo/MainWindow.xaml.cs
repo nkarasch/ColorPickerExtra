@@ -1,12 +1,7 @@
-﻿using ColorPickerExtraLib.Controls;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraDemo
+﻿namespace ColorPickerExtraDemo
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    using System.Windows;
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -14,7 +9,12 @@ namespace ColorPickerExtraDemo
             InitializeComponent();
         }
 
-        public enum Theme { Default, Dark, Light }
+        public enum Theme
+        {
+            Default,
+            Dark,
+            Light
+        }
 
         private void DefaultRadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -32,6 +32,6 @@ namespace ColorPickerExtraDemo
         {
             App app = (App)Application.Current;
             app.ChangeTheme(Theme.Light);
-        }     
+        }
     }
 }

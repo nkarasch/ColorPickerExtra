@@ -1,11 +1,11 @@
-﻿using ColorPickerExtraLib.Models;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls.ColorGrids
+﻿namespace ColorPickerExtraLib.Controls.ColorGrids
 {
+    using System.Collections.Generic;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+
     [TemplatePart(Name = "PART_ColorGrid", Type = typeof(Grid))]
     internal abstract class AColorGrid : Control
     {
@@ -56,8 +56,12 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
             DependencyProperty.Register(nameof(RowCount), typeof(int), typeof(AColorGrid),
                 new PropertyMetadata(14, RebuildGrid));
 
-        internal static readonly DependencyProperty ItemSquareSizeProperty =
-            DependencyProperty.Register(nameof(ItemSquareSize), typeof(double), typeof(AColorGrid),
+        internal static readonly DependencyProperty ItemWidthProperty =
+            DependencyProperty.Register(nameof(ItemWidth), typeof(double), typeof(AColorGrid),
+                new PropertyMetadata(17.0, RebuildGrid));
+
+        internal static readonly DependencyProperty ItemHeightProperty =
+            DependencyProperty.Register(nameof(ItemHeight), typeof(double), typeof(AColorGrid),
                 new PropertyMetadata(17.0, RebuildGrid));
 
         internal static readonly DependencyProperty ItemCornerRadiusProperty =
@@ -104,10 +108,16 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
             set => SetValue(RowCountProperty, value);
         }
 
-        internal double ItemSquareSize
+        internal double ItemWidth
         {
-            get => (double)GetValue(ItemSquareSizeProperty);
-            set => SetValue(ItemSquareSizeProperty, value);
+            get => (double)GetValue(ItemWidthProperty);
+            set => SetValue(ItemWidthProperty, value);
+        }
+
+        internal double ItemHeight
+        {
+            get => (double)GetValue(ItemHeightProperty);
+            set => SetValue(ItemHeightProperty, value);
         }
 
         internal double ItemCornerRadius
@@ -248,40 +258,55 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
 
         #endregion Event Handlers
 
-        #region Methods
-
-        protected abstract Color[] GetColorArray();
+        #region Methods        
 
         private void BuildColorGrid()
         {
             ColorGridDictionary.Clear();
-            if (ColorGrid == null) { return; }
-            if (ColorGrid.Children != null) { ColorGrid.Children.Clear(); }
-            if (ColorGrid.ColumnDefinitions != null) { ColorGrid.ColumnDefinitions.Clear(); }
-            if (ColorGrid.RowDefinitions != null) { ColorGrid.RowDefinitions.Clear(); }
+            if (ColorGrid == null)
+            {
+                return;
+            }
+
+            if (ColorGrid.Children != null)
+            {
+                ColorGrid.Children.Clear();
+            }
+
+            if (ColorGrid.ColumnDefinitions != null)
+            {
+                ColorGrid.ColumnDefinitions.Clear();
+            }
+
+            if (ColorGrid.RowDefinitions != null)
+            {
+                ColorGrid.RowDefinitions.Clear();
+            }
+
             CreateGridItems(GetColorArray());
         }
 
         private void CreateGridItems(Color[] colorArray)
         {
             int actualRowCount = ((colorArray.Length - 1) / ColumnCount) + 1;
-            double perSize = ItemSquareSize + (ItemMargin * 2);
+            double perSizeWidth = ItemWidth + (ItemMargin * 2);
+            double perSizeHeight = ItemHeight + (ItemMargin * 2);
 
-            ColorGrid.Width = perSize * ColumnCount;
-            ColorGrid.Height = perSize * actualRowCount;
+            ColorGrid.Width = perSizeWidth * ColumnCount;
+            ColorGrid.Height = perSizeHeight * actualRowCount;
             for (int i = 0; i < ColumnCount; ++i)
             {
                 ColorGrid.ColumnDefinitions.Add(new ColumnDefinition
                 {
-                    Width = new GridLength(perSize)
+                    Width = new GridLength(perSizeWidth)
                 });
             }
 
-            for (int i = 0; i < RowCount; ++i)
+            for (int i = 0; i < actualRowCount; ++i)
             {
                 ColorGrid.RowDefinitions.Add(new RowDefinition
                 {
-                    Height = new GridLength(perSize)
+                    Height = new GridLength(perSizeHeight)
                 });
             }
 
@@ -305,6 +330,8 @@ namespace ColorPickerExtraLib.Controls.ColorGrids
                 colorItem.MouseDown += OuterGrid_MouseDown;
             }
         }
+
+        protected abstract Color[] GetColorArray();
 
         #endregion Methods        
     }

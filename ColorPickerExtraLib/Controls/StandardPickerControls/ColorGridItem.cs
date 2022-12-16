@@ -1,21 +1,20 @@
-﻿using ColorPickerExtraLib.Utilities;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
-
-namespace ColorPickerExtraLib.Controls.ColorGrids
+﻿namespace ColorPickerExtraLib.Controls.ColorGrids
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+    using System.Windows.Shapes;
+    using ColorPickerExtraLib.Utilities;
+
     internal class ColorGridItem : Grid
     {
         private Color color;
 
         internal ColorGridItem(Color color, AColorGrid parentColorGrid, Thickness margin, Thickness borderThickness, CornerRadius innerCornerRadius, CornerRadius outerCornerRadius) : base()
         {
-            
             this.color = color;
-            Width = parentColorGrid.ItemSquareSize;
-            Height = parentColorGrid.ItemSquareSize;
+            Width = parentColorGrid.ItemWidth;
+            Height = parentColorGrid.ItemHeight;
             Background = Brushes.Transparent;
             Margin = margin;
             ToolTip = ColorUtilities.ColorToHex(color, parentColorGrid.UsingAlphaChannel);

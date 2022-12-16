@@ -1,7 +1,7 @@
-﻿using System.Windows;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System.Windows;
+
     internal class ColorSliders : AdvancedControlBase
     {
         static ColorSliders()

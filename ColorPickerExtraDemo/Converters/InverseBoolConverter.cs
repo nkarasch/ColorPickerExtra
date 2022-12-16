@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Data;
-
-namespace ColorPickerExtraDemo.Converters
+﻿namespace ColorPickerExtraDemo.Converters
 {
+    using System;
+    using System.Windows.Data;
+
     public class InverseBoolConverter : IValueConverter
     {
         #region IValueConverter Members

@@ -1,8 +1,8 @@
-﻿using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls.LinearSliders
+﻿namespace ColorPickerExtraLib.Controls.LinearSliders
 {
+    using System.Windows;
+    using System.Windows.Media;
+
     internal class RgbColorSlider : AColorSlider
     {
         static RgbColorSlider()

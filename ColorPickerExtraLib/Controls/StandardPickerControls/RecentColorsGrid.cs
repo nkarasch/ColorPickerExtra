@@ -1,9 +1,9 @@
-﻿using ColorPickerExtraLib.Utilities;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls.ColorGrids
+﻿namespace ColorPickerExtraLib.Controls.ColorGrids
 {
+    using System.Windows;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Utilities;
+
     internal class RecentColorsGrid : AColorGrid
     {
         static RecentColorsGrid()

@@ -1,10 +1,10 @@
-﻿using ColorPickerExtraLib.Models;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+
     [TemplatePart(Name = "PART_ColorModeButton", Type = typeof(Button))]
     public partial class ColorPicker : ControlBase
     {
@@ -30,28 +30,29 @@ namespace ColorPickerExtraLib.Controls
             colorModeButton.Click += ColorModeButton_Clicked;
         }
 
-        #region Internal Properties
-        internal static readonly DependencyProperty IsPopupOpenProperty =
+        #region Properties
+
+        public static readonly DependencyProperty IsPopupOpenProperty =
             DependencyProperty.Register(nameof(IsPopupOpen), typeof(bool), typeof(ColorPicker),
                 new UIPropertyMetadata(false, OnIsPopupOpenChanged));
 
-        internal bool IsPopupOpen
+        public static readonly DependencyProperty ToggleButtonStateProperty =
+            DependencyProperty.Register(nameof(ToggleButtonState), typeof(ColorPickerState), typeof(ColorPicker),
+                new PropertyMetadata(ColorPickerState.Closed, OnToggleButtonStateChanged));
+
+        public bool IsPopupOpen
         {
             get => (bool)GetValue(IsPopupOpenProperty);
             set => SetValue(IsPopupOpenProperty, value);
         }
 
-        internal static readonly DependencyProperty ToggleButtonStateProperty =
-            DependencyProperty.Register(nameof(ToggleButtonState), typeof(ColorPickerState), typeof(ColorPicker),
-                new PropertyMetadata(ColorPickerState.Closed, OnToggleButtonStateChanged));
-
-        internal ColorPickerState ToggleButtonState
+        public ColorPickerState ToggleButtonState
         {
             get => (ColorPickerState)GetValue(ToggleButtonStateProperty);
             set => SetValue(ToggleButtonStateProperty, value);
         }
 
-        internal static void OnToggleButtonStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnToggleButtonStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (e.OldValue != e.NewValue && (ColorPickerState)e.NewValue == ColorPickerState.Closed)
             {
@@ -59,7 +60,7 @@ namespace ColorPickerExtraLib.Controls
             }
         }
 
-        #endregion Internal Properties
+        #endregion Properties
 
         #region Event Handlers
 

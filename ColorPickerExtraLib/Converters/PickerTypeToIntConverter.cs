@@ -1,10 +1,10 @@
-﻿using ColorPickerExtraLib.Models;
-using System;
-using System.Globalization;
-using System.Windows.Data;
-
-namespace ColorPickerExtraLib.Converters
+﻿namespace ColorPickerExtraLib.Converters
 {
+    using System;
+    using System.Globalization;
+    using System.Windows.Data;
+    using ColorPickerExtraLib.Models;
+
     [ValueConversion(typeof(AdvancedPickerType), typeof(int))]
     internal class PickerTypeToIntConverter : IValueConverter
     {

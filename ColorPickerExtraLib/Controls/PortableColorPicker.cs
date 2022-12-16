@@ -1,19 +1,13 @@
-﻿
-using ColorPickerExtraLib.Models;
-using ColorPickerExtraLib.Utilities;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Shapes;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
-    internal enum ColorPickerState
-    {
-        StandardOpen, AdvancedOpen, Closed
-    }
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Shapes;
+    using ColorPickerExtraLib.Models;
+    using ColorPickerExtraLib.Utilities;
 
     [TemplatePart(Name = "PART_CheckerBrushBorder", Type = typeof(Border))]
     [TemplatePart(Name = "PART_ToggleButtonRectangle", Type = typeof(Border))]
@@ -23,7 +17,7 @@ namespace ColorPickerExtraLib.Controls
     [TemplatePart(Name = "PART_PortableToggleButton", Type = typeof(ToggleButton))]
     public partial class PortableColorPicker : ControlBase
     {
-        private bool MouseOver = false;
+        private bool mouseOver = false;
         private Brush selectedColorBrush;
 
         private Border checkerBrushBorder;
@@ -126,7 +120,6 @@ namespace ColorPickerExtraLib.Controls
 
             if (d is PortableColorPicker portableColorPicker)
             {
-
                 portableColorPicker.UpdateBorder();
                 if (!isPopupOpen)
                 {
@@ -137,19 +130,19 @@ namespace ColorPickerExtraLib.Controls
 
         private void PortableToggleButton_MouseLeave(object sender, MouseEventArgs e)
         {
-            MouseOver = false;
+            mouseOver = false;
             UpdateBorder();
         }
 
         private void PortableToggleButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            MouseOver = true;
+            mouseOver = true;
             UpdateBorder();
         }
 
         private void PortableToggleButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            MouseOver = true;
+            mouseOver = true;
             UpdateBorder();
         }
 
@@ -160,6 +153,7 @@ namespace ColorPickerExtraLib.Controls
                 IsEmpty = false;
                 return;
             }
+
             ApplyProperties();
         }
 
@@ -233,7 +227,6 @@ namespace ColorPickerExtraLib.Controls
                 return;
             }
 
-
             if (!IsEmpty || (IsEmpty && EmptyBorderMode == EmptyElementMode.PortableSettings))
             {
                 switch (PortableBorderMode)
@@ -243,23 +236,23 @@ namespace ColorPickerExtraLib.Controls
                         toggleButtonRectangle.BorderThickness = new Thickness(0);
                         break;
                     case ShowOnToggleButton.ConstantColor:
-                        toggleButtonRectangle.BorderThickness = PortableBorderModeThickness;
-                        toggleButtonRectangle.BorderBrush = IsPopupOpen || MouseOver ? PortableBorderConstantHighlightBrush : PortableBorderConstantBrush;
+                        toggleButtonRectangle.BorderThickness = PortableBorderThickness;
+                        toggleButtonRectangle.BorderBrush = IsPopupOpen || mouseOver ? PortableBorderConstantHighlightBrush : PortableBorderConstantBrush;
                         break;
                     case ShowOnToggleButton.SelectedColor:
                         toggleButtonRectangle.BorderBrush = selectedColorBrush;
-                        toggleButtonRectangle.BorderThickness = PortableBorderModeThickness;
+                        toggleButtonRectangle.BorderThickness = PortableBorderThickness;
                         break;
                     case ShowOnToggleButton.InverseColors:
                         toggleButtonRectangle.BorderBrush = ColorUtilities.GetInverseColorBrush(SelectedColor, PortableInverseDarkBrush, PortableInverseLightBrush, UsingAlphaChannel);
-                        toggleButtonRectangle.BorderThickness = PortableBorderModeThickness;
+                        toggleButtonRectangle.BorderThickness = PortableBorderThickness;
                         break;
                 }
             }
             else if (IsEmpty && EmptyBorderMode == EmptyElementMode.EmptySettings)
             {
                 toggleButtonRectangle.BorderThickness = EmptyBorderThickness;
-                toggleButtonRectangle.BorderBrush = IsPopupOpen || MouseOver ? EmptyBorderHighlightBrush : EmptyBorderBrush;
+                toggleButtonRectangle.BorderBrush = IsPopupOpen || mouseOver ? EmptyBorderHighlightBrush : EmptyBorderBrush;
             }
             else
             {
@@ -310,7 +303,7 @@ namespace ColorPickerExtraLib.Controls
                 toggleButtonViewbox.Margin = EmptyFontMargin ?? PortableFontMargin;
                 toggleButtonViewbox.HorizontalAlignment = EmptyFontHorizontalAlignment ?? PortableFontHorizontalAlignment;
                 toggleButtonViewbox.VerticalAlignment = EmptyFontVerticalAlignment ?? PortableFontVerticalAlignment;
-                fontTextBlock.Text = EmptyFontText != null ? EmptyFontText : PortableFontUseHexText ? ColorUtilities.ColorToHex(SelectedColor, UsingAlphaChannel) : PortableFontText;
+                fontTextBlock.Text = EmptyFontText ?? (PortableFontUseHexText ? ColorUtilities.ColorToHex(SelectedColor, UsingAlphaChannel) : PortableFontText);
                 fontTextBlock.FontStyle = EmptyFontStyle ?? PortableFontStyle;
                 fontTextBlock.FontWeight = EmptyFontWeight ?? PortableFontWeight;
                 fontTextBlock.FontSize = (EmptyFontSize.HasValue && EmptyFontSize.Value > 0) ? EmptyFontSize.Value : PortableFontSize;
@@ -350,6 +343,7 @@ namespace ColorPickerExtraLib.Controls
             {
                 return;
             }
+
             if (PortableShapeMode != ShowOnToggleButton.Off && (!IsEmpty || (IsEmpty && EmptyShapeMode == EmptyElementMode.PortableSettings)))
             {
                 shapePath.Visibility = Visibility.Visible;
@@ -380,7 +374,7 @@ namespace ColorPickerExtraLib.Controls
                 shapePath.HorizontalAlignment = EmptyShapeHorizontalAlignment;
                 shapePath.VerticalAlignment = EmptyShapeVerticalAlignment;
                 shapePath.Stretch = EmptyShapeStretch;
-                shapePath.Stroke = (EmptyShapeColorBrush == null) ? Foreground : EmptyShapeColorBrush;
+                shapePath.Stroke = EmptyShapeColorBrush ?? Foreground;
                 shapePath.StrokeThickness = EmptyShapeLineWidth;
                 shapePath.Data = EmptyShapeCustomGeometry ?? Utilities.EmptyShapeGeometry.GetShapeGeometry(EmptyShapeGeometry);
             }

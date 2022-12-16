@@ -1,21 +1,13 @@
-﻿
-/* Unmerged change from project 'ColorPickerExtraLib (netcoreapp3.1)'
-Before:
-using System.ComponentModel;
-After:
-using ColorPickerExtraLib.Models;
-using System.ComponentModel;
-*/
-using ColorPickerExtraLib.Models;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls.LinearSliders
+﻿namespace ColorPickerExtraLib.Controls.LinearSliders
 {
+    using System.ComponentModel;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+
     [TemplatePart(Name = "PART_Thumb", Type = typeof(Thumb))]
     internal abstract class AColorSlider : Slider, INotifyPropertyChanged
     {
@@ -105,7 +97,7 @@ namespace ColorPickerExtraLib.Controls.LinearSliders
 
         private readonly LinearGradientBrush backgroundBrush = new LinearGradientBrush();
 
-        public GradientStopCollection BackgroundGradient
+        internal GradientStopCollection BackgroundGradient
         {
             get => backgroundBrush.GradientStops;
             set => backgroundBrush.GradientStops = value;

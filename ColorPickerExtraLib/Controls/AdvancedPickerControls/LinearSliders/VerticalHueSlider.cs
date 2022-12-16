@@ -1,10 +1,10 @@
-﻿using ColorPickerExtraLib.Models;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls.LinearSliders
+﻿namespace ColorPickerExtraLib.Controls.LinearSliders
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+
     internal class VerticalHueSlider : AColorSlider
     {
         static VerticalHueSlider()

@@ -11,3 +11,7 @@
 /ColorPickerExtraDemo/bin/Release/netcoreapp3.1
 /ColorPickerExtraLib/bin/Release
 /ColorPickerExtraTester
+/ColorPickerExtraDemo/Settings.StyleCop
+/ColorPickerExtraDemo/StyleCop.Cache
+/ColorPickerExtraLib/Settings.StyleCop
+/ColorPickerExtraLib/StyleCop.Cache

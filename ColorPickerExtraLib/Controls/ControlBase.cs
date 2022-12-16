@@ -1,10 +1,10 @@
-﻿using ColorPickerExtraLib.Models;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+
     public abstract class ControlBase : Control
     {
         public static readonly RoutedEvent ColorChangedEvent =
@@ -97,7 +97,7 @@ namespace ColorPickerExtraLib.Controls
             DependencyProperty.Register(nameof(IsIndependent), typeof(bool), typeof(ControlBase),
                 new PropertyMetadata(true));
 
-        internal bool IsIndependent
+        public bool IsIndependent
         {
             get => (bool)GetValue(IsIndependentProperty);
             set => SetValue(IsIndependentProperty, value);
@@ -111,7 +111,7 @@ namespace ColorPickerExtraLib.Controls
 
         private static void OnSelectedColorPropertyChange(DependencyObject d, DependencyPropertyChangedEventArgs args)
         {
-            if(d is ControlBase control && (control.IsIndependent || control is PortableColorPicker))
+            if (d is ControlBase control && (control.IsIndependent || control is PortableColorPicker))
             {
                 control.RaiseEvent(new ColorRoutedEventArgs(ColorChangedEvent, (Color)args.NewValue, control.IsEmpty));
             }

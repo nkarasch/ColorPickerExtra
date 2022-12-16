@@ -1,12 +1,12 @@
-﻿using ColorPickerExtraLib.Models;
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Shapes;
-
-namespace ColorPickerExtraLib.Controls.UserControls
+﻿namespace ColorPickerExtraLib.Controls.UserControls
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Shapes;
+    using ColorPickerExtraLib.Models;
+
     internal partial class HueSlider : UserControl
     {
         public HueSlider()

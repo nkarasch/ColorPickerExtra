@@ -1,22 +1,20 @@
 ﻿namespace ColorPickerExtraLib.Utilities
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using System.Windows;
     using System.Windows.Media;
 
     public static class ColorUtilities
     {
-        public static readonly Dictionary<string, Color> KnownColors = GetKnownColors();
+        // default colors
+        public static readonly SolidColorBrush DefaultNearBlack =
+            new SolidColorBrush(Color.FromRgb(28, 28, 28)); // #FFAFAFAF
 
+        public static readonly SolidColorBrush DefaultGreyBrush =
+            new SolidColorBrush(Color.FromRgb(175, 175, 175)); // #FFAFAFAF
 
-        private static Dictionary<string, Color> GetKnownColors()
-        {
-            var colorProperties = typeof(Colors).GetProperties(BindingFlags.Static | BindingFlags.Public);
-            return colorProperties.ToDictionary(p => p.Name, p => (Color)p.GetValue(null, null));
-        }
+        public static readonly SolidColorBrush DefaultHighlightBrush =
+            new SolidColorBrush(Color.FromRgb(44, 98, 139)); // #FF2C628B
 
         public static string ColorToHex(Color color, bool usingAlpha)
         {
@@ -24,8 +22,7 @@
         }
 
         /// <summary>
-        /// Adding a fake background to transparency colors for Border and Font modes on Toggle Button
-        /// 
+        /// Adding a fake background to transparency colors for Border and Font modes on the toggle button
         /// Using an over compositing formula
         /// from https://en.wikipedia.org/wiki/Alpha_compositing
         /// A0 = Aa + Ab(1-Aa)

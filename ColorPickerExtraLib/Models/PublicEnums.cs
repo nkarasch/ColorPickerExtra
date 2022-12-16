@@ -1,12 +1,5 @@
 ﻿namespace ColorPickerExtraLib.Models
 {
-    public enum StandardAvailableColorsType : int
-    {
-        GENERATE = 0,
-        KNOWN_SORT_ALPHABETICAL = 1,
-        KNOWN_SORT_HSV = 2
-    }
-
     public enum AdvancedPickerType : int
     {
         HSV = 0, HSL = 1
@@ -48,5 +41,12 @@
         VerticalLine = 10,
         PerpendicularCross = 11,
         ParallelCross = 12
+    }
+
+    public enum ColorPickerState : int
+    {
+        StandardOpen = 0,
+        AdvancedOpen = 1,
+        Closed = 2
     }
 }

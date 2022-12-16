@@ -1,8 +1,8 @@
-﻿using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Utilities
+﻿namespace ColorPickerExtraLib.Utilities
 {
+    using System.Windows;
+    using System.Windows.Media;
+
     public class FindParent
     {
         public static T FindAncestor<T>(DependencyObject obj)
@@ -15,7 +15,9 @@ namespace ColorPickerExtraLib.Utilities
                 {
                     dependObj = GetParent(dependObj);
                     if (dependObj is T)
+                    {
                         return dependObj as T;
+                    }
                 }
                 while (dependObj != null);
             }

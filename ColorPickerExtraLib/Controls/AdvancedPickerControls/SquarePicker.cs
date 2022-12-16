@@ -1,9 +1,9 @@
-﻿using ColorPickerExtraLib.Models;
-using System.Windows;
-using System.Windows.Media;
-
-namespace ColorPickerExtraLib.Controls
+﻿namespace ColorPickerExtraLib.Controls
 {
+    using System.Windows;
+    using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
+
     internal class SquarePicker : AdvancedControlBase
     {
         static SquarePicker()
@@ -53,15 +53,15 @@ namespace ColorPickerExtraLib.Controls
             set => SetValue(AdvancedInnerBorderWidthProperty, value);
         }
 
-        public void UpdateMousePosition(double X, double Y)
+        public void UpdateMousePosition(double x, double y)
         {
             if (AdvancedPickerType == AdvancedPickerType.HSV)
             {
-                Color.HSV_SV = new double[] { X, Y };
+                Color.HSV_SV = new double[] { x, y };
             }
             else
             {
-                Color.HSL_SL = new double[] { X, Y };
+                Color.HSL_SL = new double[] { x, y };
             }
         }
     }

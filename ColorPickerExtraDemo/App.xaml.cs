@@ -1,12 +1,9 @@
-﻿using System;
-using System.Windows;
-using static ColorPickerExtraDemo.MainWindow;
-
-namespace ColorPickerExtraDemo
+﻿namespace ColorPickerExtraDemo
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+    using System;
+    using System.Windows;
+    using static ColorPickerExtraDemo.MainWindow;
+
     public partial class App : Application
     {
         private const string DefaultBase = "pack://application:,,,/Themes/DefaultTheme.xaml";
@@ -27,6 +24,7 @@ namespace ColorPickerExtraDemo
             switch (changeToTheme)
             {
                 case Theme.Default:
+                default:
                     ThemeDictionary.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri(DefaultBase) });
                     break;
                 case Theme.Dark:

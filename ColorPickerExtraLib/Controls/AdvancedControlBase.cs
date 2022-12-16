@@ -1,9 +1,9 @@
 ﻿namespace ColorPickerExtraLib.Controls
 {
-    using ColorPickerExtraLib.Models;
     using System;
     using System.Windows;
     using System.Windows.Media;
+    using ColorPickerExtraLib.Models;
 
     public abstract class AdvancedControlBase : ControlBase, IColorStateStorage, ISecondColorStorage
     {
@@ -119,7 +119,10 @@
         internal override void OnSelectedColorChanged(Color newColor)
         {
             if (ignoreColorPropertyChange)
+            {
                 return;
+            }
+
             ignoreColorChange = true;
             Color.A = newColor.A;
             Color.RGB_R = newColor.R;
@@ -139,6 +142,7 @@
             {
                 return;
             }
+
             ignoreSecondaryColorChange = true;
             SecondColor.A = newColor.A;
             SecondColor.RGB_R = newColor.R;

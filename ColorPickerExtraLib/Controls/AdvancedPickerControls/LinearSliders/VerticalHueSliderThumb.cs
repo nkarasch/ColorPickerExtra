@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls.Primitives;
-
-namespace ColorPickerExtraLib.Controls.AdvancedPickerControls.LinearSliders
+﻿namespace ColorPickerExtraLib.Controls.AdvancedPickerControls.LinearSliders
 {
+    using System.Windows.Controls.Primitives;
+
     internal class VerticalHueSliderThumb : Thumb
     {
     }
