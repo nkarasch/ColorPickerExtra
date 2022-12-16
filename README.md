@@ -6,15 +6,15 @@ A WPF color picker inspired by and using a combination of modified code from the
   * **AdvancedColorPicker** - the common style canvas for choosing exact colors via sliders or hex values
   * **ColorPicker** - the two above combined for swapping in between
   * **PortableColorPicker** - a toggle button that launches a popup containing ColorPicker with custom properties for displaying the current state via background, border, text, or shapes
-* All of the public controls also feature an optional 'empty' mode for uses cases when the user may be allowed to not have a selected color    
+* Each of the four main public controls also feature an optional __empty__ mode for uses cases when the user may be allowed to not have a selected color    
 * There are two templates included
-  * Default is a more curvature using the layout from PixiEditor with the circular hue slider and some curved edges
-  * 'UseRectangularStyle' set to true uses one with a vertical hue slider without curved edges  
+  * Default with __UseRectangularStyle__ false is a more curvature layout from PixiEditor with the circular hue slider and some curved edges
+  * __UseRectangularStyle__ set to true uses one with a vertical hue slider without curved edges  
 
 ![header](https://user-images.githubusercontent.com/1914281/205272101-a9ae038d-fe9a-4767-a923-2d77fbb90313.png)
 ![header2](https://user-images.githubusercontent.com/1914281/205276053-2a72475c-33bd-41d4-af5b-525d5d58844e.png)
 
-### Control Heirarchy
+# Control Heirarchy
 * **PortableColorPicker**
   * **ColorPicker**
     * **StandardColorPicker**
@@ -52,7 +52,7 @@ A WPF color picker inspired by and using a combination of modified code from the
 ### PortableColorPicker
 Contains the ColorPicker, it's StandardColorPicker and AdvancedColorPicker children, and all of their pass through properties. The intention 
 is to make the toggle button appearence heavily customizable allowing its background, text, shape, and border to be set without side styling complications.
-Toggle button style properties begin with the word Portable and Empty is for when IsEmpty = true. 
+Toggle button style properties begin with the word Portable while Empty is for when IsEmpty = true. 
 
 <details>
   <summary>Sample PortableColorPicker images</summary>
@@ -81,7 +81,7 @@ Toggle button style properties begin with the word Portable and Empty is for whe
 | PortableBorderMode                   | enum ShowOnToggleButton | Dynamic area border options Off, SelectedColor, ConstantColor, or Inverse |
 | PortableBorderConstantBrush          | Brush                   | Used when PortableBorderMode is set to ConstantColor                      |
 | PortableBorderConstantHighlightBrush | Brush                   | For highlighting when the mouse is over or popup is open                  |
-| PortableBorderModeThickness          | Thickness               | Border thickness when not set to Off                                      |
+| PortableBorderThickness          | Thickness               | Border thickness when not set to Off                                      |
 | PortableShapeMode                | enum ShowOnToggleButton | Dynamic area shape options Off, SelectedColor, ConstantColor, or Inverse     |
 | PortableShapeGeometry            | enum ShapeGeometry      | Selection for pre-defined shape paths, all are setup between {0,0} and {1,1} |
 | PortableShapeCustomGeometry      | Geometry                | Set custom geometry, uses PortableShapeGeometry selection if not set         |
@@ -219,3 +219,33 @@ hue slider in the top right when UseRectangularStyle is active.
 | AdvancedInnerBorderWidth | double             | Border width of circular/vertical hue sliders, square slider, and color swap items |
   
 </details>
+
+# Usage
+
+Install the NuGet package and add a reference
+```
+xmlns:colorpicker="clr-namespace:ColorPickerExtraLib.Controls;assembly=ColorPickerExtraLib"
+```
+Then add your desired controls and their properties. The most important are __SelectedColor__ and __IsEmpty__ (if using EnableEmptyMode). For updates there is the option between binding to the event 'ColorChanged' or directly to the properties __SelectedColor__ and/or __IsEmpty__ directly.  
+
+```
+<colorpicker:PortableColorPicker />
+<colorpicker:ColorPicker />
+<colorpicker:StandardColorPicker />
+<colorpicker:AdvancedColorPicker />
+```
+
+It will run with the default style without any additions but to use an alternative style including the dark theme include them in your resource dictionary. It is designed to __not__ use any of your apps outside styles. The included dark theme using colors from [AngryCarrot789's WPFDarkTheme](https://github.com/AngryCarrot789/WPFDarkTheme) or your own customized can be added as so.
+```
+<Window.Resources>
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="pack://application:,,,/ColorPickerExtraLib;component/Themes/DarkBrushes.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/ColorPickerExtraLib;component/Themes/CustomTheme.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+</Window.Resources>
+```
+
+The demo app will also allow testing all relevant settings
+![testapp](https://user-images.githubusercontent.com/1914281/208074982-44c3769d-39bc-4b4a-98d6-0c9e5278d52c.png)
