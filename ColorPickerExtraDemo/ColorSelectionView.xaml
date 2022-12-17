@@ -827,7 +827,7 @@
                         Text="PortableBackgroundConstantBrush:" />
                     <controls:PortableColorPicker
                         Grid.Row="1"
-                        Grid.Column="1"
+                        Grid.Column="1" 
                         Margin="0,3"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"

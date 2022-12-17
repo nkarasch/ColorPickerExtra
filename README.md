@@ -1,18 +1,18 @@
 # ColorPickerExtra
-A WPF color picker inspired by and using a combination of modified code from the [PixiEditor ColorPicker](https://github.com/PixiEditor/ColorPicker) and [Dirkster99's version of the classic](https://github.com/Dirkster99/ColorPickerLib) that can go as low as .NET 4.0 or .Net Core 3.1.
+A WPF color picker inspired by and using a combination of modified code from the [PixiEditor ColorPicker](https://github.com/PixiEditor/ColorPicker) and [Dirkster99's version of the classic](https://github.com/Dirkster99/ColorPickerLib) that can go as low as .NET 4.0 or .Net Core 3.1. The main purpose is to include features to easily change the style of the toggle button and add an optional empty mode for rare use cases where the user would be allowed to select no color.
 
 * There are four different public controls
   * **StandardColorPicker** - a pre-defined grid of colors for single click
   * **AdvancedColorPicker** - the common style canvas for choosing exact colors via sliders or hex values
   * **ColorPicker** - the two above combined for swapping in between
   * **PortableColorPicker** - a toggle button that launches a popup containing ColorPicker with custom properties for displaying the current state via background, border, text, or shapes
-* Each of the four main public controls also feature an optional __empty__ mode for uses cases when the user may be allowed to not have a selected color    
+* Each of the four main public controls also feature an optional __empty__ mode for uses cases when the user may be allowed to not have any color selected    
 * There are two templates included
   * Default with __UseRectangularStyle__ false is a more curvature layout from PixiEditor with the circular hue slider and some curved edges
   * __UseRectangularStyle__ set to true uses one with a vertical hue slider without curved edges  
 
 ![header](https://user-images.githubusercontent.com/1914281/205272101-a9ae038d-fe9a-4767-a923-2d77fbb90313.png)
-![header2](https://user-images.githubusercontent.com/1914281/205276053-2a72475c-33bd-41d4-af5b-525d5d58844e.png)
+![header-default](https://user-images.githubusercontent.com/1914281/208228428-274f2eb0-a5c1-4f5f-b070-8e6e168743dc.png)
 
 # Control Heirarchy
 * **PortableColorPicker**
@@ -248,4 +248,5 @@ It will run with the default style without any additions but to use an alternati
 ```
 
 The demo app will also allow testing all relevant settings
-![testapp](https://user-images.githubusercontent.com/1914281/208074982-44c3769d-39bc-4b4a-98d6-0c9e5278d52c.png)
+![demoapp](https://user-images.githubusercontent.com/1914281/208228262-f60efbe4-936c-4236-b96f-410aa5601c1c.png)
+

@@ -12,12 +12,22 @@
     <Version>1.0</Version>
     <Description>Yet another ColorPicker control for WPF supporting back to .NET 4.0 and Core 3.1. It is inspired by and using some code from both https://github.com/Dirkster99/ColorPickerLib and https://github.com/PixiEditor/ColorPicker. It's main intention is adding built in abilities to modify the popup's ToggleButton along with methods for the option to allow users to select no color.</Description>
     <RepositoryUrl>https://github.com/nkarasch/ColorPickerExtra</RepositoryUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   
 
   <ItemGroup>
     <None Remove="Images\circular_hue_gradient.png" />
     <None Remove="Images\transparentbg_mini.png" />
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+	    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
