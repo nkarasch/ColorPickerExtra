@@ -1,6 +1,9 @@
 # ColorPickerExtra
 A WPF color picker inspired by and using a combination of modified code from the [PixiEditor ColorPicker](https://github.com/PixiEditor/ColorPicker) and [Dirkster99's version of the classic](https://github.com/Dirkster99/ColorPickerLib) that can go as low as .NET 4.0 or .Net Core 3.1.
 
+![header](https://user-images.githubusercontent.com/1914281/205272101-a9ae038d-fe9a-4767-a923-2d77fbb90313.png)
+![header-default](https://user-images.githubusercontent.com/1914281/208228156-f93b54c7-79c4-4449-9497-30a61fde742f.png)
+
 * There are four different public controls
   * **StandardColorPicker** - a pre-defined grid of colors for single click
   * **AdvancedColorPicker** - the common style canvas for choosing exact colors via sliders or hex values
@@ -10,9 +13,6 @@ A WPF color picker inspired by and using a combination of modified code from the
 * There are two templates included
   * Default with __UseRectangularStyle__ false is a more curvature layout from PixiEditor with the circular hue slider and some curved edges
   * __UseRectangularStyle__ set to true uses one with a vertical hue slider without curved edges  
-
-![header](https://user-images.githubusercontent.com/1914281/205272101-a9ae038d-fe9a-4767-a923-2d77fbb90313.png)
-![header2](https://user-images.githubusercontent.com/1914281/205276053-2a72475c-33bd-41d4-af5b-525d5d58844e.png)
 
 # Control Heirarchy
 * **PortableColorPicker**
@@ -248,4 +248,5 @@ It will run with the default style without any additions but to use an alternati
 ```
 
 The demo app will also allow testing all relevant settings
-![testapp](https://user-images.githubusercontent.com/1914281/208074982-44c3769d-39bc-4b4a-98d6-0c9e5278d52c.png)
+![demoapp](https://user-images.githubusercontent.com/1914281/208228262-f60efbe4-936c-4236-b96f-410aa5601c1c.png)
+
