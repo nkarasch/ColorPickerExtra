@@ -953,7 +953,6 @@
                         PortableBackgroundMode="InverseColors"
                         PortableBorderMode="SelectedColor"
                         PortableBorderThickness="{Binding PortableBorderThickness, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
-                        PortableFontText="Constant Border"
                         SelectedColor="{Binding PortableBorderConstantBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
 
@@ -1522,7 +1521,7 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         BaseAllowChangeModes="False"
-                        PortableBackgroundMode="Off"
+                        PortableBackgroundMode="InverseColors"
                         PortableBorderMode="SelectedColor"
                         SelectedColor="{Binding EmptyBorderBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
@@ -1534,11 +1533,11 @@
                     <controls:PortableColorPicker
                         Grid.Row="3"
                         Grid.Column="1"
-                        Margin="0,3"
+                        Margin="0,3" 
+                        PortableBackgroundMode="InverseColors"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         BaseAllowChangeModes="False"
-                        PortableBackgroundMode="Off"
                         PortableBorderMode="SelectedColor"
                         SelectedColor="{Binding EmptyBorderHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
