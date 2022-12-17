@@ -114,11 +114,11 @@
                 StandardItemBorderBrush="{Binding StandardItemBorderBrush, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemBorderThickness="{Binding StandardItemBorderThickness, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemCornerRadius="{Binding StandardItemCornerRadius, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                StandardItemHeight="{Binding StandardItemHeight, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemInnerHighlightBrush="{Binding StandardItemInnerHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemMargin="{Binding StandardItemMargin, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemOuterHighlightBrush="{Binding StandardItemOuterHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemWidth="{Binding StandardItemWidth, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                StandardItemHeight="{Binding StandardItemHeight, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardRecentColorRows="{Binding StandardRecentColorRows, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardRecentColorsHeader="{Binding StandardRecentColorsHeader, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardShowAvailableColors="{Binding StandardShowAvailableColors, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -346,7 +346,10 @@
                         PortableBorderThickness="5"
                         SelectedColor="{Binding StandardItemOuterHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}" />
 
-                    <Grid Grid.Row="15" Grid.ColumnSpan="2" Margin="0,3">
+                    <Grid
+                        Grid.Row="15"
+                        Grid.ColumnSpan="2"
+                        Margin="0,3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -564,11 +567,11 @@
                 StandardItemBorderBrush="{Binding StandardItemBorderBrush, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemBorderThickness="{Binding StandardItemBorderThickness, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemCornerRadius="{Binding StandardItemCornerRadius, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                StandardItemHeight="{Binding StandardItemHeight, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemInnerHighlightBrush="{Binding StandardItemInnerHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemMargin="{Binding StandardItemMargin, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemOuterHighlightBrush="{Binding StandardItemOuterHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardItemWidth="{Binding StandardItemWidth, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                StandardItemHeight="{Binding StandardItemHeight, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardRecentColorRows="{Binding StandardRecentColorRows, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardRecentColorsHeader="{Binding StandardRecentColorsHeader, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 StandardShowAvailableColors="{Binding StandardShowAvailableColors, ElementName=_PortableColorPicker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -744,7 +747,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                
+
                 <controls:PortableColorPicker
                     x:Name="_PortableColorPicker"
                     Grid.Row="0"
@@ -947,8 +950,10 @@
                         BaseAllowChangeModes="False"
                         BaseColorMode="Advanced"
                         IsEnabled="{Binding PortableBorderMode, ElementName=_PortableColorPicker, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static models:ShowOnToggleButton.ConstantColor}}"
-                        PortableBackgroundMode="Off"
+                        PortableBackgroundMode="InverseColors"
                         PortableBorderMode="SelectedColor"
+                        PortableBorderThickness="{Binding PortableBorderThickness, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
+                        PortableFontText="Constant Border"
                         SelectedColor="{Binding PortableBorderConstantBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
 
@@ -965,8 +970,9 @@
                         BaseAllowChangeModes="False"
                         BaseColorMode="Advanced"
                         IsEnabled="{Binding PortableBorderMode, ElementName=_PortableColorPicker, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static models:ShowOnToggleButton.ConstantColor}}"
-                        PortableBackgroundMode="Off"
+                        PortableBackgroundMode="InverseColors"
                         PortableBorderMode="SelectedColor"
+                        PortableBorderThickness="{Binding PortableBorderThickness, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         SelectedColor="{Binding PortableBorderConstantHighlightBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
 
@@ -1203,15 +1209,17 @@
                     <controls:PortableColorPicker
                         Grid.Row="1"
                         Grid.Column="1"
+                        Width="160"
                         Margin="0,3"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         BaseAllowChangeModes="False"
                         BaseColorMode="Advanced"
                         IsEnabled="{Binding PortableFontMode, ElementName=_PortableColorPicker, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static models:ShowOnToggleButton.ConstantColor}}"
-                        PortableBackgroundMode="Off"
+                        PortableBackgroundMode="InverseColors"
+                        PortableFontMargin="2,0"
                         PortableFontMode="SelectedColor"
-                        PortableFontText="Font"
+                        PortableFontText="Constant Font Color"
                         SelectedColor="{Binding PortableFontConstantBrush, ElementName=_PortableColorPicker, Mode=TwoWay, Converter={StaticResource BrushToColorConverter}}"
                         StandardShowRecentColors="True" />
 
@@ -1865,7 +1873,7 @@
                         Grid.Row="6"
                         Grid.Column="2"
                         Click="EmptyFontVerticalAlignmentReset_Click"
-                        Content="Reset"/>
+                        Content="Reset" />
 
                     <TextBlock
                         Grid.Row="7"
@@ -1931,7 +1939,7 @@
                         Grid.Row="9"
                         Grid.Column="2"
                         Click="EmptyTextDecorationsReset_Click"
-                        Content="Reset"/>
+                        Content="Reset" />
 
                     <TextBlock
                         Grid.Row="10"
@@ -1998,7 +2006,7 @@
                         Grid.Row="12"
                         Grid.Column="2"
                         Click="EmptyFontMarginReset_Click"
-                        Content="Reset"/>
+                        Content="Reset" />
                 </Grid>
             </GroupBox>
             <!--#endregion Empty Mode Font (Column 1, Row 4)-->

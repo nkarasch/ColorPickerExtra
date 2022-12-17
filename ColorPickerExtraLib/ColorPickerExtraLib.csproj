@@ -9,8 +9,9 @@
     <PackageProjectUrl>https://github.com/nkarasch/ColorPickerExtra</PackageProjectUrl>
     <PackageTags />
     <Authors>Nick Karasch</Authors>
-    <Version>0.9</Version>
-    <Description>Yet another ColorPicker control for WPF supporting back to .NET 4.0 and Core 3.1. It is inspired by and using some code from https://github.com/Dirkster99/ColorPickerLib and https://github.com/PixiEditor/ColorPicker.</Description>
+    <Version>1.0</Version>
+    <Description>Yet another ColorPicker control for WPF supporting back to .NET 4.0 and Core 3.1. It is inspired by and using some code from both https://github.com/Dirkster99/ColorPickerLib and https://github.com/PixiEditor/ColorPicker. It's main intention is adding built in abilities to modify the popup's ToggleButton along with methods for the option to allow users to select no color.</Description>
+    <RepositoryUrl>https://github.com/nkarasch/ColorPickerExtra</RepositoryUrl>
   </PropertyGroup>
   
 
